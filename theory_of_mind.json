@@ -1,0 +1,614 @@
+{
+  "metadata": {
+    "id": "psychology_theory_of_mind_depth_psychology",
+    "title": "Theory of Mind, Depth Psychology and Psychotherapy Context",
+    "description": "A curated semantic context module linking contemporary theory of mind and mentalization with major depth-psychological, psychoanalytic, humanistic and process-oriented thinkers.",
+    "intended_use": "Feed into an agentic AI as structured background context, source discovery and relationship mapping. The linked resources should be consulted when greater depth or verification is required.",
+    "language": "en",
+    "region": "international",
+    "last_curated": "2026-08-31",
+    "epistemic_note": "Theories in psychology differ substantially in empirical support. Historical and clinical theories should be represented as theoretical frameworks rather than automatically treated as established biological or neuroscientific facts."
+  },
+  "agent_instructions": {
+    "source_priority": [
+      "peer-reviewed research and academic encyclopedias",
+      "professional psychological or psychoanalytic organisations",
+      "universities and recognised training institutes",
+      "primary or official sources",
+      "high-quality educational summaries"
+    ],
+    "reasoning_guidance": [
+      "Distinguish historical influence from current empirical support.",
+      "Do not collapse different schools into a single theory of mind.",
+      "When comparing theorists, identify both conceptual continuities and disagreements.",
+      "Treat concepts such as archetypes, collective unconscious, dreambody, id/ego/superego and the Real/Symbolic/Imaginary as concepts within their respective theoretical systems.",
+      "Where contemporary cognitive science, developmental psychology or neuroscience provides relevant evidence, distinguish it from psychodynamic interpretation.",
+      "Use the relationship map to retrieve adjacent modules when a question crosses theoretical traditions."
+    ]
+  },
+  "topics": [
+    {
+      "id": "theory_of_mind",
+      "name": "Theory of Mind",
+      "field": [
+        "cognitive science",
+        "developmental psychology",
+        "social cognition",
+        "neuroscience"
+      ],
+      "summary": "Theory of mind, also called mindreading or often mentalizing, concerns the capacity to attribute mental states such as beliefs, intentions, desires and feelings to other people and use those attributions to understand or predict behaviour.",
+      "key_concepts": [
+        "mental-state attribution",
+        "beliefs and false beliefs",
+        "intentions",
+        "perspective taking",
+        "mindreading",
+        "social cognition",
+        "cognitive and affective mentalizing",
+        "self-other distinction"
+      ],
+      "sources": [
+        {
+          "title": "Theory of Mind",
+          "publisher": "Internet Encyclopedia of Philosophy",
+          "url": "https://iep.utm.edu/page/theomind/",
+          "type": "academic encyclopedia",
+          "quality": "high",
+          "use": "Detailed conceptual and philosophical introduction to theory of mind and mindreading."
+        },
+        {
+          "title": "The social neuroscience of mentalizing: challenges and recommendations",
+          "publisher": "Current Opinion in Psychology / PubMed Central",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6110997/",
+          "type": "peer-reviewed review",
+          "quality": "high",
+          "use": "Research-oriented overview of mentalizing, measurement, neuroscience and methodological limitations."
+        },
+        {
+          "title": "The Neurobiology of Mentalizing",
+          "publisher": "UCL Discovery",
+          "url": "https://discovery.ucl.ac.uk/id/eprint/1475516/",
+          "type": "peer-reviewed academic review",
+          "quality": "high",
+          "use": "Bridge between psychological mentalization theory and contemporary neuroscience."
+        }
+      ]
+    },
+    {
+      "id": "freud",
+      "name": "Sigmund Freud",
+      "school": "Psychoanalysis",
+      "summary": "Freud developed psychoanalysis and a model of psychological life centred on unconscious processes, conflict, defence, early development, dreams, transference and the dynamic interaction of psychological forces.",
+      "key_concepts": [
+        "unconscious",
+        "repression",
+        "defence mechanisms",
+        "id",
+        "ego",
+        "superego",
+        "transference",
+        "free association",
+        "dream interpretation",
+        "psychosexual development"
+      ],
+      "sources": [
+        {
+          "title": "Freud and the Psychodynamic Perspective",
+          "publisher": "OpenStax Psychology 2e",
+          "url": "https://openstax.org/books/psychology-2e/pages/11-2-freud-and-the-psychodynamic-perspective",
+          "type": "university-level open textbook",
+          "quality": "high",
+          "use": "Accessible overview that also places Freud's ideas in contemporary psychology."
+        },
+        {
+          "title": "Freud 101",
+          "publisher": "Freud Museum London",
+          "url": "https://www.freud.org.uk/education/higher-education/freud-101/",
+          "type": "specialist educational resource",
+          "quality": "high",
+          "use": "Orientation to Freud's life, work, major ideas and interdisciplinary legacy."
+        }
+      ]
+    },
+    {
+      "id": "jung",
+      "name": "Carl Gustav Jung",
+      "school": "Analytical Psychology",
+      "summary": "Jung developed analytical psychology, expanding depth psychology through concepts including complexes, archetypes, the collective unconscious, psychological types, active imagination and individuation.",
+      "key_concepts": [
+        "complexes",
+        "personal unconscious",
+        "collective unconscious",
+        "archetypes",
+        "shadow",
+        "persona",
+        "anima and animus",
+        "Self",
+        "individuation",
+        "active imagination",
+        "psychological types"
+      ],
+      "sources": [
+        {
+          "title": "Carl Gustav Jung",
+          "publisher": "International Association for Analytical Psychology",
+          "url": "https://iaap.org/jung-analytical-psychology/carl-gustav-jung/",
+          "type": "professional analytical psychology organisation",
+          "quality": "high",
+          "use": "Detailed account of Jung's intellectual development and central concepts."
+        },
+        {
+          "title": "Jung, Carl Gustav (1875–1961)",
+          "publisher": "Routledge Encyclopedia of Philosophy",
+          "url": "https://www.rep.routledge.com/articles/biographical/jung-carl-gustav-1875-1961/v-1/sections/the-theory-of-archetypes-and-personality-theory",
+          "type": "academic encyclopedia",
+          "quality": "high",
+          "use": "Scholarly summary of Jung's theory of archetypes and personality."
+        }
+      ]
+    },
+    {
+      "id": "adler",
+      "name": "Alfred Adler",
+      "school": "Individual Psychology",
+      "summary": "Adler's individual psychology emphasises purposive striving, feelings of inferiority and compensation, style of life, social interest, belonging and the individual as an integrated person embedded within a social world.",
+      "key_concepts": [
+        "individual psychology",
+        "inferiority feelings",
+        "inferiority complex",
+        "compensation",
+        "striving for mastery",
+        "style of life",
+        "social interest",
+        "belonging",
+        "goal-directed behaviour"
+      ],
+      "sources": [
+        {
+          "title": "Individual Psychology",
+          "publisher": "APA Dictionary of Psychology",
+          "url": "https://dictionary.apa.org/individual-psychology",
+          "type": "professional reference",
+          "quality": "high",
+          "use": "Concise authoritative definition of Adlerian individual psychology."
+        },
+        {
+          "title": "Alfred Adler | Vision and Lasting Impact",
+          "publisher": "Adler University",
+          "url": "https://www.adler.edu/en-ca/about/history/alfred-adler/",
+          "type": "university overview",
+          "quality": "high",
+          "use": "Overview of Adler's social, community and therapeutic orientation."
+        },
+        {
+          "title": "The Drive for Self: Alfred Adler and the Founding of Individual Psychology",
+          "publisher": "American Journal of Psychiatry",
+          "url": "https://psychiatryonline.org/doi/10.1176/ajp.156.7.1110",
+          "type": "scholarly review",
+          "quality": "high",
+          "use": "Historical and conceptual discussion of Adler's influence."
+        }
+      ]
+    },
+    {
+      "id": "hillman",
+      "name": "James Hillman",
+      "school": "Archetypal Psychology",
+      "summary": "Hillman developed archetypal psychology as a post-Jungian approach that shifts emphasis from ego-centred explanation toward image, imagination, soul, mythology, multiplicity and the psychological life of culture and the world.",
+      "key_concepts": [
+        "archetypal psychology",
+        "soul",
+        "image",
+        "imaginal",
+        "mythopoetic thinking",
+        "polytheistic psychology",
+        "personifying",
+        "psychologizing",
+        "pathologizing",
+        "dehumanizing",
+        "anima mundi",
+        "soul-making"
+      ],
+      "sources": [
+        {
+          "title": "Archetypal Psychology — course description",
+          "publisher": "Pacifica Graduate Institute",
+          "url": "https://www.pacifica.edu/degree-program/jungian-archetypal-studies/courses/",
+          "type": "graduate academic program",
+          "quality": "high",
+          "use": "Compact academic description of Hillman's archetypal psychology and its characteristic moves."
+        },
+        {
+          "title": "Dr. James Hillman",
+          "publisher": "The Dallas Institute of Humanities and Culture",
+          "url": "https://dallasinstitute.org/fellows/",
+          "type": "institutional biography",
+          "quality": "high",
+          "use": "Places Hillman's work in its intellectual and cultural context."
+        },
+        {
+          "title": "James Hillman",
+          "publisher": "Spring Publications",
+          "url": "https://www.springpublications.com/hillman.html",
+          "type": "primary publisher resource",
+          "quality": "high",
+          "use": "Guide to Hillman's major works and recurring themes."
+        }
+      ]
+    },
+    {
+      "id": "mindell",
+      "name": "Arnold Mindell",
+      "school": "Process-Oriented Psychology / Processwork",
+      "summary": "Mindell developed Processwork from Jungian psychology, dreamwork and attention to body experience. It follows verbal and non-verbal signals across inner experience, relationships, groups, altered states and conflict, with awareness itself functioning as a central method.",
+      "key_concepts": [
+        "process",
+        "dreambody",
+        "channels",
+        "primary and secondary process",
+        "edges",
+        "signals",
+        "amplification",
+        "deep democracy",
+        "consensus reality",
+        "dreamland",
+        "essence",
+        "processmind",
+        "innerwork",
+        "worldwork",
+        "metaskills"
+      ],
+      "sources": [
+        {
+          "title": "Process-Oriented Psychology",
+          "publisher": "Amy and Arnold Mindell",
+          "url": "https://www.aamindell.net/process-work",
+          "type": "primary/official source",
+          "quality": "high",
+          "use": "Comprehensive first-party introduction to Processwork theory, history and practice."
+        },
+        {
+          "title": "What is Processwork?",
+          "publisher": "Process Work Institute",
+          "url": "https://www.processwork.edu/what-is-processwork/",
+          "type": "specialist academic/training institute",
+          "quality": "high",
+          "use": "Concise description of Processwork's Jungian origins and development."
+        },
+        {
+          "title": "Process",
+          "publisher": "Process Work Institute",
+          "url": "https://www.processwork.edu/tree/process/",
+          "type": "specialist theoretical reference",
+          "quality": "high",
+          "use": "Focused explanation of the central Processwork concept of process."
+        }
+      ]
+    },
+    {
+      "id": "klein",
+      "name": "Melanie Klein",
+      "school": "Object Relations / Kleinian Psychoanalysis",
+      "summary": "Klein extended psychoanalysis through close attention to early object relations, unconscious phantasy, splitting, projective processes and the evolving internal world of the infant.",
+      "key_concepts": [
+        "object relations",
+        "internal objects",
+        "unconscious phantasy",
+        "splitting",
+        "projective identification",
+        "paranoid-schizoid position",
+        "depressive position",
+        "reparation",
+        "play technique"
+      ],
+      "sources": [
+        {
+          "title": "Melanie Klein",
+          "publisher": "British Psychoanalytical Society",
+          "url": "https://psychoanalysis.org.uk/melanie-klein",
+          "type": "professional psychoanalytic organisation",
+          "quality": "high",
+          "use": "Detailed professional overview of Klein's development and key concepts."
+        },
+        {
+          "title": "Object Relations Theory",
+          "publisher": "APA Dictionary of Psychology",
+          "url": "https://dictionary.apa.org/object-relations-theory",
+          "type": "professional reference",
+          "quality": "high",
+          "use": "Concise definition of the broader theoretical tradition associated with Klein and others."
+        }
+      ]
+    },
+    {
+      "id": "winnicott",
+      "name": "Donald Winnicott",
+      "school": "British Independent / Object Relations",
+      "summary": "Winnicott emphasised the development of a lived sense of self within a facilitating environment, including the roles of holding, play, transitional phenomena, creativity and adaptation to the infant's needs.",
+      "key_concepts": [
+        "good-enough mothering",
+        "holding environment",
+        "facilitating environment",
+        "true self",
+        "false self",
+        "transitional object",
+        "potential space",
+        "play",
+        "capacity to be alone",
+        "use of an object"
+      ],
+      "sources": [
+        {
+          "title": "Donald Woods Winnicott",
+          "publisher": "British Psychoanalytical Society",
+          "url": "https://psychoanalysis.org.uk/donald-woods-winnicott",
+          "type": "professional psychoanalytic organisation",
+          "quality": "high",
+          "use": "Substantive overview of Winnicott's theoretical development."
+        },
+        {
+          "title": "Introduction to the work of Donald Winnicott",
+          "publisher": "Institute of Psychoanalysis",
+          "url": "https://learning.psychoanalysis.org.uk/mod/page/view.php?id=471",
+          "type": "professional educational resource",
+          "quality": "high",
+          "use": "Maps Winnicott's major concepts into a coherent learning sequence."
+        }
+      ]
+    },
+    {
+      "id": "bowlby",
+      "name": "John Bowlby",
+      "school": "Attachment Theory",
+      "summary": "Bowlby integrated psychoanalytic questions about relationships with ethology and developmental thinking, proposing attachment as an evolved behavioural system through which children seek proximity and security from caregivers.",
+      "key_concepts": [
+        "attachment",
+        "secure base",
+        "attachment behaviour",
+        "internal working models",
+        "separation",
+        "loss",
+        "caregiving relationships",
+        "development"
+      ],
+      "sources": [
+        {
+          "title": "Attachment Theory",
+          "publisher": "APA Dictionary of Psychology",
+          "url": "https://dictionary.apa.org/attachment-theory",
+          "type": "professional reference",
+          "quality": "high",
+          "use": "Authoritative concise definition and attribution to Bowlby and Ainsworth."
+        },
+        {
+          "title": "The Science and Clinical Practice of Attachment Theory",
+          "publisher": "American Psychological Association",
+          "url": "https://www.apa.org/pubs/books/science-clinical-practice-attachment-theory",
+          "type": "professional academic overview",
+          "quality": "high",
+          "use": "Contemporary framing of attachment science, historical foundations and clinical applications."
+        }
+      ]
+    },
+    {
+      "id": "fonagy_mentalization",
+      "name": "Peter Fonagy and Mentalization",
+      "school": "Mentalization-Based / Contemporary Psychodynamic Theory",
+      "summary": "Mentalization theory links attachment, development, affect regulation and the capacity to understand behaviour in terms of intentional mental states. It provides an important conceptual bridge between psychodynamic thought and contemporary theory-of-mind research.",
+      "key_concepts": [
+        "mentalizing",
+        "reflective functioning",
+        "attachment",
+        "epistemic trust",
+        "self-other representation",
+        "affect regulation",
+        "intentional mental states"
+      ],
+      "sources": [
+        {
+          "title": "The Neurobiology of Mentalizing",
+          "publisher": "UCL Discovery",
+          "url": "https://discovery.ucl.ac.uk/id/eprint/1475516/",
+          "type": "peer-reviewed academic review",
+          "quality": "high",
+          "use": "Scholarly bridge between mentalization theory, development and neuroscience."
+        }
+      ]
+    },
+    {
+      "id": "lacan",
+      "name": "Jacques Lacan",
+      "school": "Lacanian Psychoanalysis",
+      "summary": "Lacan reinterpreted Freud through linguistics, structuralism and philosophy, emphasising language, desire, subject formation and the relation between the Imaginary, Symbolic and Real.",
+      "key_concepts": [
+        "mirror stage",
+        "Imaginary",
+        "Symbolic",
+        "Real",
+        "the Other",
+        "desire",
+        "signifier",
+        "split subject",
+        "objet petit a",
+        "unconscious structured like a language"
+      ],
+      "sources": [
+        {
+          "title": "Jacques Lacan",
+          "publisher": "Stanford Encyclopedia of Philosophy",
+          "url": "https://plato.stanford.edu/entries/lacan/",
+          "type": "academic encyclopedia",
+          "quality": "high",
+          "use": "Detailed and current scholarly introduction to Lacan's major concepts."
+        },
+        {
+          "title": "Jacques Lacan",
+          "publisher": "Internet Encyclopedia of Philosophy",
+          "url": "https://iep.utm.edu/lacweb/",
+          "type": "academic encyclopedia",
+          "quality": "high",
+          "use": "Extensive alternative introduction emphasising Lacan's philosophical and psychoanalytic project."
+        }
+      ]
+    },
+    {
+      "id": "rogers",
+      "name": "Carl Rogers",
+      "school": "Person-Centred / Humanistic Psychology",
+      "summary": "Rogers developed person-centred therapy around the proposition that a therapeutic relationship characterised by empathic understanding, congruence and unconditional positive regard can facilitate psychological growth and greater self-directed functioning.",
+      "key_concepts": [
+        "person-centred therapy",
+        "empathy",
+        "congruence",
+        "unconditional positive regard",
+        "actualising tendency",
+        "self-concept",
+        "client autonomy"
+      ],
+      "sources": [
+        {
+          "title": "Carl Rogers, PhD",
+          "publisher": "American Psychological Association",
+          "url": "https://www.apa.org/about/governance/president/carl-r-rogers",
+          "type": "professional biography",
+          "quality": "high",
+          "use": "Authoritative introduction to Rogers and his influence."
+        },
+        {
+          "title": "Person-Centered Psychotherapies, Second Edition",
+          "publisher": "American Psychological Association",
+          "url": "https://www.apa.org/pubs/books/person-centered-psychotherapies-second-edition",
+          "type": "professional academic overview",
+          "quality": "high",
+          "use": "Contemporary overview of person-centred theory, mechanisms, evidence and practice."
+        }
+      ]
+    },
+    {
+      "id": "frankl",
+      "name": "Viktor Frankl",
+      "school": "Logotherapy / Existential Analysis",
+      "summary": "Frankl's logotherapy centres psychological meaning, responsibility and freedom of response, proposing a will to meaning as a major human motivational orientation.",
+      "key_concepts": [
+        "will to meaning",
+        "meaning",
+        "freedom of will",
+        "responsibility",
+        "existential frustration",
+        "self-transcendence",
+        "logotherapy"
+      ],
+      "sources": [
+        {
+          "title": "What is Logotherapy?",
+          "publisher": "Viktor E. Frankl Institute of America",
+          "url": "https://viktorfranklamerica.com/what-is-logotherapy/",
+          "type": "specialist institutional overview",
+          "quality": "high",
+          "use": "Clear overview of the central principles of Frankl's logotherapy."
+        }
+      ]
+    }
+  ],
+  "relationship_map": [
+    {
+      "from": "freud",
+      "to": "jung",
+      "relationship": "historical influence followed by theoretical divergence"
+    },
+    {
+      "from": "freud",
+      "to": "adler",
+      "relationship": "historical association followed by theoretical divergence"
+    },
+    {
+      "from": "freud",
+      "to": "klein",
+      "relationship": "psychoanalytic foundation extended into early object relations"
+    },
+    {
+      "from": "freud",
+      "to": "lacan",
+      "relationship": "Lacan explicitly reformulated and returned to Freud through language and structuralism"
+    },
+    {
+      "from": "jung",
+      "to": "hillman",
+      "relationship": "Hillman developed a post-Jungian archetypal psychology"
+    },
+    {
+      "from": "jung",
+      "to": "mindell",
+      "relationship": "Mindell developed Processwork from Jungian analysis, dreamwork and body experience"
+    },
+    {
+      "from": "klein",
+      "to": "winnicott",
+      "relationship": "shared British psychoanalytic and object-relations context with important differences"
+    },
+    {
+      "from": "freud",
+      "to": "bowlby",
+      "relationship": "psychoanalytic background transformed through attachment, ethology and developmental science"
+    },
+    {
+      "from": "bowlby",
+      "to": "fonagy_mentalization",
+      "relationship": "attachment theory is a major developmental foundation for mentalization theory"
+    },
+    {
+      "from": "theory_of_mind",
+      "to": "fonagy_mentalization",
+      "relationship": "overlapping constructs concerning representation of mental states, with different disciplinary histories"
+    },
+    {
+      "from": "adler",
+      "to": "rogers",
+      "relationship": "Adlerian social and purposive ideas form part of the broader historical context preceding humanistic approaches"
+    },
+    {
+      "from": "adler",
+      "to": "frankl",
+      "relationship": "both emerged from the Viennese psychotherapy tradition but developed distinct motivational theories"
+    }
+  ],
+  "suggested_retrieval_clusters": {
+    "understanding_other_minds": [
+      "theory_of_mind",
+      "fonagy_mentalization",
+      "bowlby",
+      "rogers"
+    ],
+    "classical_depth_psychology": [
+      "freud",
+      "jung",
+      "adler"
+    ],
+    "post_jungian": [
+      "jung",
+      "hillman",
+      "mindell"
+    ],
+    "object_relations_and_attachment": [
+      "klein",
+      "winnicott",
+      "bowlby",
+      "fonagy_mentalization"
+    ],
+    "language_desire_and_subjectivity": [
+      "freud",
+      "lacan"
+    ],
+    "meaning_agency_and_growth": [
+      "adler",
+      "rogers",
+      "frankl"
+    ],
+    "dreams_images_and_symbolic_experience": [
+      "freud",
+      "jung",
+      "hillman",
+      "mindell"
+    ]
+  }
+}

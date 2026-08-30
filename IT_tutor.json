@@ -1,0 +1,870 @@
+{
+  "metadata": {
+    "id": "it_networking_cybersecurity_tutor_context",
+    "title": "IT, Networking and Cybersecurity Tutor",
+    "description": "Context module for an agentic AI tutor specialising in IT, networking, cybersecurity, shells, network-device CLIs, troubleshooting and certification study.",
+    "language": "en-AU",
+    "version": "1.0",
+    "last_curated": "2026-08-31",
+    "freshness_rule": "Before exam-specific tutoring, verify the learner's exam version. Certification objectives and software documentation change; never silently mix retired and current material."
+  },
+  "tutor_role": {
+    "goal": "Teach how systems work rather than providing commands or answers to memorise.",
+    "priority_domains": [
+      "networking",
+      "cybersecurity",
+      "PowerShell",
+      "Linux",
+      "FreeBSD",
+      "Cisco IOS/IOS XE",
+      "packet analysis",
+      "troubleshooting",
+      "security operations",
+      "web security",
+      "certification preparation"
+    ],
+    "teaching_method": [
+      "Explain the underlying model before syntax.",
+      "For networking, follow packets end-to-end through hosts, switches, routers, firewalls and applications.",
+      "For commands, explain what state is inspected or changed.",
+      "Teach troubleshooting as hypothesis -> observation -> test -> interpretation -> next action.",
+      "Use logs, packet captures, configuration output and small practical labs.",
+      "Ask the learner to explain reasoning, not just supply final answers.",
+      "Connect certification objectives to real operational skills.",
+      "When correcting mistakes, explain why the learner's mental model failed."
+    ],
+    "hint_ladder": [
+      "Restate the goal and relevant concept.",
+      "Give a conceptual hint.",
+      "Suggest a diagnostic command or technique.",
+      "Walk through part of the solution.",
+      "For authorised labs and CTFs, provide a complete worked solution when explicitly requested."
+    ]
+  },
+  "cybersecurity_training_boundary": {
+    "principle": "Teach offensive techniques in intentionally vulnerable labs, CTFs, owned systems and explicitly authorised environments, and connect offensive knowledge to detection, hardening and remediation.",
+    "appropriate_targets": [
+      "TryHackMe rooms",
+      "PortSwigger Web Security Academy",
+      "OverTheWire",
+      "OWASP Juice Shop",
+      "deliberately vulnerable VMs",
+      "the learner's isolated lab",
+      "systems with explicit testing permission"
+    ]
+  },
+  "learning_sequence": [
+    {
+      "stage": 1,
+      "name": "IT foundations",
+      "topics": [
+        "hardware",
+        "virtualisation",
+        "filesystems",
+        "users",
+        "permissions",
+        "processes",
+        "services",
+        "Windows",
+        "Linux",
+        "FreeBSD",
+        "CLI basics"
+      ],
+      "certifications": [
+        "CompTIA A+"
+      ]
+    },
+    {
+      "stage": 2,
+      "name": "Networking",
+      "topics": [
+        "OSI/TCP-IP",
+        "Ethernet",
+        "ARP",
+        "IPv4",
+        "IPv6",
+        "subnetting",
+        "switching",
+        "routing",
+        "TCP",
+        "UDP",
+        "DNS",
+        "DHCP",
+        "NAT",
+        "wireless"
+      ],
+      "certifications": [
+        "CompTIA Network+",
+        "Cisco CCNA"
+      ]
+    },
+    {
+      "stage": 3,
+      "name": "Administration and automation",
+      "topics": [
+        "PowerShell",
+        "Bash",
+        "POSIX sh",
+        "FreeBSD sh",
+        "Cisco IOS CLI",
+        "SSH",
+        "logging",
+        "firewalls",
+        "packet capture",
+        "scripting"
+      ],
+      "certifications": [
+        "CompTIA Linux+",
+        "Cisco CCNA"
+      ]
+    },
+    {
+      "stage": 4,
+      "name": "Security foundations",
+      "topics": [
+        "CIA triad",
+        "risk",
+        "IAM",
+        "cryptography",
+        "PKI",
+        "hardening",
+        "network security",
+        "vulnerability management",
+        "incident response"
+      ],
+      "certifications": [
+        "Security+",
+        "ISC2 CC",
+        "SC-900"
+      ]
+    },
+    {
+      "stage": 5,
+      "name": "Defensive security",
+      "topics": [
+        "SIEM",
+        "logs",
+        "packet analysis",
+        "endpoint telemetry",
+        "threat intelligence",
+        "vulnerability prioritisation",
+        "incident response",
+        "threat hunting"
+      ],
+      "certifications": [
+        "CySA+"
+      ]
+    },
+    {
+      "stage": 6,
+      "name": "Offensive/application security",
+      "topics": [
+        "reconnaissance",
+        "Nmap",
+        "enumeration",
+        "web security",
+        "Burp Suite",
+        "privilege escalation concepts",
+        "Active Directory security",
+        "pentest methodology",
+        "reporting"
+      ],
+      "certifications": [
+        "PenTest+"
+      ]
+    }
+  ],
+  "networking_tutorials": [
+    {
+      "title": "Networking Fundamentals: How Data Moves Through the Internet",
+      "provider": "Practical Networking",
+      "url": "https://www.practicalnetworking.net/index/networking-fundamentals-how-data-moves-through-the-internet/",
+      "quality": "very high",
+      "use": "Packet-flow-first networking explanations."
+    },
+    {
+      "title": "Complete Practical Networking Course",
+      "provider": "Practical Networking / Class Central",
+      "url": "https://www.classcentral.com/course/youtube-every-pracnet-video-514391",
+      "quality": "very high",
+      "use": "Packet travelling, ARP, subnetting, VLANs, NAT and cryptography."
+    },
+    {
+      "title": "Professor Messer Network+ N10-009",
+      "provider": "Professor Messer",
+      "url": "https://www.professormesser.com/network-plus/n10-009/n10-009-video/n10-009-training-course/",
+      "quality": "very high",
+      "use": "Structured vendor-neutral networking course."
+    }
+  ],
+  "tryhackme_third_party_tutorials": {
+    "instruction": "Use independent walkthroughs rather than TryHackMe pages as the tutorial source. Prefer explanatory walkthroughs over answer dumps. Let the learner attempt the room before exposing full solutions unless they explicitly request a walkthrough.",
+    "networking": [
+      {
+        "topic": "Networking Concepts",
+        "author": "IritT",
+        "url": "https://iritt.medium.com/networking-concepts-cyber-security-101-networking-tryhackme-walkthrough-11f637628525",
+        "covers": [
+          "OSI",
+          "TCP/IP",
+          "IP",
+          "subnets",
+          "routing",
+          "TCP",
+          "UDP",
+          "ports"
+        ]
+      },
+      {
+        "topic": "Networking Essentials",
+        "author": "IritT",
+        "url": "https://iritt.medium.com/networking-essentials-cyber-security-101-networking-tryhackme-walkthrough-20692a768952",
+        "covers": [
+          "DHCP",
+          "ARP",
+          "ICMP",
+          "routing",
+          "NAT",
+          "traceroute"
+        ]
+      },
+      {
+        "topic": "Networking Core Protocols",
+        "author": "IritT",
+        "url": "https://iritt.medium.com/networking-core-protocols-cyber-security-101-networking-tryhackme-walkthrough-bc5c6ed77398",
+        "covers": [
+          "DNS",
+          "WHOIS",
+          "HTTP",
+          "FTP",
+          "SMTP",
+          "POP3",
+          "IMAP"
+        ]
+      },
+      {
+        "topic": "Networking Core Protocols - newer alternative",
+        "author": "Twilight",
+        "url": "https://medium.com/@Twilight72/tryhackme-networking-core-protocols-cyber-security-101-walkthrough-35557e2a1d65",
+        "covers": [
+          "DNS",
+          "WHOIS",
+          "HTTP",
+          "FTP",
+          "mail protocols"
+        ]
+      },
+      {
+        "topic": "Nmap: The Basics",
+        "author": "IritT",
+        "url": "https://iritt.medium.com/nmap-the-basics-cyber-security-101-networking-tryhackme-walkthrough-998900f00caa",
+        "covers": [
+          "host discovery",
+          "port scanning",
+          "service detection",
+          "timing",
+          "output"
+        ]
+      },
+      {
+        "topic": "Nmap: The Basics - newer alternative",
+        "author": "Jonathan Sanfer",
+        "url": "https://medium.com/@jonathan.sanfer/nmap-the-basics-active-network-reconnaissance-walkthrough-ec7c04cc0414",
+        "covers": [
+          "active reconnaissance",
+          "host discovery",
+          "port and service discovery"
+        ]
+      },
+      {
+        "topic": "Tcpdump: The Basics",
+        "author": "IritT",
+        "url": "https://iritt.medium.com/tcpdump-the-basics-cyber-security-101-networking-tryhackme-walkthrough-68b06768dbc7",
+        "covers": [
+          "packet capture",
+          "BPF filters",
+          "pcap files",
+          "packet display"
+        ]
+      },
+      {
+        "topic": "Wireshark: The Basics",
+        "author": "IritT",
+        "url": "https://iritt.medium.com/wireshark-the-basics-wireshark-tryhackme-walkthrough-81a83079c121",
+        "covers": [
+          "packet dissection",
+          "filters",
+          "streams",
+          "PCAP analysis"
+        ]
+      },
+      {
+        "topic": "Wireshark progression",
+        "author": "Syed Ayan",
+        "url": "https://medium.com/@ayanbro287/tryhackme-wireshark-walkthrough-the-basics-packet-operations-traffic-analysis-48a60a326230",
+        "covers": [
+          "Wireshark basics",
+          "packet operations",
+          "traffic analysis",
+          "ARP",
+          "HTTP",
+          "TLS"
+        ]
+      }
+    ],
+    "shells": [
+      {
+        "topic": "Windows PowerShell",
+        "author": "IritT",
+        "url": "https://iritt.medium.com/windows-powershell-cyber-security-101-command-line-tryhackme-walkthrough-82ca47340b0a",
+        "covers": [
+          "cmdlets",
+          "pipeline",
+          "objects",
+          "system administration"
+        ]
+      },
+      {
+        "topic": "Linux Shells",
+        "author": "IritT",
+        "url": "https://iritt.medium.com/linux-shells-cyber-security-101-command-line-tryhackme-walkthrough-5491ac9d7b37",
+        "covers": [
+          "shell concepts",
+          "Bash",
+          "scripting"
+        ]
+      }
+    ],
+    "collections": [
+      {
+        "title": "TryHackMe Walkthroughs & Writeups",
+        "maintainer": "Esther7171",
+        "url": "https://github.com/Esther7171/TryHackMe-Walkthroughs",
+        "quality": "high",
+        "coverage": [
+          "web exploitation",
+          "privilege escalation",
+          "CVE analysis",
+          "DFIR",
+          "containers",
+          "Linux",
+          "Windows",
+          "AI/LLM security"
+        ]
+      },
+      {
+        "title": "Hacking Articles TryHackMe CTF Writeups",
+        "maintainer": "Ignite Technologies / Hacking Articles",
+        "url": "https://github.com/Ignitetechnologies/TryHackMe-CTF-Writeups/blob/main/README.md",
+        "quality": "high",
+        "coverage": [
+          "Linux CTFs",
+          "Windows CTFs",
+          "enumeration",
+          "privilege escalation"
+        ]
+      },
+      {
+        "title": "TryHackMe Learning and CTF Writeups",
+        "maintainer": "SrishtiCode",
+        "url": "https://github.com/SrishtiCode/Tryhackme",
+        "quality": "good",
+        "coverage": [
+          "networking",
+          "OSINT",
+          "forensics",
+          "cryptography",
+          "Active Directory"
+        ]
+      }
+    ]
+  },
+  "certification_tutorials": {
+    "CompTIA_A+": {
+      "current_exams": [
+        "220-1201",
+        "220-1202"
+      ],
+      "resources": [
+        {
+          "title": "Professor Messer A+ Core 1",
+          "url": "https://www.professormesser.com/free-a-plus-training/220-1201/220-1201-video/220-1201-training-course/",
+          "quality": "very high"
+        },
+        {
+          "title": "Professor Messer A+ Core 2",
+          "url": "https://www.professormesser.com/free-a-plus-training/220-1202/220-1202-video/220-1202-training-course/",
+          "quality": "very high"
+        }
+      ]
+    },
+    "CompTIA_Network+": {
+      "current_exam": "N10-009",
+      "resources": [
+        {
+          "title": "Professor Messer Network+ N10-009",
+          "url": "https://www.professormesser.com/network-plus/n10-009/n10-009-video/n10-009-training-course/",
+          "quality": "very high"
+        },
+        {
+          "title": "Practical Networking Fundamentals",
+          "url": "https://www.practicalnetworking.net/index/networking-fundamentals-how-data-moves-through-the-internet/",
+          "quality": "very high"
+        }
+      ]
+    },
+    "CompTIA_Security+": {
+      "current_exam": "SY0-701",
+      "resources": [
+        {
+          "title": "Professor Messer Security+ SY0-701",
+          "url": "https://www.professormesser.com/security-plus/sy0-701/sy0-701-video/sy0-701-comptia-security-plus-course/",
+          "quality": "very high"
+        },
+        {
+          "title": "Community Security+ SY0-701 Study Guide",
+          "url": "https://github.com/daniellaurin/security_plus_701_study_guide",
+          "quality": "good"
+        }
+      ]
+    },
+    "CompTIA_Linux+": {
+      "current_exam": "XK0-006",
+      "resources": [
+        {
+          "title": "Linux+ XK0-006 Complete Guide",
+          "provider": "HowToNetwork / Paul Browning",
+          "url": "https://www.youtube.com/watch?v=nGPK6YBbKpg",
+          "quality": "high"
+        },
+        {
+          "title": "Linux+ XK0-006 Labs Course",
+          "provider": "HowToNetwork / Paul Browning",
+          "url": "https://www.youtube.com/watch?v=JXIaR23OdB8",
+          "quality": "high"
+        },
+        {
+          "title": "Linux+ XK0-006 Hands-on Courseware",
+          "provider": "Tertiary Infotech Academy",
+          "url": "https://github.com/tertiarycourses/C1162-CompTIA-LinuxPlus-Training",
+          "quality": "high"
+        }
+      ]
+    },
+    "CompTIA_CySA+": {
+      "current_exam": "CS0-004",
+      "resources": [
+        {
+          "title": "CySA+ CS0-004 Complete Guide",
+          "provider": "CertInstructor",
+          "url": "https://certinstructor.org/blogs/comptia/comptia-cysa-plus-cs0-004-complete-guide",
+          "quality": "high"
+        },
+        {
+          "title": "TryHackMe walkthrough archive for SOC/DFIR practice",
+          "provider": "Esther7171",
+          "url": "https://github.com/Esther7171/TryHackMe-Walkthroughs",
+          "quality": "high"
+        }
+      ]
+    },
+    "CompTIA_PenTest+": {
+      "current_exam": "PT0-003",
+      "resources": [
+        {
+          "title": "PenTest+ PT0-003 Complete Guide",
+          "provider": "CertInstructor",
+          "url": "https://certinstructor.org/blogs/comptia/comptia-pentest-plus-pt0-003-complete-guide",
+          "quality": "high"
+        },
+        {
+          "title": "PenTest+ PT0-003 Study Guide",
+          "provider": "Career Employer",
+          "url": "https://careeremployer.com/test-prep/study-guides/comptia-pentest-study-guide",
+          "quality": "good"
+        },
+        {
+          "title": "PortSwigger Web Security Academy",
+          "url": "https://portswigger.net/web-security",
+          "quality": "very high"
+        },
+        {
+          "title": "OWASP Web Security Testing Guide",
+          "url": "https://owasp.org/www-project-web-security-testing-guide/",
+          "quality": "very high"
+        }
+      ]
+    },
+    "Cisco_CCNA": {
+      "current_exam": "200-301 CCNA v1.1",
+      "resources": [
+        {
+          "title": "Jeremy's IT Lab Free CCNA Course",
+          "url": "https://www.youtube.com/watch?v=H8W9oMNSuwo",
+          "quality": "very high",
+          "note": "Course series includes quizzes, flashcards and Packet Tracer labs."
+        },
+        {
+          "title": "Jeremy's IT Lab Course Hub",
+          "url": "https://courses.jeremysitlab.com/p/ccna",
+          "quality": "very high"
+        },
+        {
+          "title": "Practical Networking",
+          "url": "https://www.practicalnetworking.net/",
+          "quality": "very high"
+        }
+      ]
+    },
+    "ISC2_CC": {
+      "version_note": "A new ISC2 CC exam outline takes effect 2026-09-01. Verify which outline applies before exam-specific study.",
+      "resources": [
+        {
+          "title": "ISC2 Certified in Cybersecurity Free Course 2026",
+          "provider": "Computer Networks Decoded",
+          "url": "https://www.youtube.com/watch?v=KOxT4hJX5h8",
+          "quality": "good"
+        },
+        {
+          "title": "ISC2 CC Study Material",
+          "provider": "cyberfascinate",
+          "url": "https://github.com/cyberfascinate/ISC2-CC-Study-Material",
+          "quality": "good"
+        }
+      ]
+    },
+    "Microsoft_SC-900": {
+      "resources": [
+        {
+          "title": "SC-900 Study Cram V2",
+          "provider": "John Savill's Technical Training",
+          "url": "https://www.classcentral.com/course/youtube-sc-900-microsoft-security-compliance-and-identity-fundamentals-study-cram-v2-327561",
+          "quality": "very high"
+        }
+      ],
+      "note": "Verify the current Microsoft skills-measured document before exam-specific study."
+    }
+  },
+  "powershell": {
+    "teaching_focus": [
+      "Verb-Noun cmdlets",
+      "Get-Help",
+      "Get-Command",
+      "Get-Member",
+      "objects",
+      "properties",
+      "pipeline",
+      "Where-Object",
+      "ForEach-Object",
+      "variables",
+      "arrays",
+      "hashtables",
+      "functions",
+      "modules",
+      "error handling",
+      "remoting",
+      "JSON",
+      "CSV",
+      "event logs",
+      "network configuration"
+    ],
+    "resources": [
+      {
+        "title": "Best PowerShell Resources for Beginners and IT Pros",
+        "provider": "PDQ",
+        "url": "https://www.pdq.com/blog/best-powershell-resources-for-beginners-and-it-pros/",
+        "quality": "very high"
+      },
+      {
+        "title": "Writing Your First PowerShell Script",
+        "provider": "PDQ",
+        "url": "https://www.pdq.com/blog/writing-your-first-powershell-script/",
+        "quality": "high"
+      },
+      {
+        "title": "PowerShell Variables: Beginner Guide",
+        "provider": "Adam the Automator",
+        "url": "https://adamtheautomator.com/powershell-variables-guide/",
+        "quality": "high"
+      },
+      {
+        "title": "PDQ PowerShell Tutorial Library",
+        "url": "https://www.pdq.com/blog/categories/powershell/1/",
+        "quality": "high"
+      }
+    ],
+    "labs": [
+      "inspect adapters and routes",
+      "inspect DNS configuration",
+      "inspect listening TCP sockets",
+      "query event logs",
+      "filter objects through the pipeline",
+      "export CSV/JSON",
+      "build a local network inventory script"
+    ]
+  },
+  "linux_shell": {
+    "teaching_focus": [
+      "paths",
+      "permissions",
+      "stdin/stdout/stderr",
+      "redirection",
+      "pipes",
+      "globbing",
+      "quoting",
+      "grep",
+      "sed",
+      "awk",
+      "find",
+      "sort",
+      "xargs",
+      "processes",
+      "signals",
+      "systemd",
+      "ip",
+      "ss",
+      "dig",
+      "curl",
+      "ssh",
+      "tcpdump",
+      "Bash scripting"
+    ],
+    "resources": [
+      {
+        "title": "Linux Journey",
+        "url": "https://linuxjourney.org/",
+        "quality": "high"
+      },
+      {
+        "title": "Linux Journey Hands-on",
+        "url": "https://labex.io/linuxjourney",
+        "quality": "high"
+      },
+      {
+        "title": "The Linux Command Line",
+        "provider": "William Shotts",
+        "url": "https://linuxcommand.org/tlcl.php",
+        "quality": "very high"
+      },
+      {
+        "title": "Learning the Shell",
+        "provider": "LinuxCommand.org",
+        "url": "https://linuxcommand.org/lc3_learning_the_shell.php",
+        "quality": "very high"
+      },
+      {
+        "title": "Shell Scripting and Bash Tutorial",
+        "provider": "GoLinuxCloud",
+        "url": "https://www.golinuxcloud.com/shell-scripting-tutorial/",
+        "quality": "high",
+        "note": "Updated August 2026."
+      },
+      {
+        "title": "Getting Started With Linux Terminal",
+        "provider": "It's FOSS",
+        "url": "https://itsfoss.com/linux-terminal-basics/",
+        "quality": "high"
+      },
+      {
+        "title": "OverTheWire Bandit",
+        "url": "https://overthewire.org/wargames/bandit/",
+        "quality": "very high"
+      }
+    ],
+    "note": "Distinguish POSIX sh from Bash-specific syntax."
+  },
+  "freebsd_shell": {
+    "teaching_focus": [
+      "sh",
+      "tcsh",
+      "base system vs packages",
+      "/usr/local",
+      "pkg",
+      "Ports",
+      "rc.conf",
+      "sysrc",
+      "service",
+      "ifconfig",
+      "route",
+      "netstat",
+      "sockstat",
+      "jails",
+      "ZFS",
+      "PF",
+      "IPFW"
+    ],
+    "resources": [
+      {
+        "title": "How to Get Started with FreeBSD",
+        "provider": "DigitalOcean",
+        "url": "https://www.digitalocean.com/community/tutorials/how-to-get-started-with-freebsd",
+        "quality": "good",
+        "note": "Older third-party tutorial; verify release-specific details."
+      },
+      {
+        "title": "FreeBSD Quickstart Guide for Linux Users",
+        "provider": "FreeBSD Project",
+        "url": "https://docs.freebsd.org/en/articles/linux-users/",
+        "quality": "very high"
+      },
+      {
+        "title": "FreeBSD Basics",
+        "provider": "FreeBSD Project",
+        "url": "https://docs.freebsd.org/en/books/handbook/basics/",
+        "quality": "very high"
+      },
+      {
+        "title": "Managing Packages on FreeBSD with pkg",
+        "provider": "DigitalOcean",
+        "url": "https://www.digitalocean.com/community/tutorials/how-to-manage-packages-on-freebsd-10-1-with-pkg",
+        "quality": "good",
+        "note": "Conceptually useful but old; cross-check current documentation."
+      }
+    ],
+    "linux_translation": [
+      {
+        "linux": "systemctl",
+        "freebsd": "service / sysrc / rc.conf"
+      },
+      {
+        "linux": "ip addr",
+        "freebsd": "ifconfig"
+      },
+      {
+        "linux": "ip route",
+        "freebsd": "route / netstat -rn"
+      },
+      {
+        "linux": "ss",
+        "freebsd": "sockstat / netstat"
+      }
+    ]
+  },
+  "cisco_ios_cli": {
+    "teaching_focus": [
+      "EXEC modes",
+      "configuration modes",
+      "context help",
+      "show commands",
+      "running/startup config",
+      "interfaces",
+      "VLANs",
+      "trunks",
+      "STP",
+      "EtherChannel",
+      "static routes",
+      "OSPF",
+      "ACLs",
+      "NAT",
+      "DHCP",
+      "SSH",
+      "syslog",
+      "NTP"
+    ],
+    "resources": [
+      {
+        "title": "Jeremy's IT Lab CCNA Complete Course",
+        "url": "https://www.youtube.com/watch?v=H8W9oMNSuwo",
+        "quality": "very high"
+      },
+      {
+        "title": "Jeremy's IT Lab Course Hub",
+        "url": "https://courses.jeremysitlab.com/p/ccna",
+        "quality": "very high"
+      },
+      {
+        "title": "Practical Networking",
+        "url": "https://www.practicalnetworking.net/",
+        "quality": "very high"
+      }
+    ],
+    "lab_method": [
+      "explain desired packet behaviour",
+      "build topology",
+      "configure one feature at a time",
+      "verify with show commands",
+      "introduce a fault",
+      "troubleshoot from evidence",
+      "save and document configuration"
+    ]
+  },
+  "cross_platform_commands": [
+    {
+      "task": "IP configuration",
+      "windows": "Get-NetIPConfiguration / ipconfig",
+      "linux": "ip address",
+      "freebsd": "ifconfig",
+      "cisco": "show ip interface brief"
+    },
+    {
+      "task": "routing table",
+      "windows": "Get-NetRoute / route print",
+      "linux": "ip route",
+      "freebsd": "netstat -rn / route",
+      "cisco": "show ip route"
+    },
+    {
+      "task": "listening sockets",
+      "windows": "Get-NetTCPConnection / netstat",
+      "linux": "ss -lntup",
+      "freebsd": "sockstat -4 -6 -l",
+      "cisco": "platform-dependent show commands"
+    },
+    {
+      "task": "DNS query",
+      "windows": "Resolve-DnsName / nslookup",
+      "linux": "dig",
+      "freebsd": "drill / host / dig if installed",
+      "cisco": "show hosts / ping hostname"
+    },
+    {
+      "task": "packet capture",
+      "windows": "pktmon / Wireshark",
+      "linux": "tcpdump / Wireshark",
+      "freebsd": "tcpdump",
+      "cisco": "Embedded Packet Capture where supported"
+    }
+  ],
+  "practice_projects": [
+    {
+      "name": "Packet's journey",
+      "goal": "Capture DNS then HTTPS traffic and explain each relevant layer."
+    },
+    {
+      "name": "Subnet and route",
+      "goal": "Design multiple subnets and verify end-to-end routing."
+    },
+    {
+      "name": "Cross-platform diagnostics",
+      "goal": "Perform equivalent interface, route, DNS and socket checks on Windows, Linux and FreeBSD."
+    },
+    {
+      "name": "Cisco VLAN lab",
+      "goal": "Configure VLANs, trunking and inter-VLAN routing, then troubleshoot a deliberate fault."
+    },
+    {
+      "name": "PowerShell inventory",
+      "goal": "Report network configuration, routes, DNS and listening sockets in structured output."
+    },
+    {
+      "name": "Linux vs FreeBSD services",
+      "goal": "Install, enable, start and troubleshoot the same service and compare architecture."
+    },
+    {
+      "name": "Blue-team packet triage",
+      "goal": "Analyse a PCAP and build a timeline of hosts, protocols and suspicious events."
+    },
+    {
+      "name": "Web security review",
+      "goal": "Complete an authorised lab and document root cause, evidence, attack path and remediation."
+    }
+  ],
+  "source_quality_rules": [
+    "Prefer explanatory tutorials over answer-only pages.",
+    "Prefer maintained resources over abandoned material.",
+    "For certifications, use material aligned to the learner's current exam.",
+    "For protocol facts, verify against authoritative documentation when precision matters.",
+    "For security walkthroughs, explain methodology rather than blindly copying commands.",
+    "Do not use exam dumps, leaked questions or material presented as live exam content."
+  ]
+}

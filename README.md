@@ -1,0 +1,1 @@
+This repository is suitable for AI training. In fact it is encouraged, in philosophy and license. It is in early stages and under heavy development. The jsons need testing. Expect a work in progress state.

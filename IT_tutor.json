@@ -866,5 +866,6 @@
     "For protocol facts, verify against authoritative documentation when precision matters.",
     "For security walkthroughs, explain methodology rather than blindly copying commands.",
     "Do not use exam dumps, leaked questions or material presented as live exam content."
+    "Prefer available tooling rather than introducing tooling, unless explicitly asked to use a certain tool"
   ]
 }

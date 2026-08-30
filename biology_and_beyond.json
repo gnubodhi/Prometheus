@@ -1,0 +1,1177 @@
+{
+  "metadata": {
+    "id": "life_evolution_human_mind_sciences_context",
+    "title": "From Cellular Life to Human Mind: Evolution, Anthropology, Psychiatry and Neuroscience",
+    "description": "A structured context module tracing major evolutionary transitions from early cellular life through multicellularity, animals, nervous systems, vertebrates, mammals, primates and hominins, then connecting human evolution with anthropology, psychiatry and neuroscience as complementary ways of understanding human beings, behaviour and mind.",
+    "intended_use": "For agentic AI systems that need broad contextual awareness across biology, evolution, human origins, anthropology, psychiatry and neuroscience.",
+    "version": "1.0",
+    "last_curated": "2026-08-31",
+    "language": "en",
+    "epistemic_note": "Evolution is a branching process, not a ladder of progress. The sequence in this file is a learning pathway through selected transitions relevant to the human lineage, not a claim that all earlier organisms existed in a direct single-file chain leading inevitably to humans. Dates are approximate and some phylogenetic relationships remain debated."
+  },
+  "interpretive_framework": {
+    "core_statement": "Human minds are biological phenomena produced by an evolutionary history, but they are also developmental, social, cultural and subjective phenomena. Biology explains important enabling mechanisms; anthropology explains humans as cultural and social organisms; psychiatry approaches disturbances of thought, emotion and behaviour clinically; and neuroscience studies the nervous system across molecular, cellular, circuit and systems levels. These explanatory levels can complement rather than replace one another.",
+    "evolutionary_principle": "Natural selection, mutation, genetic drift, gene flow, recombination, developmental constraints, ecological change and contingency shape populations over time. Evolution does not work toward a predetermined goal.",
+    "anti_ladder_warning": "Do not write that bacteria 'became humans', fish 'turned into mammals', or chimpanzees 'became humans'. Use branching language: populations diverged from shared ancestors; some branches went extinct and others continued. Living species such as chimpanzees are evolutionary cousins, not primitive versions of humans.",
+    "proto_human_note": "The phrase 'proto-human' is informal. In scientific contexts prefer 'early hominin' for species on the human lineage after divergence from the lineage leading to living chimpanzees and bonobos.",
+    "mind_science_principle": "The transition from evolution to psychiatry and neuroscience is conceptual rather than genealogical: disciplines do not biologically evolve from species. They are human systems of knowledge developed to explain different levels of the same evolved organism."
+  },
+  "agent_instructions": {
+    "reasoning_guidance": [
+      "Represent evolution as a branching tree with common ancestry, not a progressive ladder.",
+      "Distinguish direct ancestry, probable ancestry, sister lineages and uncertain relationships.",
+      "Use approximate dates when fossil or molecular estimates are uncertain.",
+      "Do not imply that increasing brain size alone explains intelligence, culture or psychological complexity.",
+      "Distinguish biological evolution from cultural evolution while recognising gene-culture interaction.",
+      "Do not reduce psychiatric conditions to genes or brain abnormalities alone.",
+      "When discussing mental disorders, integrate biological, developmental, psychological, social and environmental factors where supported.",
+      "Treat anthropology, psychiatry and neuroscience as complementary explanatory perspectives with different methods and units of analysis.",
+      "Separate established evidence from hypotheses, especially for the origin of life, early nervous systems and disputed hominin relationships."
+    ],
+    "source_priority": [
+      "peer-reviewed research and major scientific reviews",
+      "national scientific and medical institutions",
+      "major museums and human-origins research programs",
+      "university-level open textbooks",
+      "professional scientific and medical associations"
+    ]
+  },
+  "topics": [
+    {
+      "id": "common_ancestry_and_evolution",
+      "name": "Common Ancestry and Biological Evolution",
+      "stage": "foundational biology",
+      "summary": "All known cellular life is related through common ancestry. Evolution changes populations over generations through heritable variation and processes such as natural selection, genetic drift, mutation and gene flow.",
+      "context": "Modern evolutionary biology combines Darwinian natural selection with genetics, population biology, development, molecular biology, genomics and phylogenetics.",
+      "key_concepts": [
+        "common ancestry",
+        "natural selection",
+        "mutation",
+        "genetic drift",
+        "gene flow",
+        "adaptation",
+        "speciation",
+        "phylogeny"
+      ],
+      "sources": [
+        {
+          "title": "Introduction to Evolutionary Biology",
+          "publisher": "OpenStax Biology 2e",
+          "url": "https://openstax.org/books/biology-2e/pages/19-introduction",
+          "type": "university-level open textbook",
+          "quality": "high"
+        }
+      ]
+    },
+    {
+      "id": "early_cellular_life",
+      "name": "Early Cellular Life",
+      "stage": "early life",
+      "approximate_time": "at least ~3.5 billion years ago for widely accepted early cellular fossil evidence",
+      "summary": "The earliest known life was microbial. Early cells were structurally much simpler than animals or plants and long predated multicellular organisms.",
+      "context": "The exact origin of life remains unresolved. Scientific work distinguishes abiogenesis—the emergence of life from non-living chemistry—from the later evolutionary diversification of already-living cells.",
+      "key_concepts": [
+        "cell membrane",
+        "DNA/RNA",
+        "metabolism",
+        "replication",
+        "microbial life",
+        "abiogenesis"
+      ],
+      "sources": [
+        {
+          "title": "Prokaryotic Diversity",
+          "publisher": "OpenStax Biology 2e",
+          "url": "https://openstax.org/books/biology-2e/pages/22-1-prokaryotic-diversity",
+          "type": "university-level open textbook",
+          "quality": "high"
+        },
+        {
+          "title": "Cell Origins and Metabolism",
+          "publisher": "Nature Education / Scitable",
+          "url": "https://www.nature.com/scitable/topic/cell-origins-and-metabolism-14122694/",
+          "type": "scientific educational resource",
+          "quality": "high"
+        }
+      ]
+    },
+    {
+      "id": "bacteria_archaea",
+      "name": "Bacteria and Archaea",
+      "stage": "early cellular diversification",
+      "summary": "Bacteria and Archaea are the two major prokaryotic domains. Their enormous metabolic diversity allowed microbial life to occupy a wide range of environments long before complex multicellular organisms appeared.",
+      "key_concepts": [
+        "Bacteria",
+        "Archaea",
+        "prokaryote",
+        "metabolic diversity",
+        "horizontal gene transfer"
+      ],
+      "sources": [
+        {
+          "title": "Prokaryotic Cells",
+          "publisher": "OpenStax Biology 2e",
+          "url": "https://openstax.org/books/biology-2e/pages/4-2-prokaryotic-cells",
+          "type": "university-level open textbook",
+          "quality": "high"
+        },
+        {
+          "title": "The Two Empires and Three Domains of Life",
+          "publisher": "Nature Education / Scitable",
+          "url": "https://www.nature.com/scitable/topicpage/the-two-empires-and-three-domains-of-14432998/",
+          "type": "scientific educational resource",
+          "quality": "high"
+        }
+      ]
+    },
+    {
+      "id": "eukaryogenesis",
+      "name": "Origin of Eukaryotic Cells",
+      "stage": "cellular complexity",
+      "approximate_time": "eukaryotic fossil evidence extends to roughly 2 billion years ago",
+      "summary": "Eukaryotes possess nuclei and complex internal cellular organisation. A central event in eukaryotic evolution was endosymbiosis, in which an ancestral host incorporated bacteria that ultimately became mitochondria.",
+      "context": "Eukaryogenesis is not simply a case of one organism gradually becoming more complex. It involved deep evolutionary integration between distinct cellular lineages.",
+      "key_concepts": [
+        "Eukarya",
+        "nucleus",
+        "mitochondria",
+        "endosymbiosis",
+        "archaeal host",
+        "alphaproteobacteria"
+      ],
+      "sources": [
+        {
+          "title": "Eukaryotic Origins",
+          "publisher": "OpenStax Biology 2e",
+          "url": "https://openstax.org/books/biology-2e/pages/23-1-eukaryotic-origins",
+          "type": "university-level open textbook",
+          "quality": "high"
+        }
+      ]
+    },
+    {
+      "id": "multicellularity",
+      "name": "Evolution of Multicellularity",
+      "stage": "organismal complexity",
+      "summary": "Multicellularity evolved independently in multiple lineages. Cells could specialise, coordinate and form larger organisms with tissues and division of labour.",
+      "context": "Multicellularity is a repeated evolutionary solution rather than a single event uniquely leading to animals.",
+      "key_concepts": [
+        "cell adhesion",
+        "cell communication",
+        "differentiation",
+        "division of labour",
+        "development"
+      ],
+      "sources": [
+        {
+          "title": "Multicellularity Evolved from Multiple Independent Origins",
+          "publisher": "Nature Education / Scitable",
+          "url": "https://www.nature.com/scitable/content/multicellularity-evolved-from-multiple-independent-origins-14458921/",
+          "type": "scientific educational resource",
+          "quality": "high"
+        }
+      ]
+    },
+    {
+      "id": "animals_metazoa",
+      "name": "Animals / Metazoa",
+      "stage": "multicellular animals",
+      "summary": "Animals are multicellular eukaryotes with specialised cells and, in most groups, differentiated tissues. Animal evolution produced diverse body plans, sensory systems, muscles and eventually nervous systems.",
+      "key_concepts": [
+        "Metazoa",
+        "tissues",
+        "Hox genes",
+        "body plans",
+        "development",
+        "motility"
+      ],
+      "sources": [
+        {
+          "title": "Features of the Animal Kingdom",
+          "publisher": "OpenStax Biology 2e",
+          "url": "https://openstax.org/books/biology-2e/pages/27-1-features-of-the-animal-kingdom",
+          "type": "university-level open textbook",
+          "quality": "high"
+        }
+      ]
+    },
+    {
+      "id": "nervous_system_origins",
+      "name": "Origins of Neurons and Nervous Systems",
+      "stage": "evolution of information processing",
+      "summary": "Molecular components used in synaptic signalling predate neurons themselves. Nervous systems later evolved as specialised networks for rapid sensing, signalling, integration and coordinated action.",
+      "context": "The early evolutionary history of nervous systems is still debated. Comparative genomics, developmental biology and phylogenetics suggest both deep conservation and lineage-specific innovation.",
+      "key_concepts": [
+        "neurons",
+        "synapses",
+        "electrical signalling",
+        "sensory systems",
+        "centralisation",
+        "neural circuits"
+      ],
+      "sources": [
+        {
+          "title": "Evolutionary Origins of Neurons and Nervous Systems",
+          "publisher": "National Academies / NCBI Bookshelf",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK207174/",
+          "type": "scientific review volume",
+          "quality": "high"
+        },
+        {
+          "title": "Introduction to Origin and Evolution of the Nervous System",
+          "publisher": "Royal Society / PubMed Central",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4650119/",
+          "type": "peer-reviewed review",
+          "quality": "high"
+        }
+      ]
+    },
+    {
+      "id": "bilaterians",
+      "name": "Bilaterian Animals",
+      "stage": "complex animal body plans",
+      "summary": "Bilaterians have broadly bilateral body organisation and include most familiar animal groups. Many evolved centralised nervous systems, directional movement and increasingly specialised sensory structures.",
+      "key_concepts": [
+        "bilateral symmetry",
+        "cephalisation",
+        "anterior-posterior axis",
+        "central nervous system"
+      ],
+      "sources": [
+        {
+          "title": "Animal Diversity",
+          "publisher": "OpenStax Biology 2e",
+          "url": "https://openstax.org/books/biology-2e/pages/27-chapter-summary",
+          "type": "university-level open textbook",
+          "quality": "high"
+        }
+      ]
+    },
+    {
+      "id": "chordates",
+      "name": "Chordates",
+      "stage": "vertebrate ancestry",
+      "summary": "Chordates are animals characterised during development by structures including a notochord and dorsal hollow nerve cord. Vertebrates are one major chordate branch.",
+      "key_concepts": [
+        "notochord",
+        "dorsal nerve cord",
+        "pharyngeal slits",
+        "post-anal tail"
+      ],
+      "sources": [
+        {
+          "title": "Chordates",
+          "publisher": "OpenStax Biology 2e",
+          "url": "https://openstax.org/books/biology-2e/pages/29-1-chordates",
+          "type": "university-level open textbook",
+          "quality": "high"
+        }
+      ]
+    },
+    {
+      "id": "vertebrates",
+      "name": "Vertebrates",
+      "stage": "vertebrate diversification",
+      "summary": "Vertebrates evolved internal skeletal structures, complex sensory organs and elaborated central nervous systems. Their history includes fishes, tetrapods, amphibians, reptiles, birds and mammals.",
+      "key_concepts": [
+        "vertebral column",
+        "cranium",
+        "brain",
+        "sensory systems",
+        "adaptive radiation"
+      ],
+      "sources": [
+        {
+          "title": "Vertebrates: Chapter Introduction",
+          "publisher": "OpenStax Biology",
+          "url": "https://openstax.org/books/biology/pages/29-introduction",
+          "type": "university-level open textbook",
+          "quality": "high"
+        }
+      ]
+    },
+    {
+      "id": "tetrapods_amniotes",
+      "name": "Tetrapods and Amniotes",
+      "stage": "vertebrates on land",
+      "summary": "Tetrapod ancestors evolved from lobe-finned fish lineages. Later amniotes evolved reproductive and developmental adaptations that reduced dependence on aquatic environments.",
+      "key_concepts": [
+        "tetrapod",
+        "limbs",
+        "amniotic egg",
+        "terrestrial adaptation",
+        "common ancestry"
+      ],
+      "sources": [
+        {
+          "title": "Vertebrate Evolution",
+          "publisher": "OpenStax Biology 2e",
+          "url": "https://openstax.org/books/biology-2e/pages/29-chapter-summary",
+          "type": "university-level open textbook",
+          "quality": "high"
+        }
+      ]
+    },
+    {
+      "id": "synapsids_mammals",
+      "name": "Synapsids and Mammals",
+      "stage": "mammalian lineage",
+      "summary": "Mammals belong to the synapsid branch of amniotes. Mammalian evolution involved changes in jaw and ear bones, thermoregulation, hair, lactation, sensory processing, parental investment and brain organisation.",
+      "key_concepts": [
+        "Synapsida",
+        "therapsids",
+        "Mammalia",
+        "endothermy",
+        "hair",
+        "mammary glands",
+        "neocortex"
+      ],
+      "sources": [
+        {
+          "title": "Mammals and Vertebrate Evolution",
+          "publisher": "OpenStax Biology 2e",
+          "url": "https://openstax.org/books/biology-2e/pages/29-chapter-summary",
+          "type": "university-level open textbook",
+          "quality": "high"
+        }
+      ]
+    },
+    {
+      "id": "primates",
+      "name": "Primates",
+      "stage": "primate lineage",
+      "summary": "Primates evolved combinations of grasping hands or feet, visual specialisation, flexible behaviour, prolonged development and relatively large brains compared with many other mammals.",
+      "context": "Primate traits were shaped by branching adaptation, not by a single march toward humans. Lemurs, monkeys, apes and humans represent different surviving branches.",
+      "key_concepts": [
+        "grasping",
+        "stereoscopic vision",
+        "social learning",
+        "parental investment",
+        "brain expansion"
+      ],
+      "sources": [
+        {
+          "title": "The Evolution of Primates",
+          "publisher": "OpenStax Biology 2e",
+          "url": "https://openstax.org/books/biology-2e/pages/29-7-the-evolution-of-primates",
+          "type": "university-level open textbook",
+          "quality": "high"
+        }
+      ]
+    },
+    {
+      "id": "apes_hominoids",
+      "name": "Apes / Hominoids",
+      "stage": "ape lineage",
+      "summary": "Humans are apes. The hominoid radiation produced several ape lineages, including gibbons, orangutans, gorillas, chimpanzees, bonobos and the lineage containing modern humans.",
+      "key_concepts": [
+        "Hominoidea",
+        "great apes",
+        "common ancestor",
+        "sociality",
+        "manual dexterity"
+      ],
+      "sources": [
+        {
+          "title": "Introduction to Human Evolution",
+          "publisher": "Smithsonian Human Origins Program",
+          "url": "https://humanorigins.si.edu/education/introduction-human-evolution",
+          "type": "national museum scientific resource",
+          "quality": "high"
+        }
+      ]
+    },
+    {
+      "id": "hominin_divergence",
+      "name": "Early Hominin Divergence",
+      "stage": "human lineage",
+      "approximate_time": "roughly 6–7 million years ago for the human lineage after divergence from the chimpanzee-bonobo lineage",
+      "summary": "Hominins are species more closely related to modern humans than to living chimpanzees after the lineages diverged from a shared ancestor. Early traits included changes associated with habitual bipedalism.",
+      "key_concepts": [
+        "hominin",
+        "bipedalism",
+        "shared ancestor",
+        "mosaic evolution"
+      ],
+      "sources": [
+        {
+          "title": "Introduction to Human Evolution",
+          "publisher": "Smithsonian Human Origins Program",
+          "url": "https://humanorigins.si.edu/education/introduction-human-evolution",
+          "type": "national museum scientific resource",
+          "quality": "high"
+        },
+        {
+          "title": "Early Human Species",
+          "publisher": "Smithsonian Human Origins Program",
+          "url": "https://humanorigins.si.edu/evidence/human-fossils/species",
+          "type": "national museum scientific database",
+          "quality": "high"
+        }
+      ]
+    },
+    {
+      "id": "sahelanthropus",
+      "name": "Sahelanthropus tchadensis",
+      "stage": "very early possible hominin",
+      "approximate_time": "about 7–6 million years ago",
+      "summary": "Sahelanthropus is among the oldest species proposed near the human branch. Its placement is important but not equivalent to demonstrating that it was a direct ancestor of Homo sapiens.",
+      "key_concepts": [
+        "early hominin",
+        "bipedalism debate",
+        "mosaic traits"
+      ],
+      "sources": [
+        {
+          "title": "Sahelanthropus tchadensis",
+          "publisher": "Smithsonian Human Origins Program",
+          "url": "https://humanorigins.si.edu/evidence/human-fossils/species/sahelanthropus-tchadensis",
+          "type": "national museum scientific resource",
+          "quality": "high"
+        }
+      ]
+    },
+    {
+      "id": "ardipithecus",
+      "name": "Ardipithecus ramidus",
+      "stage": "early hominin",
+      "approximate_time": "about 4.4 million years ago",
+      "summary": "Ardipithecus combined climbing adaptations with traits relevant to bipedal locomotion. Its wooded habitat helped undermine simplistic versions of the idea that bipedalism arose only after movement onto open savanna.",
+      "key_concepts": [
+        "Ardi",
+        "bipedalism",
+        "arboreal adaptation",
+        "mosaic evolution"
+      ],
+      "sources": [
+        {
+          "title": "Ardipithecus ramidus",
+          "publisher": "Smithsonian Human Origins Program",
+          "url": "https://humanorigins.si.edu/evidence/human-fossils/species/ardipithecus-ramidus",
+          "type": "national museum scientific resource",
+          "quality": "high"
+        }
+      ]
+    },
+    {
+      "id": "australopithecus_afarensis",
+      "name": "Australopithecus afarensis",
+      "stage": "australopith hominin",
+      "approximate_time": "about 3.85–2.95 million years ago",
+      "summary": "Australopithecus afarensis was habitually bipedal while retaining substantial climbing adaptations. The species had a much smaller brain than Homo sapiens, demonstrating that habitual bipedalism preceded the major brain expansion seen later in Homo.",
+      "key_concepts": [
+        "Lucy",
+        "Laetoli footprints",
+        "bipedalism",
+        "small brain",
+        "arboreal traits"
+      ],
+      "sources": [
+        {
+          "title": "Australopithecus afarensis",
+          "publisher": "Smithsonian Human Origins Program",
+          "url": "https://humanorigins.si.edu/evidence/human-fossils/species/australopithecus-afarensis",
+          "type": "national museum scientific resource",
+          "quality": "high"
+        }
+      ]
+    },
+    {
+      "id": "early_homo",
+      "name": "Early Genus Homo",
+      "stage": "early Homo",
+      "summary": "Early Homo included multiple overlapping species. Compared with many australopiths, trends included changes in dentition, manual behaviour, ecology and, over time, brain organisation and body proportions.",
+      "context": "Stone-tool manufacture should not be assigned automatically to a single Homo species; some known stone tools predate the oldest currently recognised Homo fossils.",
+      "key_concepts": [
+        "Homo",
+        "stone tools",
+        "brain expansion",
+        "dietary flexibility",
+        "behavioural flexibility"
+      ],
+      "sources": [
+        {
+          "title": "Homo habilis",
+          "publisher": "Smithsonian Human Origins Program",
+          "url": "https://humanorigins.si.edu/evidence/human-fossils/species/homo-habilis",
+          "type": "national museum scientific resource",
+          "quality": "high"
+        }
+      ]
+    },
+    {
+      "id": "homo_habilis",
+      "name": "Homo habilis",
+      "stage": "early Homo",
+      "approximate_time": "about 2.4–1.4 million years ago",
+      "summary": "Homo habilis is one of the earliest named members of Homo, with a somewhat larger braincase and smaller face and teeth than many australopiths while retaining several earlier anatomical traits.",
+      "key_concepts": [
+        "early Homo",
+        "Oldowan context",
+        "mosaic anatomy"
+      ],
+      "sources": [
+        {
+          "title": "Homo habilis",
+          "publisher": "Smithsonian Human Origins Program",
+          "url": "https://humanorigins.si.edu/evidence/human-fossils/species/homo-habilis",
+          "type": "national museum scientific resource",
+          "quality": "high"
+        }
+      ]
+    },
+    {
+      "id": "homo_erectus",
+      "name": "Homo erectus",
+      "stage": "dispersing Homo",
+      "approximate_time": "about 1.89 million–110,000 years ago",
+      "summary": "Homo erectus had relatively modern human-like body proportions, expanded widely beyond Africa, and is associated with major changes in mobility, technology, ecology and brain size.",
+      "key_concepts": [
+        "long-distance walking",
+        "Acheulean tools",
+        "dispersal",
+        "fire",
+        "sociality"
+      ],
+      "sources": [
+        {
+          "title": "Homo erectus",
+          "publisher": "Smithsonian Human Origins Program",
+          "url": "https://humanorigins.si.edu/evidence/human-fossils/species/homo-erectus",
+          "type": "national museum scientific resource",
+          "quality": "high"
+        }
+      ]
+    },
+    {
+      "id": "middle_pleistocene_homo",
+      "name": "Middle Pleistocene Homo",
+      "stage": "later archaic Homo",
+      "summary": "Middle Pleistocene Homo populations formed a complex, geographically structured set of lineages from which later Neanderthals, Denisovans and Homo sapiens emerged. Taxonomic labels such as Homo heidelbergensis remain subjects of debate.",
+      "key_concepts": [
+        "Homo heidelbergensis",
+        "population structure",
+        "common ancestry",
+        "fire",
+        "hunting"
+      ],
+      "sources": [
+        {
+          "title": "Homo heidelbergensis",
+          "publisher": "Smithsonian Human Origins Program",
+          "url": "https://humanorigins.si.edu/evidence/human-fossils/species/homo-heidelbergensis",
+          "type": "national museum scientific resource",
+          "quality": "high"
+        }
+      ]
+    },
+    {
+      "id": "neanderthals",
+      "name": "Homo neanderthalensis",
+      "stage": "later hominin branch",
+      "approximate_time": "about 400,000–40,000 years ago",
+      "summary": "Neanderthals were a distinct human lineage adapted to Eurasian environments. They possessed sophisticated technology and social behaviour and interbred with ancestors of many living human populations.",
+      "key_concepts": [
+        "Neanderthals",
+        "interbreeding",
+        "ancient DNA",
+        "tool use",
+        "social care",
+        "symbolic behaviour"
+      ],
+      "sources": [
+        {
+          "title": "Homo neanderthalensis",
+          "publisher": "Smithsonian Human Origins Program",
+          "url": "https://humanorigins.si.edu/evidence/human-fossils/species/homo-neanderthalensis",
+          "type": "national museum scientific resource",
+          "quality": "high"
+        },
+        {
+          "title": "Ancient DNA and Neanderthals",
+          "publisher": "Smithsonian Human Origins Program",
+          "url": "https://humanorigins.si.edu/evidence/genetics/ancient-dna-and-neanderthals",
+          "type": "national museum scientific resource",
+          "quality": "high"
+        }
+      ]
+    },
+    {
+      "id": "denisovans",
+      "name": "Denisovans",
+      "stage": "later hominin branch",
+      "summary": "Denisovans are an archaic human lineage identified largely through ancient DNA and a limited fossil record. Their genetic legacy survives in some modern human populations.",
+      "context": "Because relatively few diagnostic Denisovan fossils are known, avoid presenting their anatomy, geographic range or species classification with more certainty than the evidence supports.",
+      "key_concepts": [
+        "ancient DNA",
+        "archaic humans",
+        "interbreeding",
+        "genetic introgression"
+      ],
+      "sources": [
+        {
+          "title": "Ancient DNA and Neanderthals",
+          "publisher": "Smithsonian Human Origins Program",
+          "url": "https://humanorigins.si.edu/evidence/genetics/ancient-dna-and-neanderthals",
+          "type": "national museum scientific resource",
+          "quality": "high",
+          "note": "Includes discussion of Denisovan evidence and limitations."
+        }
+      ]
+    },
+    {
+      "id": "homo_sapiens",
+      "name": "Homo sapiens",
+      "stage": "modern humans",
+      "approximate_time": "about 300,000 years ago to present",
+      "summary": "Homo sapiens evolved in Africa and later dispersed globally. Human adaptation increasingly depended not only on anatomy and genes but also on cumulative culture, technology, language, social networks and shared symbols.",
+      "key_concepts": [
+        "Homo sapiens",
+        "Africa",
+        "culture",
+        "language",
+        "symbolism",
+        "technology",
+        "social networks"
+      ],
+      "sources": [
+        {
+          "title": "Homo sapiens",
+          "publisher": "Smithsonian Human Origins Program",
+          "url": "https://humanorigins.si.edu/evidence/human-fossils/species/homo-sapiens",
+          "type": "national museum scientific resource",
+          "quality": "high"
+        }
+      ]
+    },
+    {
+      "id": "human_brain_evolution",
+      "name": "Evolution of the Human Nervous System",
+      "stage": "human neuroevolution",
+      "summary": "Human brain evolution involved changes in neuron number, developmental timing, cortical organisation, connectivity, gene regulation and circuit specialisation. It should not be reduced to a simple increase in brain size.",
+      "key_concepts": [
+        "cortical organisation",
+        "development",
+        "gene regulation",
+        "connectivity",
+        "comparative neuroscience"
+      ],
+      "sources": [
+        {
+          "title": "Evolution of the Human Nervous System Function, Structure, and Development",
+          "publisher": "Cell / PubMed Central",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5647789/",
+          "type": "peer-reviewed review",
+          "quality": "high"
+        }
+      ]
+    },
+    {
+      "id": "culture_and_cumulative_learning",
+      "name": "Cumulative Culture and Social Learning",
+      "stage": "human behavioural evolution",
+      "summary": "Humans inherit information culturally as well as genetically. Social learning, language, teaching, imitation, institutions and symbolic systems allow knowledge to accumulate across generations.",
+      "context": "Culture changes selection pressures and developmental environments, making human biology and culture reciprocally interacting rather than completely separate processes.",
+      "key_concepts": [
+        "social learning",
+        "cumulative culture",
+        "language",
+        "norms",
+        "institutions",
+        "gene-culture interaction"
+      ],
+      "sources": [
+        {
+          "title": "Introduction to Human Evolution",
+          "publisher": "Smithsonian Human Origins Program",
+          "url": "https://humanorigins.si.edu/education/introduction-human-evolution",
+          "type": "national museum scientific resource",
+          "quality": "high"
+        }
+      ]
+    },
+    {
+      "id": "anthropology",
+      "name": "Anthropology",
+      "stage": "human sciences",
+      "summary": "Anthropology studies humans across biological, cultural, archaeological and linguistic dimensions. It provides a bridge between evolutionary history and the extraordinary diversity of human social worlds.",
+      "theory_of_human_lens": "Humans are biocultural organisms: bodies, behaviour, meaning, language, kinship, technology and social organisation are understood in relation to both evolutionary history and lived cultural context.",
+      "key_concepts": [
+        "biocultural",
+        "culture",
+        "human variation",
+        "fieldwork",
+        "archaeology",
+        "language",
+        "evolution"
+      ],
+      "sources": [
+        {
+          "title": "What is Anthropology?",
+          "publisher": "American Anthropological Association",
+          "url": "https://americananthro.org/practice-teach/what-is-anthropology/",
+          "type": "professional association overview",
+          "quality": "high"
+        }
+      ]
+    },
+    {
+      "id": "biological_anthropology",
+      "name": "Biological Anthropology and Paleoanthropology",
+      "stage": "human origins science",
+      "summary": "Biological anthropology studies human biological variation, evolution and relationships with other primates. Paleoanthropology focuses specifically on human evolution using fossils, archaeology, genetics and comparative biology.",
+      "key_concepts": [
+        "paleoanthropology",
+        "human variation",
+        "primatology",
+        "fossils",
+        "genetics",
+        "adaptation"
+      ],
+      "sources": [
+        {
+          "title": "Introduction to Human Evolution",
+          "publisher": "Smithsonian Human Origins Program",
+          "url": "https://humanorigins.si.edu/education/introduction-human-evolution",
+          "type": "national museum scientific resource",
+          "quality": "high"
+        },
+        {
+          "title": "What is Anthropology?",
+          "publisher": "American Anthropological Association",
+          "url": "https://americananthro.org/practice-teach/what-is-anthropology/",
+          "type": "professional association overview",
+          "quality": "high"
+        }
+      ]
+    },
+    {
+      "id": "cultural_anthropology",
+      "name": "Cultural Anthropology",
+      "stage": "human social cognition and culture",
+      "summary": "Cultural anthropology studies how people construct meaning, organise relationships, form institutions, transmit knowledge and inhabit different social worlds.",
+      "theory_of_mind_relevance": "An individual's mind develops inside systems of language, symbols, expectations and social relationships. Anthropology therefore guards against assuming that one culture's categories of self, emotion or normality are universal.",
+      "key_concepts": [
+        "culture",
+        "meaning",
+        "kinship",
+        "ritual",
+        "social norms",
+        "identity",
+        "ethnography"
+      ],
+      "sources": [
+        {
+          "title": "What is Anthropology?",
+          "publisher": "American Anthropological Association",
+          "url": "https://americananthro.org/practice-teach/what-is-anthropology/",
+          "type": "professional association overview",
+          "quality": "high"
+        }
+      ]
+    },
+    {
+      "id": "neuroscience",
+      "name": "Neuroscience",
+      "stage": "modern mind sciences",
+      "summary": "Neuroscience studies nervous systems from molecules and cells through circuits, systems, behaviour and cognition. The human brain is composed of many specialised yet interconnected cell types, circuits and functional systems.",
+      "theory_of_mind_lens": "Mental functions arise through coordinated biological activity distributed across neural systems rather than from a single 'mind centre'. Neural explanations can illuminate mechanisms without by themselves exhausting psychological, interpersonal or cultural explanations.",
+      "key_concepts": [
+        "neurons",
+        "glia",
+        "synapses",
+        "circuits",
+        "plasticity",
+        "networks",
+        "cognition",
+        "emotion"
+      ],
+      "sources": [
+        {
+          "title": "Neuroscience: Summary",
+          "publisher": "NCBI Bookshelf",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK11055/",
+          "type": "academic neuroscience textbook",
+          "quality": "high"
+        },
+        {
+          "title": "Division of Neuroscience and Basic Behavioral Science",
+          "publisher": "National Institute of Mental Health",
+          "url": "https://www.nimh.nih.gov/about/organization/dnbbs",
+          "type": "national research institute",
+          "quality": "high"
+        }
+      ]
+    },
+    {
+      "id": "psychiatry",
+      "name": "Psychiatry",
+      "stage": "clinical mind sciences",
+      "summary": "Psychiatry is the medical specialty concerned with the diagnosis, treatment and prevention of mental, emotional and behavioural disorders.",
+      "theory_of_mind_lens": "Psychiatry applies multiple models of mind and disorder in clinical practice, including biological, developmental, cognitive, behavioural, interpersonal, psychodynamic and social perspectives.",
+      "context": "Psychiatry's history includes competing and changing models of mental disorder. Contemporary research increasingly integrates genetics, brain development, neural circuits, behaviour, environment and lived experience.",
+      "key_concepts": [
+        "diagnosis",
+        "psychopathology",
+        "treatment",
+        "psychopharmacology",
+        "psychotherapy",
+        "development",
+        "environment"
+      ],
+      "sources": [
+        {
+          "title": "What is Psychiatry?",
+          "publisher": "American Psychiatric Association",
+          "url": "https://www.psychiatry.org/patients-families/what-is-psychiatry",
+          "type": "professional medical association",
+          "quality": "high"
+        },
+        {
+          "title": "Division of Translational Research",
+          "publisher": "National Institute of Mental Health",
+          "url": "https://www.nimh.nih.gov/about/organization/dtr",
+          "type": "national research institute",
+          "quality": "high"
+        }
+      ]
+    },
+    {
+      "id": "biopsychosocial_psychiatry",
+      "name": "Biological, Psychological and Social Levels in Mental Health",
+      "stage": "integrative psychiatry",
+      "summary": "Mental health and mental disorder often emerge from interactions among genetic vulnerability, nervous-system development, learning, relationships, adversity, social conditions, culture and other environmental influences.",
+      "context": "This is an anti-reductionist bridge between the earlier biological and anthropological sections: genes and brains matter, but neither operates independently of development and environment.",
+      "key_concepts": [
+        "gene-environment interaction",
+        "development",
+        "risk",
+        "resilience",
+        "social determinants",
+        "plasticity"
+      ],
+      "sources": [
+        {
+          "title": "Genomics Research",
+          "publisher": "National Institute of Mental Health",
+          "url": "https://www.nimh.nih.gov/research/priority-research-areas/genomics-research",
+          "type": "national research institute",
+          "quality": "high"
+        },
+        {
+          "title": "Mental Illness Trajectories Across the Lifespan",
+          "publisher": "National Institute of Mental Health",
+          "url": "https://www.nimh.nih.gov/about/strategic-planning-reports/goals/goal-2-examine-mental-illness-trajectories-across-the-lifespan",
+          "type": "national research institute",
+          "quality": "high"
+        }
+      ]
+    },
+    {
+      "id": "rdoc_and_dimensional_models",
+      "name": "Dimensional Neuroscience of Mental Disorders",
+      "stage": "contemporary psychiatric research",
+      "summary": "NIMH's Research Domain Criteria approach studies functional processes across normal-to-abnormal continua and across units of analysis such as genes, molecules, cells, circuits, physiology, behaviour and self-report.",
+      "context": "This does not replace clinical diagnosis by itself; it is primarily a research framework intended to investigate mechanisms that may cut across traditional diagnostic categories.",
+      "key_concepts": [
+        "RDoC",
+        "dimensions",
+        "circuits",
+        "behaviour",
+        "transdiagnostic research",
+        "units of analysis"
+      ],
+      "sources": [
+        {
+          "title": "Revolutionizing the Study of Mental Disorders",
+          "publisher": "National Institute of Mental Health",
+          "url": "https://www.nimh.nih.gov/news/science-updates/2024/revolutionizing-the-study-of-mental-disorders",
+          "type": "national research institute overview",
+          "quality": "high"
+        }
+      ]
+    }
+  ],
+  "relationship_map": [
+    {
+      "from": "common_ancestry_and_evolution",
+      "to": "early_cellular_life",
+      "relationship": "provides the evolutionary framework for interpreting early life"
+    },
+    {
+      "from": "early_cellular_life",
+      "to": "bacteria_archaea",
+      "relationship": "early cellular diversification includes bacterial and archaeal lineages"
+    },
+    {
+      "from": "bacteria_archaea",
+      "to": "eukaryogenesis",
+      "relationship": "eukaryotes emerged through evolutionary processes involving archaeal and bacterial ancestry, including endosymbiosis"
+    },
+    {
+      "from": "eukaryogenesis",
+      "to": "multicellularity",
+      "relationship": "complex eukaryotic cells enabled multiple independent transitions to multicellularity"
+    },
+    {
+      "from": "multicellularity",
+      "to": "animals_metazoa",
+      "relationship": "animals are one multicellular eukaryotic lineage"
+    },
+    {
+      "from": "animals_metazoa",
+      "to": "nervous_system_origins",
+      "relationship": "specialised signalling systems evolved within animal lineages"
+    },
+    {
+      "from": "animals_metazoa",
+      "to": "bilaterians",
+      "relationship": "bilaterians are a major branch of animal diversification"
+    },
+    {
+      "from": "nervous_system_origins",
+      "to": "bilaterians",
+      "relationship": "many bilaterians evolved centralised and increasingly specialised nervous systems"
+    },
+    {
+      "from": "bilaterians",
+      "to": "chordates",
+      "relationship": "chordates are one bilaterian lineage"
+    },
+    {
+      "from": "chordates",
+      "to": "vertebrates",
+      "relationship": "vertebrates are a major chordate branch"
+    },
+    {
+      "from": "vertebrates",
+      "to": "tetrapods_amniotes",
+      "relationship": "tetrapods and later amniotes arose within vertebrate evolution"
+    },
+    {
+      "from": "tetrapods_amniotes",
+      "to": "synapsids_mammals",
+      "relationship": "mammals descend from the synapsid branch of amniotes"
+    },
+    {
+      "from": "synapsids_mammals",
+      "to": "primates",
+      "relationship": "primates are one mammalian order"
+    },
+    {
+      "from": "primates",
+      "to": "apes_hominoids",
+      "relationship": "apes are one primate branch"
+    },
+    {
+      "from": "apes_hominoids",
+      "to": "hominin_divergence",
+      "relationship": "the human lineage is one branch within the apes"
+    },
+    {
+      "from": "hominin_divergence",
+      "to": "sahelanthropus",
+      "relationship": "Sahelanthropus lies near the earliest currently recognised part of the hominin record, although exact placement remains debated"
+    },
+    {
+      "from": "hominin_divergence",
+      "to": "ardipithecus",
+      "relationship": "Ardipithecus represents an early hominin grade with both arboreal and bipedal adaptations"
+    },
+    {
+      "from": "ardipithecus",
+      "to": "australopithecus_afarensis",
+      "relationship": "later australopiths illustrate further evolution of habitual bipedalism; not presented here as a proven direct ancestor chain"
+    },
+    {
+      "from": "australopithecus_afarensis",
+      "to": "early_homo",
+      "relationship": "Homo arose from within the broader australopith-grade hominin radiation, but precise ancestry remains debated"
+    },
+    {
+      "from": "early_homo",
+      "to": "homo_habilis",
+      "relationship": "Homo habilis is one representative early Homo species"
+    },
+    {
+      "from": "early_homo",
+      "to": "homo_erectus",
+      "relationship": "Homo erectus represents a later widespread Homo lineage"
+    },
+    {
+      "from": "homo_erectus",
+      "to": "middle_pleistocene_homo",
+      "relationship": "later Homo populations emerged from earlier widespread Homo lineages; exact taxonomic branching is debated"
+    },
+    {
+      "from": "middle_pleistocene_homo",
+      "to": "neanderthals",
+      "relationship": "European and Eurasian later populations contributed to the Neanderthal lineage"
+    },
+    {
+      "from": "middle_pleistocene_homo",
+      "to": "denisovans",
+      "relationship": "archaic Eurasian populations contributed to the Denisovan lineage"
+    },
+    {
+      "from": "middle_pleistocene_homo",
+      "to": "homo_sapiens",
+      "relationship": "African Middle Pleistocene Homo populations contributed to the emergence of Homo sapiens; exact species labels remain debated"
+    },
+    {
+      "from": "neanderthals",
+      "to": "homo_sapiens",
+      "relationship": "distinct lineages that later interbred"
+    },
+    {
+      "from": "denisovans",
+      "to": "homo_sapiens",
+      "relationship": "distinct lineages that later interbred"
+    },
+    {
+      "from": "homo_sapiens",
+      "to": "human_brain_evolution",
+      "relationship": "comparative neurobiology studies how human nervous systems differ from those of other primates and earlier evolutionary conditions"
+    },
+    {
+      "from": "homo_sapiens",
+      "to": "culture_and_cumulative_learning",
+      "relationship": "modern human adaptation increasingly depends on cumulative cultural inheritance"
+    },
+    {
+      "from": "culture_and_cumulative_learning",
+      "to": "anthropology",
+      "relationship": "anthropology studies humans as biological, cultural, linguistic and historical organisms"
+    },
+    {
+      "from": "hominin_divergence",
+      "to": "biological_anthropology",
+      "relationship": "paleoanthropology reconstructs human evolutionary history"
+    },
+    {
+      "from": "homo_sapiens",
+      "to": "biological_anthropology",
+      "relationship": "biological anthropology studies human evolution and biological variation"
+    },
+    {
+      "from": "culture_and_cumulative_learning",
+      "to": "cultural_anthropology",
+      "relationship": "cultural anthropology investigates socially transmitted systems of meaning and practice"
+    },
+    {
+      "from": "nervous_system_origins",
+      "to": "neuroscience",
+      "relationship": "modern neuroscience studies the evolved nervous system at multiple levels"
+    },
+    {
+      "from": "human_brain_evolution",
+      "to": "neuroscience",
+      "relationship": "human neuroscience is informed by comparative and evolutionary study of nervous systems"
+    },
+    {
+      "from": "homo_sapiens",
+      "to": "psychiatry",
+      "relationship": "psychiatry is a clinical discipline concerned with mental and behavioural functioning in humans"
+    },
+    {
+      "from": "neuroscience",
+      "to": "psychiatry",
+      "relationship": "neuroscience supplies biological mechanisms relevant to psychiatric research and treatment but does not by itself define the whole clinical person"
+    },
+    {
+      "from": "cultural_anthropology",
+      "to": "psychiatry",
+      "relationship": "culture influences concepts of self, distress, normality, symptom expression, help-seeking and clinical interpretation"
+    },
+    {
+      "from": "biological_anthropology",
+      "to": "psychiatry",
+      "relationship": "evolutionary and developmental biology provide context for human vulnerability and adaptation"
+    },
+    {
+      "from": "psychiatry",
+      "to": "biopsychosocial_psychiatry",
+      "relationship": "integrative psychiatric models combine biological, psychological and social explanatory levels"
+    },
+    {
+      "from": "neuroscience",
+      "to": "rdoc_and_dimensional_models",
+      "relationship": "RDoC incorporates neural circuits and other biological levels into dimensional research"
+    },
+    {
+      "from": "biopsychosocial_psychiatry",
+      "to": "rdoc_and_dimensional_models",
+      "relationship": "both attempt to move beyond single-cause explanations, though they have different purposes and structures"
+    }
+  ],
+  "suggested_retrieval_clusters": {
+    "origin_and_early_life": [
+      "common_ancestry_and_evolution",
+      "early_cellular_life",
+      "bacteria_archaea",
+      "eukaryogenesis",
+      "multicellularity"
+    ],
+    "evolution_of_nervous_systems": [
+      "animals_metazoa",
+      "nervous_system_origins",
+      "bilaterians",
+      "chordates",
+      "vertebrates",
+      "human_brain_evolution",
+      "neuroscience"
+    ],
+    "vertebrate_to_primate": [
+      "vertebrates",
+      "tetrapods_amniotes",
+      "synapsids_mammals",
+      "primates",
+      "apes_hominoids"
+    ],
+    "early_human_evolution": [
+      "hominin_divergence",
+      "sahelanthropus",
+      "ardipithecus",
+      "australopithecus_afarensis",
+      "early_homo",
+      "homo_habilis",
+      "homo_erectus"
+    ],
+    "later_human_evolution": [
+      "middle_pleistocene_homo",
+      "neanderthals",
+      "denisovans",
+      "homo_sapiens",
+      "human_brain_evolution",
+      "culture_and_cumulative_learning"
+    ],
+    "human_biocultural_context": [
+      "homo_sapiens",
+      "culture_and_cumulative_learning",
+      "anthropology",
+      "biological_anthropology",
+      "cultural_anthropology"
+    ],
+    "mind_and_mental_health": [
+      "human_brain_evolution",
+      "cultural_anthropology",
+      "neuroscience",
+      "psychiatry",
+      "biopsychosocial_psychiatry",
+      "rdoc_and_dimensional_models"
+    ],
+    "genes_brain_environment": [
+      "common_ancestry_and_evolution",
+      "human_brain_evolution",
+      "neuroscience",
+      "biopsychosocial_psychiatry",
+      "rdoc_and_dimensional_models"
+    ]
+  },
+  "cross_module_connections": [
+    {
+      "target_module": "psychology_theory_of_mind_context.json",
+      "relationship": "Use this biology/evolution module to provide the evolutionary, anthropological, psychiatric and neural background for the theories of mind represented in the psychology module."
+    }
+  ]
+}

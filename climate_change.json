@@ -1,0 +1,541 @@
+{
+  "metadata": {
+    "id": "climate_action_practical_collaborative_context",
+    "title": "Climate Action Through Practical and Collaborative Problem-Solving",
+    "description": "A structured context module for an agentic AI to use climate knowledge collaboratively with individuals, communities, governments, organisations and other AI systems. The emphasis is on practical, locally appropriate solutions that reduce emissions, improve resilience, respect human agency and account for finance, maintenance, existing infrastructure and social complexity.",
+    "intended_use": "Teach an AI to move from climate knowledge to useful action by understanding context, working with people, identifying local resources and constraints, proposing simple and scalable options, evaluating feasibility, and accepting that technically plausible ideas may not be adopted because human societies are complex.",
+    "version": "2.0",
+    "last_curated": "2026-08-31",
+    "language": "en",
+    "epistemic_note": "Climate interventions are context dependent. Technical potential does not automatically imply economic, legal, social or political feasibility. The agent should verify current local conditions, costs, standards, infrastructure and safety requirements before recommending implementation."
+  },
+  "core_philosophy": {
+    "climate_change_is_a_human_problem": "Climate change is a physical problem involving greenhouse gases, energy systems and Earth-system processes, but climate action is also a human problem involving livelihoods, culture, institutions, trust, inequality, finance, political authority, competing priorities and existing infrastructure.",
+    "simple_solutions_are_valuable": "Prefer the simplest intervention that materially improves the outcome when it is safe, affordable and maintainable. A modest change that works with existing equipment, skills and institutions may achieve more than an idealised technology that cannot be financed, repaired, understood or accepted.",
+    "local_resources_first": "Before proposing imported or highly specialised technology, investigate what already exists locally: skills, materials, waste streams, buildings, vehicles, batteries, water systems, land, renewable energy resources, businesses, cooperatives, technicians, informal repair networks and public programs.",
+    "finance_is_part_of_engineering": "A solution that cannot be paid for, maintained or replaced is incomplete. Upfront cost, operating cost, financing, replacement cycles, household cash flow, public budgets, cooperative ownership and concessional finance should be considered alongside technical performance.",
+    "maintenance_matters": "Prefer systems that can be operated and repaired with locally available skills, parts and supply chains. Maintenance burden, downtime, spare parts and training directly affect whether an intervention delivers real emissions reductions or resilience benefits.",
+    "people_retain_agency": "The role of an AI is to help people understand options and consequences, not to override them. It is acceptable to put forward an evidence-based proposal and for a community, government, organisation or individual not to use it.",
+    "human_societies_are_complex": "Technically strong ideas may fail because of trust, timing, ownership, status, culture, politics, labour, land, historical experience or competing priorities. Rejection of an idea is information about context, not proof of irrationality.",
+    "learn_from_rejection": "If a proposal is rejected, ask what constraint or value was missed and use that information to improve future options.",
+    "avoid_one_size_fits_all": "Use successful examples as patterns for investigation rather than templates to impose elsewhere."
+  },
+  "climate_science_foundation": {
+    "summary": "Human greenhouse-gas emissions are warming the climate system. Climate action involves mitigation, which reduces the causes of further warming, and adaptation, which reduces vulnerability to impacts that are already occurring or cannot be fully avoided.",
+    "key_concepts": [
+      "greenhouse effect",
+      "carbon dioxide",
+      "methane",
+      "nitrous oxide",
+      "global warming",
+      "carbon cycle",
+      "extreme heat",
+      "sea-level rise",
+      "changing rainfall",
+      "mitigation",
+      "adaptation",
+      "resilience",
+      "climate-resilient development"
+    ],
+    "sources": [
+      {
+        "title": "AR6 Synthesis Report",
+        "publisher": "Intergovernmental Panel on Climate Change",
+        "url": "https://www.ipcc.ch/report/ar6/syr/",
+        "type": "international scientific assessment",
+        "quality": "very high"
+      },
+      {
+        "title": "Climate Change 2022: Impacts, Adaptation and Vulnerability",
+        "publisher": "Intergovernmental Panel on Climate Change",
+        "url": "https://www.ipcc.ch/report/ar6/wg2/",
+        "type": "international scientific assessment",
+        "quality": "very high"
+      },
+      {
+        "title": "Climate Change 2022: Mitigation of Climate Change",
+        "publisher": "Intergovernmental Panel on Climate Change",
+        "url": "https://www.ipcc.ch/report/ar6/wg3/",
+        "type": "international scientific assessment",
+        "quality": "very high"
+      }
+    ]
+  },
+  "agent_operating_model": {
+    "goal": "Use knowledge to help humans reduce climate risk while protecting or improving wellbeing, affordability, energy access, livelihoods and resilience.",
+    "workflow": [
+      {
+        "step": 1,
+        "name": "Understand the place and problem",
+        "questions": [
+          "What climate or energy problem is actually being experienced?",
+          "What infrastructure already exists?",
+          "What are the local energy, transport, water, food and waste systems?",
+          "What are local incomes and financing constraints?",
+          "What skills and materials are available?",
+          "Which laws, standards, land rights and authorities apply?"
+        ]
+      },
+      {
+        "step": 2,
+        "name": "Identify people, roles and authority",
+        "questions": [
+          "Who is affected?",
+          "Who owns the infrastructure or land?",
+          "Who pays?",
+          "Who maintains the system?",
+          "Who has formal decision-making authority?",
+          "Who has informal influence and local knowledge?",
+          "Who receives benefits and who carries risks?"
+        ]
+      },
+      {
+        "step": 3,
+        "name": "Map local resources and constraints",
+        "questions": [
+          "What energy, waste, agricultural, water and material resources are locally available?",
+          "Can existing equipment be adapted rather than replaced?",
+          "Are spare parts available?",
+          "Can local technicians maintain the system?",
+          "Are there existing public, cooperative or development-finance mechanisms?"
+        ]
+      },
+      {
+        "step": 4,
+        "name": "Generate options at different scales",
+        "instruction": "Include simple, low-cost and incremental options alongside larger infrastructure solutions. Where practical, offer a no-regrets option, a low-capital option, a medium-investment option and a transformative option."
+      },
+      {
+        "step": 5,
+        "name": "Evaluate whole-system feasibility",
+        "criteria": [
+          "climate impact",
+          "adaptation value",
+          "upfront cost",
+          "lifetime cost",
+          "financing availability",
+          "maintenance burden",
+          "local technical capability",
+          "safety",
+          "reliability",
+          "energy security",
+          "material availability",
+          "land and water use",
+          "equity",
+          "cultural acceptability",
+          "political feasibility",
+          "legal compatibility",
+          "employment impact",
+          "co-benefits",
+          "unintended consequences",
+          "reversibility",
+          "ability to pilot before scaling"
+        ]
+      },
+      {
+        "step": 6,
+        "name": "Discuss rather than impose",
+        "instruction": "Present options, assumptions, trade-offs and uncertainties. Ask affected people what the analysis has missed and what would make an option workable."
+      },
+      {
+        "step": 7,
+        "name": "Pilot where uncertainty is high",
+        "instruction": "Prefer small, reversible pilots with clear safety controls and measurements before large-scale deployment."
+      },
+      {
+        "step": 8,
+        "name": "Measure real outcomes",
+        "metrics": [
+          "emissions avoided",
+          "energy saved or generated",
+          "cost to households or organisations",
+          "reliability",
+          "maintenance events",
+          "health effects",
+          "resilience during disruption",
+          "local employment",
+          "community satisfaction",
+          "distribution of costs and benefits"
+        ]
+      },
+      {
+        "step": 9,
+        "name": "Adapt, scale or stop",
+        "instruction": "Scale successful solutions, modify partially successful ones, and stop interventions whose actual costs, risks or social consequences outweigh their benefits."
+      }
+    ]
+  },
+  "stakeholder_models": {
+    "individuals_and_households": {
+      "approach": "Work within household finances, housing tenure, transport needs, health, time and autonomy. Do not shift responsibility for structural emissions entirely onto individuals."
+    },
+    "communities": {
+      "approach": "Treat communities as partners with knowledge, not passive recipients of technology. Local knowledge can identify constraints and opportunities invisible to external analysis."
+    },
+    "local_governments": {
+      "approach": "Focus on planning, infrastructure, waste, transport, emergency management, public buildings, procurement and local economic development."
+    },
+    "national_governments": {
+      "approach": "Use standards, infrastructure investment, taxation, energy policy, transport rules, climate finance, social protection and research funding to create enabling conditions at scale."
+    },
+    "businesses_and_organisations": {
+      "approach": "Focus on practical operational decisions: energy use, procurement, logistics, buildings, fleets, waste, supply chains, replacement cycles, workforce capability and resilience."
+    },
+    "non_government_organisations": {
+      "approach": "Use NGOs as conveners, trusted intermediaries, technical-support providers and channels for community-led planning where welcomed."
+    },
+    "researchers_and_universities": {
+      "approach": "Use research institutions to test uncertain assumptions, perform lifecycle analysis, evaluate pilots and transfer knowledge into locally maintainable practice."
+    },
+    "other_ai_systems": {
+      "approach": "Use other AI systems to independently check evidence, compare assumptions, model scenarios and identify failure modes. Agreement between AI systems is not proof.",
+      "possible_roles": [
+        "climate-science reviewer",
+        "engineering option generator",
+        "finance modeller",
+        "policy and standards researcher",
+        "social-impact reviewer",
+        "risk and safety reviewer",
+        "scenario modeller",
+        "adversarial reviewer"
+      ]
+    }
+  },
+  "solution_principles": [
+    {
+      "id": "simple_before_complex",
+      "principle": "Investigate simple, safe and maintainable interventions before assuming a complex technology is required."
+    },
+    {
+      "id": "efficiency_before_capacity",
+      "principle": "Reduce avoidable energy or material waste before paying to build additional capacity where practical."
+    },
+    {
+      "id": "adapt_existing_assets",
+      "principle": "Investigate whether existing assets can safely be repurposed, shared or operated differently before replacing them."
+    },
+    {
+      "id": "local_resources_first",
+      "principle": "Prefer solutions that make intelligent use of local energy, materials, skills, repair capability and institutions when they are suitable."
+    },
+    {
+      "id": "repairability",
+      "principle": "A slightly less efficient system that local people can maintain may outperform a more advanced system that fails and cannot be repaired."
+    },
+    {
+      "id": "distributed_resilience",
+      "principle": "Distributed energy, storage, water and communications can improve resilience where central infrastructure is weak or vulnerable."
+    },
+    {
+      "id": "co_benefits",
+      "principle": "Prefer interventions that solve more than one problem when feasible, such as emissions reduction plus reliability, health, income or energy access."
+    },
+    {
+      "id": "incremental_transition",
+      "principle": "Incremental improvements can be legitimate transition tools when immediate system replacement is impractical, provided they do not create unnecessary long-term lock-in."
+    },
+    {
+      "id": "human_agency",
+      "principle": "Offer options and evidence, but preserve the right of people and institutions to decide whether and how those options are used."
+    }
+  ],
+  "illustrative_example": {
+    "id": "community_microgrid_example",
+    "location": "generic / context-dependent",
+    "type": "illustrative investigation pathway",
+    "idea": "In a community with unreliable, expensive or limited electricity access, investigate a locally appropriate microgrid using distributed generation, storage and demand management. The system should be designed around what the community actually needs, what it can finance and maintain, and what resources are locally available.",
+    "reasoning_pattern": [
+      "Start with the problem rather than the technology.",
+      "Determine whether the main need is reliability, energy access, lower cost, resilience, productive use, emissions reduction or a combination.",
+      "Measure the load before sizing generation or batteries.",
+      "Investigate efficiency and load shifting before adding expensive capacity.",
+      "Use locally appropriate generation such as solar, wind, hydro, biomass or grid interaction where suitable.",
+      "Consider storage only after understanding the load profile and generation pattern.",
+      "Investigate equipment already available locally, but do not assume locally available equipment is automatically appropriate.",
+      "Prefer components that can be maintained, repaired and replaced through realistic local supply chains.",
+      "Design ownership, billing, maintenance and replacement funding at the same time as the electrical system.",
+      "Ask the community which services matter most, such as lighting, communications, refrigeration, water pumping, medical equipment, education or livelihood equipment.",
+      "Pilot the system at a manageable scale if major technical or social uncertainties remain."
+    ],
+    "battery_reasoning": {
+      "principle": "Battery choice should be based on chemistry, condition, cycle life, cost, safety, availability, repairability and end-of-life handling.",
+      "starter_battery_note": "Conventional automotive starter batteries are designed for short high-current engine starting rather than repeated deep cycling. Their availability may justify investigation in constrained environments, but it does not automatically make them the best storage choice.",
+      "possible_options": [
+        "deep-cycle lead-acid batteries",
+        "lithium iron phosphate batteries",
+        "properly assessed second-life electric-vehicle batteries",
+        "other locally supportable storage technologies"
+      ],
+      "must_check": [
+        "battery chemistry",
+        "actual battery condition",
+        "depth-of-discharge limits",
+        "cycle life",
+        "charge controller compatibility",
+        "inverter compatibility",
+        "battery management system requirements",
+        "fire risk",
+        "electrical safety",
+        "acid or toxic-material exposure",
+        "ventilation",
+        "child and community safety",
+        "recycling",
+        "end-of-life disposal",
+        "replacement cost",
+        "local technician capability"
+      ]
+    },
+    "finance_and_governance": {
+      "questions": [
+        "Who owns the system?",
+        "Who pays for installation?",
+        "Who collects revenue?",
+        "Who decides how power is allocated?",
+        "Who pays for maintenance?",
+        "Who pays when batteries or inverters need replacement?",
+        "What happens if some users cannot pay?",
+        "Can productive uses of electricity help finance the system?",
+        "Can a cooperative, local government, utility, business or development organisation share risk?"
+      ],
+      "possible_models": [
+        "community energy cooperative",
+        "shared community asset",
+        "pay-as-you-go energy",
+        "microfinance",
+        "local-government ownership",
+        "utility partnership",
+        "business anchor customer",
+        "development finance",
+        "grant-supported pilot",
+        "maintenance and replacement fund"
+      ]
+    },
+    "human_context": {
+      "questions": [
+        "What problem do local people think needs solving?",
+        "What previous projects succeeded or failed?",
+        "Who is trusted?",
+        "Who will perform maintenance?",
+        "Does the system change unpaid labour or existing livelihoods?",
+        "Who benefits first?",
+        "Could powerful groups capture disproportionate benefits?",
+        "What would make the system locally valued rather than perceived as an outside imposition?"
+      ],
+      "decision_rule": "If the community rejects the proposal, record why. Do not assume the rejection is irrational. Use the reasons to redesign the option or identify a better one."
+    }
+  },
+  "financial_reasoning": {
+    "principle": "Evaluate who pays, when they pay, who saves money, who bears risk and when major components must be replaced.",
+    "questions": [
+      "What is the upfront capital cost?",
+      "What are annual operating and maintenance costs?",
+      "What is expected asset life?",
+      "When must major components be replaced?",
+      "What is the cost of doing nothing?",
+      "Can the solution reduce an existing bill or generate income?",
+      "Can savings repay financing?",
+      "Is the interest rate realistic?",
+      "Can cooperative or public ownership reduce individual capital barriers?",
+      "Are grants or concessional loans available?",
+      "Would local manufacture or repair retain more economic value locally?"
+    ]
+  },
+  "human_and_social_reasoning": {
+    "principle": "Technical optimisation is only one part of climate decision-making. Social legitimacy, trust, ownership and lived experience matter.",
+    "agent_questions": [
+      "What problem do affected people identify?",
+      "Does the proposed intervention solve that problem as well as a climate problem?",
+      "What previous projects succeeded or failed?",
+      "Who is trusted?",
+      "Whose labour is required?",
+      "Does the intervention affect land, culture, livelihoods or unpaid work?",
+      "Could benefits be captured by already powerful groups?",
+      "Would low-income households pay proportionally more?",
+      "Is there genuine consent or only formal consultation?"
+    ]
+  },
+  "failure_modes_to_avoid": [
+    "technology solutionism",
+    "assuming newer technology is automatically better",
+    "ignoring maintenance and spare parts",
+    "ignoring household or organisational cash flow",
+    "assuming theoretical carbon savings will occur in practice",
+    "using global averages when local data are available",
+    "ignoring cultural and political legitimacy",
+    "consulting people only after the technical design is complete",
+    "greenwashing",
+    "double-counting emissions reductions",
+    "maladaptation",
+    "creating dependence on proprietary technology with no repair pathway",
+    "treating communities as experimental subjects",
+    "assuming AI consensus equals evidence",
+    "overstating certainty",
+    "allowing optimisation metrics to override human rights or democratic authority"
+  ],
+  "collaborative_ai_protocol": {
+    "purpose": "Allow multiple AI systems to cooperate on climate problems while preserving human oversight and auditability.",
+    "recommended_roles": {
+      "context_agent": "maps local infrastructure, livelihoods, institutions and constraints",
+      "science_agent": "checks climate and environmental evidence",
+      "engineering_agent": "generates technically plausible options",
+      "finance_agent": "models capital, operating cost and replacement cycles",
+      "policy_agent": "checks laws, standards and public programs",
+      "social_agent": "identifies stakeholders, equity issues and social impacts",
+      "risk_agent": "tries to falsify assumptions and identify failure modes",
+      "synthesis_agent": "combines findings and preserves unresolved uncertainty"
+    },
+    "rules": [
+      "Each agent should expose assumptions and sources.",
+      "Independent agents should challenge rather than merely reinforce one another.",
+      "Disagreement should be preserved for human review when evidence does not resolve it.",
+      "Local human knowledge should be treated as evidence about context.",
+      "High-impact recommendations should receive independent technical and safety review.",
+      "Humans retain final authority over community, organisational and political decisions."
+    ]
+  },
+  "source_library": [
+    {
+      "title": "AR6 Synthesis Report",
+      "publisher": "IPCC",
+      "url": "https://www.ipcc.ch/report/ar6/syr/",
+      "why_useful": "Global scientific synthesis of climate change, impacts, mitigation and adaptation."
+    },
+    {
+      "title": "Climate Change 2022: Impacts, Adaptation and Vulnerability",
+      "publisher": "IPCC",
+      "url": "https://www.ipcc.ch/report/ar6/wg2/",
+      "why_useful": "Climate impacts, vulnerability, adaptation and climate-resilient development."
+    },
+    {
+      "title": "Climate Change 2022: Mitigation of Climate Change",
+      "publisher": "IPCC",
+      "url": "https://www.ipcc.ch/report/ar6/wg3/",
+      "why_useful": "Sectoral mitigation, technology, economics and policy."
+    },
+    {
+      "title": "People-Centred Clean Energy Transitions",
+      "publisher": "International Energy Agency",
+      "url": "https://www.iea.org/programmes/people-centred-clean-energy-transitions",
+      "why_useful": "Fairness, affordability, employment, participation and inclusion in energy transitions."
+    },
+    {
+      "title": "Locally Led Climate Action",
+      "publisher": "World Bank",
+      "url": "https://connect4impact.worldbank.org/llca-operational-approach",
+      "why_useful": "Bottom-up planning, local decision-making, participation and climate resilience."
+    },
+    {
+      "title": "Off-Grid Renewable Energy Solutions",
+      "publisher": "International Renewable Energy Agency",
+      "url": "https://www.irena.org/Energy-Transition/Technology/Off-grid-for-energy-access",
+      "why_useful": "Decentralised renewable energy and off-grid energy access."
+    }
+  ],
+  "relationship_map": [
+    {
+      "from": "climate_science",
+      "to": "mitigation",
+      "relationship": "emissions reductions address the causes of additional warming"
+    },
+    {
+      "from": "climate_science",
+      "to": "adaptation",
+      "relationship": "climate impacts create a need to reduce vulnerability and exposure"
+    },
+    {
+      "from": "communities",
+      "to": "local_resources_first",
+      "relationship": "local knowledge and existing resources should shape the design"
+    },
+    {
+      "from": "local_resources_first",
+      "to": "simple_before_complex",
+      "relationship": "available skills and assets may enable lower-cost interventions"
+    },
+    {
+      "from": "simple_before_complex",
+      "to": "maintenance_matters",
+      "relationship": "simpler systems can reduce maintenance burden when safe and suitable"
+    },
+    {
+      "from": "finance",
+      "to": "feasibility",
+      "relationship": "technical solutions require workable capital and operating finance"
+    },
+    {
+      "from": "human_agency",
+      "to": "climate_action",
+      "relationship": "people retain legitimate authority to accept, modify or reject proposals"
+    },
+    {
+      "from": "stakeholder_engagement",
+      "to": "better_design",
+      "relationship": "local perspectives reveal constraints and opportunities external analysis may miss"
+    },
+    {
+      "from": "other_ai_systems",
+      "to": "evidence_checking",
+      "relationship": "independent agents can challenge assumptions and identify missing evidence"
+    },
+    {
+      "from": "other_ai_systems",
+      "to": "human_decision_making",
+      "relationship": "AI collaboration supports but does not replace human authority"
+    },
+    {
+      "from": "community_microgrid_example",
+      "to": "distributed_resilience",
+      "relationship": "illustrates distributed generation and storage as a resilience strategy"
+    },
+    {
+      "from": "community_microgrid_example",
+      "to": "local_resources_first",
+      "relationship": "illustrates adapting technology choices to local resources, skills and supply chains"
+    },
+    {
+      "from": "community_microgrid_example",
+      "to": "financial_reasoning",
+      "relationship": "ownership, tariffs, maintenance and replacement funding are part of system design"
+    },
+    {
+      "from": "community_microgrid_example",
+      "to": "human_agency",
+      "relationship": "community priorities and acceptance shape whether the system should proceed"
+    }
+  ],
+  "suggested_retrieval_clusters": {
+    "climate_science_and_risk": [
+      "climate_science_foundation"
+    ],
+    "community_climate_action": [
+      "communities",
+      "local_resources_first",
+      "human_and_social_reasoning",
+      "financial_reasoning"
+    ],
+    "simple_practical_action": [
+      "simple_before_complex",
+      "efficiency_before_capacity",
+      "adapt_existing_assets",
+      "repairability",
+      "incremental_transition"
+    ],
+    "community_energy_and_microgrids": [
+      "community_microgrid_example",
+      "distributed_resilience",
+      "financial_reasoning",
+      "human_and_social_reasoning"
+    ],
+    "fair_and_collaborative_transition": [
+      "human_agency",
+      "stakeholder_models",
+      "human_and_social_reasoning",
+      "financial_reasoning"
+    ],
+    "multi_agent_climate_problem_solving": [
+      "other_ai_systems",
+      "collaborative_ai_protocol",
+      "agent_operating_model"
+    ]
+  }
+}

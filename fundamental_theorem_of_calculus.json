@@ -1,0 +1,116 @@
+{
+  "metadata": {
+    "id": "fundamental_theorem_calculus_tank_intuition",
+    "title": "Fundamental Theorem of Calculus Through Accumulation and a Water-Tank Model",
+    "description": "A conceptual tutor module linking differentiation, integration, vertical offsets, initial conditions and steady-state behaviour.",
+    "version": "1.0",
+    "language": "en-AU"
+  },
+  "core_idea": {
+    "plain_language": "Differentiation and integration are inverse operations in a qualified sense. Differentiating an accumulated integral recovers the original rate function, while integrating a derivative recovers the original function up to an additive constant.",
+    "qualification": "The additive constant appears because differentiation removes constant offsets."
+  },
+  "fundamental_theorem_of_calculus": {
+    "part_1": {
+      "statement": "If F(x) = integral from a to x of f(t) dt, then F'(x) = f(x), assuming the usual continuity conditions.",
+      "intuition": "F(x) records accumulated quantity. Its derivative asks how quickly that accumulation changes when x moves slightly, which returns the current value f(x).",
+      "summary": "Differentiating an accumulation undoes the integral and reveals the rate being accumulated."
+    },
+    "part_2": {
+      "statement": "If F'(x) = f(x), then integral f(x) dx = F(x) + C.",
+      "intuition": "Integrating a derivative reconstructs the shape of the original function, but the derivative does not contain information about the function's absolute vertical position.",
+      "summary": "Integrating the differential recovers the original function up to an additive constant."
+    }
+  },
+  "vertical_offset_interpretation": {
+    "two_dimensional_view": "For an ordinary graph y = F(x), the constant C in F(x) + C shifts the graph vertically on the y-axis.",
+    "why": "Every member of the family F(x) + C has the same derivative because the derivative of a constant is zero.",
+    "example": {
+      "derivative": "dy/dx = 2x",
+      "integrated_family": "y = x^2 + C",
+      "interpretation": "x^2, x^2 + 5 and x^2 - 3 have identical slopes at every x and differ only by vertical offset."
+    }
+  },
+  "water_tank_model": {
+    "variables": {
+      "V(t)": "water volume at time t",
+      "Q_in(t)": "inflow rate",
+      "Q_out(t)": "outflow rate",
+      "dV/dt": "instantaneous rate of change of stored water"
+    },
+    "governing_relationship": "dV/dt = Q_in(t) - Q_out(t)",
+    "states": [
+      {
+        "condition": "dV/dt > 0",
+        "meaning": "The tank is filling because inflow exceeds outflow."
+      },
+      {
+        "condition": "dV/dt < 0",
+        "meaning": "The tank is emptying because outflow exceeds inflow."
+      },
+      {
+        "condition": "dV/dt = 0",
+        "meaning": "The stored amount of water is not changing at that instant."
+      }
+    ],
+    "steady_state": {
+      "definition": "When dV/dt = 0 over time, the tank is in a steady state with respect to volume.",
+      "balanced_flow": "A key steady-state case is Q_in = Q_out. Water may still be flowing through the tank, but the stored volume remains constant."
+    },
+    "boundary_cases": {
+      "empty": "An empty tank can have dV/dt = 0 if there is no net inflow. If water starts entering, dV/dt becomes positive.",
+      "full": "A full tank can have dV/dt = 0 if effective inflow and outflow balance, or if a boundary mechanism prevents stored volume increasing further. Fullness alone does not mathematically guarantee zero derivative.",
+      "intermediate_level": "At any intermediate level, dV/dt can also equal zero whenever effective inflow equals effective outflow."
+    },
+    "terminology_note": "The mathematically useful term is steady state rather than solid state."
+  },
+  "integral_as_accumulation": {
+    "relationship": "V(t) = V(0) + integral from 0 to t of [Q_in(s) - Q_out(s)] ds",
+    "interpretation": "The integral adds all small net changes through time. V(0) is the initial condition and plays the role of the constant offset."
+  },
+  "connection_between_rate_and_state": {
+    "rate": "The derivative describes local change: what the system is doing now.",
+    "accumulation": "The integral describes accumulated history: how previous changes combine to produce the current state.",
+    "constant_of_integration": "Knowing the rate history tells us how the state changes, but an initial condition is needed to determine the absolute state.",
+    "tank_interpretation": "In the tank model, the constant of integration is the starting amount of water.",
+    "graph_interpretation": "In a 2D graph, changing the constant shifts the function up or down without changing its derivative."
+  },
+  "examples": [
+    {
+      "name": "Constant inflow, no outflow",
+      "model": "dV/dt = 5",
+      "integrated_state": "V(t) = 5t + C",
+      "meaning": "The tank gains five volume units per unit time. C is the starting volume."
+    },
+    {
+      "name": "Equal inflow and outflow",
+      "model": "dV/dt = Q - Q = 0",
+      "integrated_state": "V(t) = C",
+      "meaning": "Water can continuously move through the tank while the stored amount remains constant."
+    },
+    {
+      "name": "Changing net flow",
+      "model": "dV/dt = r(t)",
+      "integrated_state": "V(t) = V(0) + integral from 0 to t of r(s) ds",
+      "meaning": "Current volume equals starting volume plus the accumulated history of positive and negative net flows."
+    }
+  ],
+  "tutor_instructions": {
+    "preferred_order": [
+      "Explain rate of change versus accumulated quantity.",
+      "Introduce differentiation as extracting instantaneous rate.",
+      "Introduce integration as accumulating small changes.",
+      "Show why differentiating an accumulated integral returns the original rate.",
+      "Show why integrating a derivative produces F(x) + C.",
+      "Explain C as a vertical y-axis offset in two dimensions.",
+      "Use the water tank to connect rate, accumulation, initial condition and steady state.",
+      "Emphasise that dV/dt = 0 means no change in stored quantity, not necessarily no movement."
+    ],
+    "misconceptions_to_correct": [
+      "Differentiation and integration are not unconditional exact inverses because integration introduces an arbitrary constant.",
+      "A zero derivative means the represented quantity is locally constant, not necessarily physically inactive.",
+      "Equal inflow and outflow can produce zero accumulation even while substantial flow continues.",
+      "An empty or full tank does not automatically imply a zero derivative."
+    ]
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "schema_version": "1.0.0",
+  "title": "Mathematics for Computer Science, Cryptography, Logistics and Dynamical Systems — Agent Seed",
+  "intended_environment": {
+    "runtime": "local Linux Ollama / retrieval-based AI",
+    "gpu_vram_gb": 8,
+    "strategy": "This is a small seed manifest, not mathematical source contents. Index metadata, selectively download allowed pages, chunk the retrieved text and embed. Retrieve only relevant chunks. Do not inject entire websites or codebases into an 8GB model context.",
+    "recommended_context_tokens": 4096,
+    "retrieval_top_k": 5,
+    "max_document_chunk_tokens": 700
+  },
+  "agent_role": "Mathematics researcher, tutor, systems analyst and careful contributor to computational math projects.",
+  "core_instructions": [
+    "Study definitions and proofs before implementing formulas. Connect conceptual reasoning to numerics and testable code.",
+    "Prefer primary textbooks, standards, academic course materials and upstream maintained documentation; capture author, publication/version and license.",
+    "Contrast mathematically equivalent descriptions and note when discrete approximations differ from continuous models.",
+    "For cryptography study number theory, modular arithmetic, finite fields, group theory, elliptic curves, lattices, entropy, probability and complexity. Do not devise custom production cryptographic schemes; rely on reviewed standards and well-maintained implementations.",
+    "For logistics connect calculus and differential equations with conservation, graph flow, queuing, inventory, forecast uncertainty, optimal control and constrained optimisation.",
+    "For every algorithm analyze asymptotic complexity, numerical stability, convergence, threat/failure modes, model assumptions and sensitivity.",
+    "When mathematical statement depends on assumptions, label them explicitly; show counterexamples to oversimplified rules.",
+    "Link derivations to unit tests, simulations and representative data; report uncertainty and reproducibility details.",
+    "Respect licensing, robots and terms while crawling.",
+    "Before contributing upstream, reproduce issues, identify canonical repositories and contribution policy, test solutions, and seek human approval prior to publishing or opening pull requests."
+  ],
+  "study_path": [
+    "foundations_and_proofs",
+    "discrete_math_algorithms_complexity",
+    "probability_statistics_information_theory",
+    "number_theory_cryptography",
+    "calculus_differential_equations_control",
+    "operations_research_logistics",
+    "queueing_inventory_flow_networks",
+    "computer_systems_numerical_methods",
+    "advanced_topics"
+  ],
+  "source_catalogue": [
+    {
+      "category": "foundations_and_proofs",
+      "title": "MIT Mathematics OCW",
+      "url": "https://ocw.mit.edu/search/?d=Mathematics",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "foundations_and_proofs",
+      "title": "MIT Single Variable Calculus",
+      "url": "https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "foundations_and_proofs",
+      "title": "MIT Multivariable Calculus",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "foundations_and_proofs",
+      "title": "MIT Linear Algebra",
+      "url": "https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "foundations_and_proofs",
+      "title": "MIT Mathematics for Computer Science",
+      "url": "https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "foundations_and_proofs",
+      "title": "MIT Differential Equations",
+      "url": "https://ocw.mit.edu/courses/18-03sc-differential-equations-fall-2011/",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "foundations_and_proofs",
+      "title": "OpenStax Calculus",
+      "url": "https://openstax.org/subjects/math",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "foundations_and_proofs",
+      "title": "Open Textbook Library",
+      "url": "https://open.umn.edu/opentextbooks/subjects/mathematics",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "foundations_and_proofs",
+      "title": "LibreTexts Mathematics",
+      "url": "https://math.libretexts.org/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "foundations_and_proofs",
+      "title": "Paul Online Notes",
+      "url": "https://tutorial.math.lamar.edu/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "foundations_and_proofs",
+      "title": "MathWorld",
+      "url": "https://mathworld.wolfram.com/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "foundations_and_proofs",
+      "title": "ProofWiki",
+      "url": "https://proofwiki.org/wiki/Main_Page",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "foundations_and_proofs",
+      "title": "Lean theorem prover",
+      "url": "https://lean-lang.org/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {

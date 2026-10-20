@@ -1,0 +1,5026 @@
+{
+  "seed_version": "1.0",
+  "seed_number": 2,
+  "seed_total": 2,
+  "purpose": "URL discovery seeds for retrieval-augmented IT and security assistant; fetch documentation selectively, not as one model prompt.",
+  "note": "URLs are references only and are not the content of the linked webpages. Availability/version may change; links have not been exhaustively checked.",
+  "unique_url_count": 627,
+  "sources": [
+    {
+      "title": "Ubuntu Security",
+      "url": "https://documentation.ubuntu.com/security/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/ubuntu_server"
+    },
+    {
+      "title": "Ubuntu release notes",
+      "url": "https://documentation.ubuntu.com/release-notes/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/ubuntu_server"
+    },
+    {
+      "title": "Ubuntu 26.04 release notes",
+      "url": "https://documentation.ubuntu.com/release-notes/26.04/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/ubuntu_server"
+    },
+    {
+      "title": "cloud-init",
+      "url": "https://cloudinit.readthedocs.io/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/ubuntu_server"
+    },
+    {
+      "title": "Canonical MAAS",
+      "url": "https://maas.io/docs",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/ubuntu_server"
+    },
+    {
+      "title": "Linux man pages",
+      "url": "https://man7.org/linux/man-pages/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/ubuntu_server"
+    },
+    {
+      "title": "GNU coreutils",
+      "url": "https://www.gnu.org/software/coreutils/manual/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/ubuntu_server"
+    },
+    {
+      "title": "Ubuntu Desktop",
+      "url": "https://documentation.ubuntu.com/desktop/en/latest/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/ubuntu_desktop"
+    },
+    {
+      "title": "GNOME help",
+      "url": "https://help.gnome.org/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/ubuntu_desktop"
+    },
+    {
+      "title": "NetworkManager",
+      "url": "https://networkmanager.dev/docs/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/ubuntu_desktop"
+    },
+    {
+      "title": "Snapcraft",
+      "url": "https://snapcraft.io/docs",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/ubuntu_desktop"
+    },
+    {
+      "title": "RHEL",
+      "url": "https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/linux_distributions"
+    },
+    {
+      "title": "ArchWiki",
+      "url": "https://wiki.archlinux.org/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/linux_distributions"
+    },
+    {
+      "title": "Alpine Linux",
+      "url": "https://wiki.alpinelinux.org/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/linux_distributions"
+    },
+    {
+      "title": "SUSE",
+      "url": "https://documentation.suse.com/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/linux_distributions"
+    },
+    {
+      "title": "FreeBSD Handbook",
+      "url": "https://docs.freebsd.org/en/books/handbook/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/bsd_and_unix"
+    },
+    {
+      "title": "FreeBSD Porters Handbook",
+      "url": "https://docs.freebsd.org/en/books/porters-handbook/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/bsd_and_unix"
+    },
+    {
+      "title": "OpenBSD FAQ",
+      "url": "https://www.openbsd.org/faq/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/bsd_and_unix"
+    },
+    {
+      "title": "NetBSD Guide",
+      "url": "https://www.netbsd.org/docs/guide/en/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/bsd_and_unix"
+    },
+    {
+      "title": "Windows client management",
+      "url": "https://learn.microsoft.com/en-us/windows/client-management/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/windows_client"
+    },
+    {
+      "title": "Windows commands",
+      "url": "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/windows-commands",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/windows_client"
+    },
+    {
+      "title": "Sysinternals",
+      "url": "https://learn.microsoft.com/en-us/sysinternals/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/windows_client"
+    },
+    {
+      "title": "Windows WSL",
+      "url": "https://learn.microsoft.com/en-us/windows/wsl/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/windows_client"
+    },
+    {
+      "title": "Windows security baselines",
+      "url": "https://learn.microsoft.com/en-us/windows/security/operating-system-security/device-management/windows-security-configuration-framework/windows-security-baselines",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/windows_client"
+    },
+    {
+      "title": "Hyper-V",
+      "url": "https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/windows_server_and_identity"
+    },
+    {
+      "title": "Microsoft Intune",
+      "url": "https://learn.microsoft.com/en-us/mem/intune-service/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/windows_server_and_identity"
+    },
+    {
+      "title": "Microsoft Learn",
+      "url": "https://learn.microsoft.com/en-us/training/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/windows_server_and_identity"
+    },
+    {
+      "title": "Apple Platform Security",
+      "url": "https://support.apple.com/guide/security/welcome/web",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/macos"
+    },
+    {
+      "title": "Apple Developer",
+      "url": "https://developer.apple.com/documentation/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/macos"
+    },
+    {
+      "title": "Jamf",
+      "url": "https://learn.jamf.com/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/macos"
+    },
+    {
+      "title": "Practical Networking",
+      "url": "https://www.practicalnetworking.net/",
+      "type": "tutorial",
+      "access": "free",
+      "priority": 1,
+      "category": "networking/fundamentals_and_intermediate"
+    },
+    {
+      "title": "Professor Messer",
+      "url": "https://www.professormesser.com/",
+      "type": "exam_training",
+      "access": "mixed",
+      "priority": 1,
+      "category": "networking/fundamentals_and_intermediate"
+    },
+    {
+      "title": "Wireshark User Guide",
+      "url": "https://www.wireshark.org/docs/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 1,
+      "category": "networking/fundamentals_and_intermediate"
+    },
+    {
+      "title": "IANA Protocols",
+      "url": "https://www.iana.org/protocols",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "networking/fundamentals_and_intermediate"
+    },
+    {
+      "title": "ipSpace",
+      "url": "https://www.ipspace.net/Main_Page",
+      "type": "tutorial",
+      "access": "mixed",
+      "priority": 1,
+      "category": "networking/advanced_routing_and_design"
+    },
+    {
+      "title": "FRRouting",
+      "url": "https://docs.frrouting.org/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "networking/advanced_routing_and_design"
+    },
+    {
+      "title": "Arista",
+      "url": "https://www.arista.com/en/support",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "networking/advanced_routing_and_design"
+    },
+    {
+      "title": "Cisco Learning Network",
+      "url": "https://learningnetwork.cisco.com/",
+      "type": "exam_training",
+      "access": "mixed",
+      "priority": 2,
+      "category": "networking/advanced_routing_and_design"
+    },
+    {
+      "title": "RIPE NCC Academy",
+      "url": "https://academy.ripe.net/",
+      "type": "guided_course",
+      "access": "free",
+      "priority": 1,
+      "category": "networking/advanced_routing_and_design"
+    },
+    {
+      "title": "Cisco IOS XE",
+      "url": "https://www.cisco.com/c/en/us/support/ios-nx-os-software/ios-xe-17/products-installation-and-configuration-guides-list.html",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "networking/network_operating_systems"
+    },
+    {
+      "title": "Cisco NX-OS",
+      "url": "https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "networking/network_operating_systems"
+    },
+    {
+      "title": "MikroTik RouterOS",
+      "url": "https://help.mikrotik.com/docs/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "networking/network_operating_systems"
+    },
+    {
+      "title": "OpenWrt",
+      "url": "https://openwrt.org/docs/start",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "networking/network_operating_systems"
+    },
+    {
+      "title": "pfSense",
+      "url": "https://docs.netgate.com/pfsense/en/latest/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "networking/network_operating_systems"
+    },
+    {
+      "title": "Fortinet FortiOS",
+      "url": "https://docs.fortinet.com/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "networking/network_operating_systems"
+    },
+    {
+      "title": "Aruba Networking",
+      "url": "https://arubanetworking.hpe.com/techdocs/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "networking/network_operating_systems"
+    },
+    {
+      "title": "GNS3",
+      "url": "https://docs.gns3.com/",
+      "type": "lab",
+      "access": "free",
+      "priority": 1,
+      "category": "networking/automation_and_emulation"
+    },
+    {
+      "title": "NetBox",
+      "url": "https://netboxlabs.com/docs/netbox/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "networking/automation_and_emulation"
+    },
+    {
+      "title": "Nornir",
+      "url": "https://nornir.readthedocs.io/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "networking/automation_and_emulation"
+    },
+    {
+      "title": "Scrapli",
+      "url": "https://scrapli.github.io/scrapli/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "networking/automation_and_emulation"
+    },
+    {
+      "title": "Cisco pyATS",
+      "url": "https://developer.cisco.com/docs/pyats/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "networking/automation_and_emulation"
+    },
+    {
+      "title": "OpenConfig",
+      "url": "https://www.openconfig.net/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "networking/automation_and_emulation"
+    },
+    {
+      "title": "CWNP",
+      "url": "https://www.cwnp.com/",
+      "type": "exam_training",
+      "access": "mixed",
+      "priority": 2,
+      "category": "networking/wireless_sdwan_and_service_provider"
+    },
+    {
+      "title": "Cisco SD-WAN",
+      "url": "https://www.cisco.com/c/en/us/support/routers/sd-wan/products-installation-and-configuration-guides-list.html",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "networking/wireless_sdwan_and_service_provider"
+    },
+    {
+      "title": "TrueNAS",
+      "url": "https://www.truenas.com/docs/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/nas_and_filesystems"
+    },
+    {
+      "title": "QNAP",
+      "url": "https://docs.qnap.com/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/nas_and_filesystems"
+    },
+    {
+      "title": "OpenMediaVault",
+      "url": "https://docs.openmediavault.org/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/nas_and_filesystems"
+    },
+    {
+      "title": "XigmaNAS",
+      "url": "https://www.xigmanas.com/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/nas_and_filesystems"
+    },
+    {
+      "title": "Samba",
+      "url": "https://www.samba.org/samba/docs/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/nas_and_filesystems"
+    },
+    {
+      "title": "restic",
+      "url": "https://restic.readthedocs.io/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/nas_and_filesystems"
+    },
+    {
+      "title": "Proxmox Backup Server",
+      "url": "https://pbs.proxmox.com/docs/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/virtualization_and_containers"
+    },
+    {
+      "title": "libvirt",
+      "url": "https://libvirt.org/docs.html",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/virtualization_and_containers"
+    },
+    {
+      "title": "KVM",
+      "url": "https://www.linux-kvm.org/page/Documents",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/virtualization_and_containers"
+    },
+    {
+      "title": "Podman",
+      "url": "https://docs.podman.io/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/virtualization_and_containers"
+    },
+    {
+      "title": "BIND 9",
+      "url": "https://bind9.readthedocs.io/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/services_and_database"
+    },
+    {
+      "title": "PowerDNS",
+      "url": "https://doc.powerdns.com/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/services_and_database"
+    },
+    {
+      "title": "OpenLDAP",
+      "url": "https://www.openldap.org/doc/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/services_and_database"
+    },
+    {
+      "title": "Postfix",
+      "url": "https://www.postfix.org/documentation.html",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/services_and_database"
+    },
+    {
+      "title": "NGINX",
+      "url": "https://nginx.org/en/docs/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/services_and_database"
+    },
+    {
+      "title": "HAProxy",
+      "url": "https://www.haproxy.org/#docs",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/services_and_database"
+    },
+    {
+      "title": "PostgreSQL",
+      "url": "https://www.postgresql.org/docs/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/services_and_database"
+    },
+    {
+      "title": "OpenSSH",
+      "url": "https://www.openssh.com/manual.html",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/services_and_database"
+    },
+    {
+      "title": "strongSwan",
+      "url": "https://docs.strongswan.org/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/services_and_database"
+    },
+    {
+      "title": "AWS Skill Builder",
+      "url": "https://skillbuilder.aws/",
+      "type": "guided_course",
+      "access": "mixed",
+      "priority": 2,
+      "category": "storage_and_infrastructure/cloud_iac_and_operations"
+    },
+    {
+      "title": "Google Cloud Documentation",
+      "url": "https://cloud.google.com/docs",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/cloud_iac_and_operations"
+    },
+    {
+      "title": "OpenTofu",
+      "url": "https://opentofu.org/docs/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/cloud_iac_and_operations"
+    },
+    {
+      "title": "Ansible",
+      "url": "https://docs.ansible.com/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/cloud_iac_and_operations"
+    },
+    {
+      "title": "Packer",
+      "url": "https://developer.hashicorp.com/packer/docs",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/cloud_iac_and_operations"
+    },
+    {
+      "title": "SOPS",
+      "url": "https://github.com/getsops/sops",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/cloud_iac_and_operations"
+    },
+    {
+      "title": "OpenTelemetry",
+      "url": "https://opentelemetry.io/docs/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/observability_sre_and_performance"
+    },
+    {
+      "title": "Grafana",
+      "url": "https://grafana.com/docs/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/observability_sre_and_performance"
+    },
+    {
+      "title": "LibreNMS",
+      "url": "https://docs.librenms.org/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/observability_sre_and_performance"
+    },
+    {
+      "title": "SRE Workbook",
+      "url": "https://sre.google/workbook/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/observability_sre_and_performance"
+    },
+    {
+      "title": "Brendan Gregg Linux Performance",
+      "url": "https://www.brendangregg.com/linuxperf.html",
+      "type": "tutorial",
+      "access": "free",
+      "priority": 1,
+      "category": "storage_and_infrastructure/observability_sre_and_performance"
+    },
+    {
+      "title": "bpftrace",
+      "url": "https://bpftrace.org/docs/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/observability_sre_and_performance"
+    },
+    {
+      "title": "TryHackMe",
+      "url": "https://tryhackme.com/",
+      "type": "guided_lab",
+      "access": "mixed",
+      "priority": 1,
+      "category": "cybersecurity/guided_labs"
+    },
+    {
+      "title": "PortSwigger Web Security Academy",
+      "url": "https://portswigger.net/web-security",
+      "type": "guided_lab",
+      "access": "free",
+      "priority": 1,
+      "category": "cybersecurity/guided_labs"
+    },
+    {
+      "title": "LetsDefend",
+      "url": "https://letsdefend.io/",
+      "type": "guided_lab",
+      "access": "mixed",
+      "priority": 1,
+      "category": "cybersecurity/guided_labs"
+    },
+    {
+      "title": "OverTheWire",
+      "url": "https://overthewire.org/wargames/",
+      "type": "lab",
+      "access": "free",
+      "priority": 1,
+      "category": "cybersecurity/guided_labs"
+    },
+    {
+      "title": "picoCTF",
+      "url": "https://picoctf.org/",
+      "type": "lab",
+      "access": "free",
+      "priority": 2,
+      "category": "cybersecurity/guided_labs"
+    },
+    {
+      "title": "OWASP Juice Shop",
+      "url": "https://owasp.org/www-project-juice-shop/",
+      "type": "lab",
+      "access": "free",
+      "priority": 2,
+      "category": "cybersecurity/guided_labs"
+    },
+    {
+      "title": "Malware Traffic Analysis",
+      "url": "https://www.malware-traffic-analysis.net/",
+      "type": "lab",
+      "access": "free",
+      "priority": 1,
+      "category": "cybersecurity/guided_labs"
+    },
+    {
+      "title": "ctftime.org",
+      "url": "https://ctftime.org/",
+      "type": "guided_lab",
+      "access": "free",
+      "priority": 1,
+      "category": "cybersecurity/guided_labs"
+    },
+    {
+      "title": "cryptohack.org",
+      "url": "https://cryptohack.org/",
+      "type": "guided_lab",
+      "access": "free",
+      "priority": 1,
+      "category": "cybersecurity/guided_labs"
+    },
+    {
+      "title": "securityblue.team",
+      "url": "https://securityblue.team/",
+      "type": "guided_lab",
+      "access": "free",
+      "priority": 1,
+      "category": "cybersecurity/guided_labs"
+    },
+    {
+      "title": "Security Onion",
+      "url": "https://docs.securityonion.net/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "cybersecurity/secops_and_detection_engineering"
+    },
+    {
+      "title": "Zeek",
+      "url": "https://docs.zeek.org/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "cybersecurity/secops_and_detection_engineering"
+    },
+    {
+      "title": "Snort 3",
+      "url": "https://docs.snort.org/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "cybersecurity/secops_and_detection_engineering"
+    },
+    {
+      "title": "Splunk Security Content",
+      "url": "https://research.splunk.com/",
+      "type": "detection_library",
+      "access": "free",
+      "priority": 1,
+      "category": "cybersecurity/secops_and_detection_engineering"
+    },
+    {
+      "title": "Splunk Attack Data",
+      "url": "https://github.com/splunk/attack_data",
+      "type": "dataset",
+      "access": "free",
+      "priority": 1,
+      "category": "cybersecurity/secops_and_detection_engineering"
+    },
+    {
+      "title": "SigmaHQ",
+      "url": "https://sigmahq.io/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "cybersecurity/secops_and_detection_engineering"
+    },
+    {
+      "title": "Atomic Red Team",
+      "url": "https://github.com/redcanaryco/atomic-red-team",
+      "type": "lab",
+      "access": "free",
+      "priority": 1,
+      "category": "cybersecurity/secops_and_detection_engineering"
+    },
+    {
+      "title": "MITRE D3FEND",
+      "url": "https://d3fend.mitre.org/",
+      "type": "framework",
+      "access": "free",
+      "priority": 1,
+      "category": "cybersecurity/secops_and_detection_engineering"
+    },
+    {
+      "title": "Security Datasets / Mordor",
+      "url": "https://github.com/OTRF/Security-Datasets",
+      "type": "dataset",
+      "access": "free",
+      "priority": 1,
+      "category": "cybersecurity/secops_and_detection_engineering"
+    },
+    {
+      "title": "Microsoft Defender for Endpoint",
+      "url": "https://learn.microsoft.com/en-us/defender-endpoint/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "cybersecurity/secops_and_detection_engineering"
+    },
+    {
+      "title": "Windows Security Log Encyclopedia",
+      "url": "https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/",
+      "type": "reference",
+      "access": "free",
+      "priority": 2,
+      "category": "cybersecurity/secops_and_detection_engineering"
+    },
+    {
+      "title": "Velociraptor",
+      "url": "https://docs.velociraptor.app/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "cybersecurity/dfir_and_malware"
+    },
+    {
+      "title": "REMnux",
+      "url": "https://docs.remnux.org/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "cybersecurity/dfir_and_malware"
+    },
+    {
+      "title": "Autopsy",
+      "url": "https://www.autopsy.com/support/documentation/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "cybersecurity/dfir_and_malware"
+    },
+    {
+      "title": "YARA",
+      "url": "https://virustotal.github.io/yara-x/docs/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "cybersecurity/dfir_and_malware"
+    },
+    {
+      "title": "SANS White Papers",
+      "url": "https://www.sans.org/white-papers/",
+      "type": "whitepaper",
+      "access": "mixed",
+      "priority": 2,
+      "category": "cybersecurity/dfir_and_malware"
+    },
+    {
+      "title": "ASD Essential Eight",
+      "url": "https://www.cyber.gov.au/essential-eight",
+      "type": "baseline",
+      "access": "free",
+      "priority": 1,
+      "category": "cybersecurity/hardening_and_governance"
+    },
+    {
+      "title": "DISA STIGs",
+      "url": "https://public.cyber.mil/stigs/",
+      "type": "baseline",
+      "access": "free",
+      "priority": 2,
+      "category": "cybersecurity/hardening_and_governance"
+    },
+    {
+      "title": "NIST SP 800 publications",
+      "url": "https://csrc.nist.gov/publications/sp800",
+      "type": "framework",
+      "access": "free",
+      "priority": 2,
+      "category": "cybersecurity/hardening_and_governance"
+    },
+    {
+      "title": "NIST Zero Trust Architecture",
+      "url": "https://csrc.nist.gov/pubs/sp/800/207/final",
+      "type": "framework",
+      "access": "free",
+      "priority": 2,
+      "category": "cybersecurity/hardening_and_governance"
+    },
+    {
+      "title": "OpenSCAP",
+      "url": "https://www.open-scap.org/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "cybersecurity/hardening_and_governance"
+    },
+    {
+      "title": "OWASP WSTG",
+      "url": "https://owasp.org/www-project-web-security-testing-guide/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "cybersecurity/application_security_and_supply_chain"
+    },
+    {
+      "title": "OWASP Cheat Sheets",
+      "url": "https://cheatsheetseries.owasp.org/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "cybersecurity/application_security_and_supply_chain"
+    },
+    {
+      "title": "OpenSSF Scorecard",
+      "url": "https://securityscorecards.dev/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "cybersecurity/application_security_and_supply_chain"
+    },
+    {
+      "title": "Sigstore",
+      "url": "https://docs.sigstore.dev/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "cybersecurity/application_security_and_supply_chain"
+    },
+    {
+      "title": "Semgrep",
+      "url": "https://semgrep.dev/docs/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "cybersecurity/application_security_and_supply_chain"
+    },
+    {
+      "title": "Trivy",
+      "url": "https://trivy.dev/latest/docs/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "cybersecurity/application_security_and_supply_chain"
+    },
+    {
+      "title": "OpenSSL",
+      "url": "https://docs.openssl.org/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "cybersecurity/identity_and_zero_trust"
+    },
+    {
+      "title": "FIDO Alliance",
+      "url": "https://fidoalliance.org/specifications/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "cybersecurity/identity_and_zero_trust"
+    },
+    {
+      "title": "Active Countermeasures",
+      "url": "https://www.activecountermeasures.com/",
+      "type": "research",
+      "access": "mixed",
+      "priority": 2,
+      "category": "cybersecurity/network_security_and_forensics"
+    },
+    {
+      "title": "BitTorrent DHT BEP 5",
+      "url": "https://www.bittorrent.org/beps/bep_0005.html",
+      "type": "standard",
+      "access": "free",
+      "priority": 1,
+      "category": "p2p_and_distributed_systems/protocols_and_clients"
+    },
+    {
+      "title": "qBittorrent Wiki",
+      "url": "https://github.com/qbittorrent/qBittorrent/wiki",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "p2p_and_distributed_systems/protocols_and_clients"
+    },
+    {
+      "title": "libtorrent",
+      "url": "https://www.libtorrent.org/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "p2p_and_distributed_systems/protocols_and_clients"
+    },
+    {
+      "title": "libp2p",
+      "url": "https://docs.libp2p.io/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "p2p_and_distributed_systems/protocols_and_clients"
+    },
+    {
+      "title": "Resilio Sync",
+      "url": "https://docs.resilio.com/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "p2p_and_distributed_systems/protocols_and_clients"
+    },
+    {
+      "title": "GNU Bash",
+      "url": "https://www.gnu.org/software/bash/manual/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "scripting_and_development/languages"
+    },
+    {
+      "title": "PowerShell 101",
+      "url": "https://learn.microsoft.com/en-us/powershell/scripting/learn/ps101/",
+      "type": "tutorial",
+      "access": "free",
+      "priority": 1,
+      "category": "scripting_and_development/languages"
+    },
+    {
+      "title": "TypeScript",
+      "url": "https://www.typescriptlang.org/docs/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "scripting_and_development/languages"
+    },
+    {
+      "title": "Ruby",
+      "url": "https://www.ruby-lang.org/en/documentation/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "scripting_and_development/languages"
+    },
+    {
+      "title": "Tcl",
+      "url": "https://www.tcl-lang.org/doc/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "scripting_and_development/languages"
+    },
+    {
+      "title": "Go",
+      "url": "https://go.dev/learn/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "scripting_and_development/languages"
+    },
+    {
+      "title": "Rust",
+      "url": "https://doc.rust-lang.org/book/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "scripting_and_development/languages"
+    },
+    {
+      "title": "JSON Schema",
+      "url": "https://json-schema.org/learn",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "scripting_and_development/languages"
+    },
+    {
+      "title": "Python for Network Engineers",
+      "url": "https://pynet.twb-tech.com/",
+      "type": "tutorial",
+      "access": "mixed",
+      "priority": 1,
+      "category": "scripting_and_development/network_and_security_programming"
+    },
+    {
+      "title": "PyShark",
+      "url": "https://pyshark-packet-analysis.readthedocs.io/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "scripting_and_development/network_and_security_programming"
+    },
+    {
+      "title": "shfmt",
+      "url": "https://github.com/mvdan/sh",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "scripting_and_development/testing_and_secure_code"
+    },
+    {
+      "title": "Pester",
+      "url": "https://pester.dev/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "scripting_and_development/testing_and_secure_code"
+    },
+    {
+      "title": "Bandit",
+      "url": "https://bandit.readthedocs.io/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "scripting_and_development/testing_and_secure_code"
+    },
+    {
+      "title": "Git",
+      "url": "https://git-scm.com/doc",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "scripting_and_development/testing_and_secure_code"
+    },
+    {
+      "title": "The Twelve-Factor App",
+      "url": "https://12factor.net/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "scripting_and_development/testing_and_secure_code"
+    },
+    {
+      "title": "CompTIA Network+",
+      "url": "https://www.comptia.org/en-us/certifications/network/",
+      "type": "exam_objectives",
+      "access": "mixed",
+      "priority": 1,
+      "category": "certification_and_training/major_exams"
+    },
+    {
+      "title": "CompTIA Linux+",
+      "url": "https://www.comptia.org/en-us/certifications/linux/",
+      "type": "exam_objectives",
+      "access": "mixed",
+      "priority": 1,
+      "category": "certification_and_training/major_exams"
+    },
+    {
+      "title": "CompTIA PenTest+",
+      "url": "https://www.comptia.org/en-us/certifications/pentest/",
+      "type": "exam_objectives",
+      "access": "mixed",
+      "priority": 1,
+      "category": "certification_and_training/major_exams"
+    },
+    {
+      "title": "Cisco CCNP Enterprise",
+      "url": "https://www.cisco.com/site/us/en/learn/training-certifications/certifications/enterprise/ccnp-enterprise.html",
+      "type": "exam_objectives",
+      "access": "mixed",
+      "priority": 1,
+      "category": "certification_and_training/major_exams"
+    },
+    {
+      "title": "Microsoft AZ-104",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/azure-administrator/",
+      "type": "exam_objectives",
+      "access": "mixed",
+      "priority": 2,
+      "category": "certification_and_training/major_exams"
+    },
+    {
+      "title": "Microsoft SC-200",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/security-operations-analyst/",
+      "type": "exam_objectives",
+      "access": "mixed",
+      "priority": 2,
+      "category": "certification_and_training/major_exams"
+    },
+    {
+      "title": "ISC2 CISSP",
+      "url": "https://www.isc2.org/certifications/cissp",
+      "type": "exam_objectives",
+      "access": "mixed",
+      "priority": 2,
+      "category": "certification_and_training/major_exams"
+    },
+    {
+      "title": "NIST contingency planning SP 800-34",
+      "url": "https://csrc.nist.gov/pubs/sp/800/34/r1/upd1/final",
+      "type": "framework",
+      "access": "free",
+      "priority": 2,
+      "category": "additional_recommended_areas/disaster_recovery_and_resilience"
+    },
+    {
+      "title": "DMTF Redfish",
+      "url": "https://www.dmtf.org/standards/redfish",
+      "type": "standard",
+      "access": "free",
+      "priority": 2,
+      "category": "additional_recommended_areas/hardware_firmware_and_endpoint_management"
+    },
+    {
+      "title": "Linux Hardware Database",
+      "url": "https://linux-hardware.org/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "additional_recommended_areas/hardware_firmware_and_endpoint_management"
+    },
+    {
+      "title": "Ollama",
+      "url": "https://docs.ollama.com/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "additional_recommended_areas/ai_and_local_inference_operations"
+    },
+    {
+      "title": "llama.cpp",
+      "url": "https://github.com/ggml-org/llama.cpp",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "additional_recommended_areas/ai_and_local_inference_operations"
+    },
+    {
+      "title": "Hugging Face Transformers",
+      "url": "https://huggingface.co/docs/transformers/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "additional_recommended_areas/ai_and_local_inference_operations"
+    },
+    {
+      "title": "ROCm",
+      "url": "https://rocm.docs.amd.com/",
+      "type": "official_documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "additional_recommended_areas/ai_and_local_inference_operations"
+    },
+    {
+      "title": "NIST AI RMF",
+      "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+      "type": "framework",
+      "access": "free",
+      "priority": 2,
+      "category": "additional_recommended_areas/ai_and_local_inference_operations"
+    },
+    {
+      "title": "Information Security Reddit",
+      "url": "https://www.reddit.com/r/netsec/",
+      "type": "discussion_forum",
+      "access": "free_or_registration",
+      "priority": 1,
+      "category": "cybersecurity_communities_and_abuse_research/professional_security_and_general"
+    },
+    {
+      "title": "AskNetsec",
+      "url": "https://www.reddit.com/r/AskNetsec/",
+      "type": "discussion_forum",
+      "access": "free_or_registration",
+      "priority": 1,
+      "category": "cybersecurity_communities_and_abuse_research/professional_security_and_general"
+    },
+    {
+      "title": "Security Career Questions",
+      "url": "https://www.reddit.com/r/SecurityCareerQuestions/",
+      "type": "discussion_forum",
+      "access": "free_or_registration",
+      "priority": 1,
+      "category": "cybersecurity_communities_and_abuse_research/professional_security_and_general"
+    },
+    {
+      "title": "BleepingComputer Forums",
+      "url": "https://www.bleepingcomputer.com/forums/",
+      "type": "discussion_forum",
+      "access": "free_or_registration",
+      "priority": 1,
+      "category": "cybersecurity_communities_and_abuse_research/professional_security_and_general"
+    },
+    {
+      "title": "MalwareTips Forums",
+      "url": "https://malwaretips.com/",
+      "type": "community_reference",
+      "access": "free_or_registration",
+      "priority": 1,
+      "category": "cybersecurity_communities_and_abuse_research/professional_security_and_general"
+    },
+    {
+      "title": "SANS Internet Storm Center",
+      "url": "https://isc.sans.edu/",
+      "type": "community_reference",
+      "access": "free_or_registration",
+      "priority": 1,
+      "category": "cybersecurity_communities_and_abuse_research/professional_security_and_general"
+    },
+    {
+      "title": "HowToHack",
+      "url": "https://www.reddit.com/r/HowToHack/",
+      "type": "discussion_forum",
+      "access": "free_or_registration",
+      "priority": 2,
+      "category": "cybersecurity_communities_and_abuse_research/beginner_script_kiddie_culture_and_ctf"
+    },
+    {
+      "title": "NetSecStudents",
+      "url": "https://www.reddit.com/r/netsecstudents/",
+      "type": "discussion_forum",
+      "access": "free_or_registration",
+      "priority": 2,
+      "category": "cybersecurity_communities_and_abuse_research/beginner_script_kiddie_culture_and_ctf"
+    },
+    {
+      "title": "TryHackMe Community",
+      "url": "https://www.reddit.com/r/tryhackme/",
+      "type": "discussion_forum",
+      "access": "free_or_registration",
+      "priority": 2,
+      "category": "cybersecurity_communities_and_abuse_research/beginner_script_kiddie_culture_and_ctf"
+    },
+    {
+      "title": "Reverse Engineering Stack Exchange",
+      "url": "https://reverseengineering.stackexchange.com/",
+      "type": "discussion_forum",
+      "access": "free_or_registration",
+      "priority": 2,
+      "category": "cybersecurity_communities_and_abuse_research/beginner_script_kiddie_culture_and_ctf"
+    },
+    {
+      "title": "Scams Reddit",
+      "url": "https://www.reddit.com/r/Scams/",
+      "type": "discussion_forum",
+      "access": "free_or_registration",
+      "priority": 2,
+      "category": "cybersecurity_communities_and_abuse_research/scams_social_engineering_and_fraud"
+    },
+    {
+      "title": "Scammer.Info",
+      "url": "https://scammer.info/",
+      "type": "community_reference",
+      "access": "free_or_registration",
+      "priority": 2,
+      "category": "cybersecurity_communities_and_abuse_research/scams_social_engineering_and_fraud"
+    },
+    {
+      "title": "419Eater Archive Read Only",
+      "url": "https://forum.419eater.com/",
+      "type": "discussion_forum",
+      "access": "free_or_registration",
+      "priority": 2,
+      "category": "cybersecurity_communities_and_abuse_research/scams_social_engineering_and_fraud"
+    },
+    {
+      "title": "Identity Theft Reddit",
+      "url": "https://www.reddit.com/r/IdentityTheft/",
+      "type": "discussion_forum",
+      "access": "free_or_registration",
+      "priority": 2,
+      "category": "cybersecurity_communities_and_abuse_research/scams_social_engineering_and_fraud"
+    },
+    {
+      "title": "Australian Cyber Security Centre",
+      "url": "https://www.cyber.gov.au/",
+      "type": "community_reference",
+      "access": "free_or_registration",
+      "priority": 2,
+      "category": "cybersecurity_communities_and_abuse_research/scams_social_engineering_and_fraud"
+    },
+    {
+      "title": "SpamCop Discussion",
+      "url": "https://www.spamcop.net/",
+      "type": "community_reference",
+      "access": "free_or_registration",
+      "priority": 2,
+      "category": "cybersecurity_communities_and_abuse_research/spam_email_phishing_abuse"
+    },
+    {
+      "title": "Email Reddit",
+      "url": "https://www.reddit.com/r/email/",
+      "type": "discussion_forum",
+      "access": "free_or_registration",
+      "priority": 2,
+      "category": "cybersecurity_communities_and_abuse_research/spam_email_phishing_abuse"
+    },
+    {
+      "title": "Mailop Mailing List",
+      "url": "https://www.mailop.org/",
+      "type": "community_reference",
+      "access": "free_or_registration",
+      "priority": 2,
+      "category": "cybersecurity_communities_and_abuse_research/spam_email_phishing_abuse"
+    },
+    {
+      "title": "PhishTank",
+      "url": "https://phishtank.org/",
+      "type": "community_reference",
+      "access": "free_or_registration",
+      "priority": 2,
+      "category": "cybersecurity_communities_and_abuse_research/spam_email_phishing_abuse"
+    },
+    {
+      "title": "URLhaus",
+      "url": "https://urlhaus.abuse.ch/",
+      "type": "community_reference",
+      "access": "free_or_registration",
+      "priority": 2,
+      "category": "cybersecurity_communities_and_abuse_research/spam_email_phishing_abuse"
+    },
+    {
+      "title": "MalwareTips Malware Analysis",
+      "url": "https://malwaretips.com/forums/malware-analysis.140/",
+      "type": "discussion_forum",
+      "access": "free_or_registration",
+      "priority": 1,
+      "category": "cybersecurity_communities_and_abuse_research/malware_reverse_engineering_and_dfir"
+    },
+    {
+      "title": "Computer Forensics Reddit",
+      "url": "https://www.reddit.com/r/computerforensics/",
+      "type": "discussion_forum",
+      "access": "free_or_registration",
+      "priority": 1,
+      "category": "cybersecurity_communities_and_abuse_research/malware_reverse_engineering_and_dfir"
+    },
+    {
+      "title": "Malwarebytes Forums",
+      "url": "https://forums.malwarebytes.com/",
+      "type": "discussion_forum",
+      "access": "free_or_registration",
+      "priority": 1,
+      "category": "cybersecurity_communities_and_abuse_research/malware_reverse_engineering_and_dfir"
+    },
+    {
+      "title": "YARA-X Documentation and Community",
+      "url": "https://virustotal.github.io/yara-x/",
+      "type": "community_reference",
+      "access": "free_or_registration",
+      "priority": 1,
+      "category": "cybersecurity_communities_and_abuse_research/malware_reverse_engineering_and_dfir"
+    },
+    {
+      "title": "Networking Reddit",
+      "url": "https://www.reddit.com/r/networking/",
+      "type": "discussion_forum",
+      "access": "free_or_registration",
+      "priority": 1,
+      "category": "cybersecurity_communities_and_abuse_research/networking_firewalls_and_systems"
+    },
+    {
+      "title": "Cisco Community",
+      "url": "https://community.cisco.com/",
+      "type": "discussion_forum",
+      "access": "free_or_registration",
+      "priority": 1,
+      "category": "cybersecurity_communities_and_abuse_research/networking_firewalls_and_systems"
+    },
+    {
+      "title": "MikroTik Forum",
+      "url": "https://forum.mikrotik.com/",
+      "type": "discussion_forum",
+      "access": "free_or_registration",
+      "priority": 1,
+      "category": "cybersecurity_communities_and_abuse_research/networking_firewalls_and_systems"
+    },
+    {
+      "title": "Netgate pfSense Forum",
+      "url": "https://forum.netgate.com/",
+      "type": "discussion_forum",
+      "access": "free_or_registration",
+      "priority": 1,
+      "category": "cybersecurity_communities_and_abuse_research/networking_firewalls_and_systems"
+    },
+    {
+      "title": "Ubiquiti Community",
+      "url": "https://community.ui.com/",
+      "type": "discussion_forum",
+      "access": "free_or_registration",
+      "priority": 1,
+      "category": "cybersecurity_communities_and_abuse_research/networking_firewalls_and_systems"
+    },
+    {
+      "title": "Super User",
+      "url": "https://superuser.com/",
+      "type": "discussion_forum",
+      "access": "free_or_registration",
+      "priority": 1,
+      "category": "cybersecurity_communities_and_abuse_research/networking_firewalls_and_systems"
+    },
+    {
+      "title": "FreeBSD Forums",
+      "url": "https://forums.freebsd.org/",
+      "type": "discussion_forum",
+      "access": "free_or_registration",
+      "priority": 1,
+      "category": "cybersecurity_communities_and_abuse_research/networking_firewalls_and_systems"
+    },
+    {
+      "title": "Proxmox Forum",
+      "url": "https://forum.proxmox.com/",
+      "type": "discussion_forum",
+      "access": "free_or_registration",
+      "priority": 1,
+      "category": "cybersecurity_communities_and_abuse_research/networking_firewalls_and_systems"
+    },
+    {
+      "title": "Privacy Guides Forum",
+      "url": "https://discuss.privacyguides.net/",
+      "type": "discussion_forum",
+      "access": "free_or_registration",
+      "priority": 2,
+      "category": "cybersecurity_communities_and_abuse_research/privacy_osint_and_policy"
+    },
+    {
+      "title": "OSINT Reddit",
+      "url": "https://www.reddit.com/r/OSINT/",
+      "type": "discussion_forum",
+      "access": "free_or_registration",
+      "priority": 2,
+      "category": "cybersecurity_communities_and_abuse_research/privacy_osint_and_policy"
+    },
+    {
+      "title": "EFF Deeplinks",
+      "url": "https://www.eff.org/deeplinks",
+      "type": "community_reference",
+      "access": "free_or_registration",
+      "priority": 2,
+      "category": "cybersecurity_communities_and_abuse_research/privacy_osint_and_policy"
+    },
+    {
+      "title": "Internet Freedom Reddit",
+      "url": "https://www.reddit.com/r/opensource/",
+      "type": "discussion_forum",
+      "access": "free_or_registration",
+      "priority": 2,
+      "category": "cybersecurity_communities_and_abuse_research/privacy_osint_and_policy"
+    },
+    {
+      "title": "PortSwigger Research",
+      "url": "https://portswigger.net/research",
+      "type": "community_reference",
+      "access": "free_or_registration",
+      "priority": 2,
+      "category": "cybersecurity_communities_and_abuse_research/vulnerability_research_and_disclosure"
+    },
+    {
+      "title": "Full Disclosure Mailing List",
+      "url": "https://seclists.org/fulldisclosure/",
+      "type": "community_reference",
+      "access": "free_or_registration",
+      "priority": 2,
+      "category": "cybersecurity_communities_and_abuse_research/vulnerability_research_and_disclosure"
+    },
+    {
+      "title": "HackerOne Hacktivity",
+      "url": "https://hackerone.com/hacktivity",
+      "type": "community_reference",
+      "access": "free_or_registration",
+      "priority": 2,
+      "category": "cybersecurity_communities_and_abuse_research/vulnerability_research_and_disclosure"
+    },
+    {
+      "title": "learn.microsoft.com windows",
+      "url": "https://learn.microsoft.com/en-us/windows/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/windows"
+    },
+    {
+      "title": "learn.microsoft.com products",
+      "url": "https://learn.microsoft.com/en-us/lifecycle/products/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/windows"
+    },
+    {
+      "title": "learn.microsoft.com windows-server",
+      "url": "https://learn.microsoft.com/en-us/troubleshoot/windows-server/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/windows"
+    },
+    {
+      "title": "learn.microsoft.com release-health",
+      "url": "https://learn.microsoft.com/en-us/windows/release-health/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/windows"
+    },
+    {
+      "title": "learn.microsoft.com networking",
+      "url": "https://learn.microsoft.com/en-us/windows-server/networking/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/windows"
+    },
+    {
+      "title": "learn.microsoft.com virtualization",
+      "url": "https://learn.microsoft.com/en-us/windows-server/virtualization/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/windows"
+    },
+    {
+      "title": "catalog.update.microsoft.com",
+      "url": "https://catalog.update.microsoft.com/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/windows"
+    },
+    {
+      "title": "github.com windowsserverdocs",
+      "url": "https://github.com/MicrosoftDocs/windowsserverdocs",
+      "type": "repository",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/windows"
+    },
+    {
+      "title": "github.com Windows-driver-samples",
+      "url": "https://github.com/microsoft/Windows-driver-samples",
+      "type": "repository",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/windows"
+    },
+    {
+      "title": "developer.apple.com xcode",
+      "url": "https://developer.apple.com/documentation/xcode",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/macos_and_darwin"
+    },
+    {
+      "title": "developer.apple.com hypervisor",
+      "url": "https://developer.apple.com/documentation/hypervisor",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/macos_and_darwin"
+    },
+    {
+      "title": "developer.apple.com KernelProgramming",
+      "url": "https://developer.apple.com/library/archive/documentation/Darwin/Conceptual/KernelProgramming/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/macos_and_darwin"
+    },
+    {
+      "title": "opensource.apple.com",
+      "url": "https://opensource.apple.com/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/macos_and_darwin"
+    },
+    {
+      "title": "github.com xnu",
+      "url": "https://github.com/apple-oss-distributions/xnu",
+      "type": "repository",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/macos_and_darwin"
+    },
+    {
+      "title": "manpagez.com",
+      "url": "https://www.manpagez.com/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/macos_and_darwin"
+    },
+    {
+      "title": "github.com brew",
+      "url": "https://github.com/Homebrew/brew",
+      "type": "repository",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/macos_and_darwin"
+    },
+    {
+      "title": "github.com PureDarwin",
+      "url": "https://github.com/PureDarwin/",
+      "type": "repository",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/macos_and_darwin"
+    },
+    {
+      "title": "puredarwin.org",
+      "url": "https://www.puredarwin.org/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/macos_and_darwin"
+    },
+    {
+      "title": "source.android.com setup",
+      "url": "https://source.android.com/docs/setup",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/android"
+    },
+    {
+      "title": "source.android.com architecture",
+      "url": "https://source.android.com/docs/core/architecture",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/android"
+    },
+    {
+      "title": "source.android.com ota",
+      "url": "https://source.android.com/docs/core/ota",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/android"
+    },
+    {
+      "title": "source.android.com security",
+      "url": "https://source.android.com/docs/security",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/android"
+    },
+    {
+      "title": "source.android.com compatibility",
+      "url": "https://source.android.com/docs/compatibility",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/android"
+    },
+    {
+      "title": "developer.android.com guide",
+      "url": "https://developer.android.com/guide",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/android"
+    },
+    {
+      "title": "developer.android.com studio",
+      "url": "https://developer.android.com/studio",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/android"
+    },
+    {
+      "title": "developer.android.com ndk",
+      "url": "https://developer.android.com/ndk",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/android"
+    },
+    {
+      "title": "android.googlesource.com",
+      "url": "https://android.googlesource.com/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/android"
+    },
+    {
+      "title": "android.googlesource.com kernel",
+      "url": "https://android.googlesource.com/kernel/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/android"
+    },
+    {
+      "title": "grapheneos.org usage",
+      "url": "https://grapheneos.org/usage",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/android"
+    },
+    {
+      "title": "wiki.lineageos.org",
+      "url": "https://wiki.lineageos.org/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/android"
+    },
+    {
+      "title": "doc.e.foundation",
+      "url": "https://doc.e.foundation/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/android"
+    },
+    {
+      "title": "github.com termux-packages",
+      "url": "https://github.com/termux/termux-packages",
+      "type": "repository",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/android"
+    },
+    {
+      "title": "developer.apple.com ios",
+      "url": "https://developer.apple.com/ios/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/ios"
+    },
+    {
+      "title": "support.apple.com ios",
+      "url": "https://support.apple.com/guide/iphone/welcome/ios",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/ios"
+    },
+    {
+      "title": "developer.apple.com uikit",
+      "url": "https://developer.apple.com/documentation/uikit",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/ios"
+    },
+    {
+      "title": "developer.apple.com security",
+      "url": "https://developer.apple.com/documentation/security",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/ios"
+    },
+    {
+      "title": "developer.apple.com cryptokit",
+      "url": "https://developer.apple.com/documentation/cryptokit",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/ios"
+    },
+    {
+      "title": "developer.apple.com metal",
+      "url": "https://developer.apple.com/documentation/metal",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/ios"
+    },
+    {
+      "title": "developer.apple.com storekit",
+      "url": "https://developer.apple.com/documentation/storekit",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/ios"
+    },
+    {
+      "title": "developer.apple.com guidelines",
+      "url": "https://developer.apple.com/app-store/review/guidelines/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/ios"
+    },
+    {
+      "title": "frida.re ios",
+      "url": "https://frida.re/docs/ios/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/ios"
+    },
+    {
+      "title": "ipsw.me",
+      "url": "https://ipsw.me/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "operating_systems/ios"
+    },
+    {
+      "title": "docs.opnsense.org manual",
+      "url": "https://docs.opnsense.org/manual/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "networking/router_firmware"
+    },
+    {
+      "title": "docs.opnsense.org security.html",
+      "url": "https://docs.opnsense.org/security.html",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "networking/router_firmware"
+    },
+    {
+      "title": "docs.netgate.com troubleshooting",
+      "url": "https://docs.netgate.com/pfsense/en/latest/troubleshooting/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "networking/router_firmware"
+    },
+    {
+      "title": "docs.vyos.io latest",
+      "url": "https://docs.vyos.io/en/latest/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "networking/router_firmware"
+    },
+    {
+      "title": "arista.com product-documentation",
+      "url": "https://www.arista.com/en/support/product-documentation",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "networking/router_firmware"
+    },
+    {
+      "title": "docs.bird.network",
+      "url": "https://docs.bird.network/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "networking/router_firmware"
+    },
+    {
+      "title": "nmap.org book",
+      "url": "https://nmap.org/book/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "networking/router_firmware"
+    },
+    {
+      "title": "net-snmp.org docs",
+      "url": "https://www.net-snmp.org/docs/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "networking/router_firmware"
+    },
+    {
+      "title": "standards.ieee.org",
+      "url": "https://standards.ieee.org/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "networking/wifi"
+    },
+    {
+      "title": "wi-fi.org security",
+      "url": "https://www.wi-fi.org/discover-wi-fi/security",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "networking/wifi"
+    },
+    {
+      "title": "w1.fi wpa_supplicant",
+      "url": "https://w1.fi/wpa_supplicant/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "networking/wifi"
+    },
+    {
+      "title": "krackattacks.com",
+      "url": "https://www.krackattacks.com/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "networking/wifi"
+    },
+    {
+      "title": "wpa3.mathyvanhoef.com",
+      "url": "https://wpa3.mathyvanhoef.com/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "networking/wifi"
+    },
+    {
+      "title": "kismetwireless.net docs",
+      "url": "https://www.kismetwireless.net/docs/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "networking/wifi"
+    },
+    {
+      "title": "wiki.wireshark.org Wi-Fi",
+      "url": "https://wiki.wireshark.org/Wi-Fi",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "networking/wifi"
+    },
+    {
+      "title": "rfc-editor.org rfc9190",
+      "url": "https://www.rfc-editor.org/rfc/rfc9190",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "networking/wifi"
+    },
+    {
+      "title": "cisco.com switches",
+      "url": "https://www.cisco.com/c/en/us/support/switches/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "networking/enterprise_hardware"
+    },
+    {
+      "title": "arista.com um-eos",
+      "url": "https://www.arista.com/en/um-eos/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "networking/enterprise_hardware"
+    },
+    {
+      "title": "sonic-net.github.io SONiC",
+      "url": "https://sonic-net.github.io/SONiC/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "networking/enterprise_hardware"
+    },
+    {
+      "title": "support.ruckuswireless.com",
+      "url": "https://support.ruckuswireless.com/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "networking/enterprise_hardware"
+    },
+    {
+      "title": "docs.sophos.com",
+      "url": "https://docs.sophos.com/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "networking/enterprise_hardware"
+    },
+    {
+      "title": "watchguard.com docs",
+      "url": "https://www.watchguard.com/help/docs/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "networking/enterprise_hardware"
+    },
+    {
+      "title": "docs.netscaler.com",
+      "url": "https://docs.netscaler.com/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "networking/enterprise_hardware"
+    },
+    {
+      "title": "tp-link.com support",
+      "url": "https://www.tp-link.com/us/support/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "networking/enterprise_hardware"
+    },
+    {
+      "title": "support.dlink.com",
+      "url": "https://support.dlink.com/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "networking/enterprise_hardware"
+    },
+    {
+      "title": "docs.nokia.com",
+      "url": "https://docs.nokia.com/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "networking/enterprise_hardware"
+    },
+    {
+      "title": "documentation.nokia.com",
+      "url": "https://documentation.nokia.com/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "networking/enterprise_hardware"
+    },
+    {
+      "title": "flukenetworks.com support",
+      "url": "https://www.flukenetworks.com/support",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "networking/enterprise_hardware"
+    },
+    {
+      "title": "truenas.com scale",
+      "url": "https://www.truenas.com/docs/scale/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/nas"
+    },
+    {
+      "title": "api.truenas.com",
+      "url": "https://api.truenas.com/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/nas"
+    },
+    {
+      "title": "github.com openmediavault",
+      "url": "https://github.com/openmediavault/openmediavault",
+      "type": "repository",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/nas"
+    },
+    {
+      "title": "docs.hexos.com",
+      "url": "https://docs.hexos.com/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/nas"
+    },
+    {
+      "title": "wiki.casaos.io",
+      "url": "https://wiki.casaos.io/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/nas"
+    },
+    {
+      "title": "btrfs.readthedocs.io",
+      "url": "https://btrfs.readthedocs.io/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/nas"
+    },
+    {
+      "title": "snapraid.it manual",
+      "url": "https://www.snapraid.it/manual",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/nas"
+    },
+    {
+      "title": "linux-nfs.org wiki",
+      "url": "https://linux-nfs.org/wiki/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/nas"
+    },
+    {
+      "title": "kb.synology.com DSM",
+      "url": "https://kb.synology.com/en-global/DSM",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/nas"
+    },
+    {
+      "title": "help.terra-master.com",
+      "url": "https://help.terra-master.com/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/nas"
+    },
+    {
+      "title": "infohub.delltechnologies.com",
+      "url": "https://infohub.delltechnologies.com/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/nas"
+    },
+    {
+      "title": "knowledgebase.45drives.com",
+      "url": "https://knowledgebase.45drives.com/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/nas"
+    },
+    {
+      "title": "docs.kernel.org kvm",
+      "url": "https://docs.kernel.org/virt/kvm/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/virtualisation"
+    },
+    {
+      "title": "docs.xen-orchestra.com",
+      "url": "https://docs.xen-orchestra.com/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/virtualisation"
+    },
+    {
+      "title": "learn.microsoft.com hyper-v-on-windows",
+      "url": "https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/virtualisation"
+    },
+    {
+      "title": "docs.oracle.com virtualbox",
+      "url": "https://docs.oracle.com/en/virtualization/virtualbox/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/virtualisation"
+    },
+    {
+      "title": "docs.freebsd.org virtualization",
+      "url": "https://docs.freebsd.org/en/books/handbook/virtualization/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/virtualisation"
+    },
+    {
+      "title": "linuxcontainers.org main",
+      "url": "https://linuxcontainers.org/incus/docs/main/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/virtualisation"
+    },
+    {
+      "title": "firecracker-microvm.github.io",
+      "url": "https://firecracker-microvm.github.io/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/virtualisation"
+    },
+    {
+      "title": "gvisor.dev docs",
+      "url": "https://gvisor.dev/docs/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/virtualisation"
+    },
+    {
+      "title": "eve-ng.net documentation",
+      "url": "https://www.eve-ng.net/index.php/documentation/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/virtualisation"
+    },
+    {
+      "title": "bochs.sourceforge.io docbook",
+      "url": "https://bochs.sourceforge.io/doc/docbook/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/virtualisation"
+    },
+    {
+      "title": "wiki.winehq.org",
+      "url": "https://wiki.winehq.org/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/virtualisation"
+    },
+    {
+      "title": "renode.readthedocs.io",
+      "url": "https://renode.readthedocs.io/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "storage_and_infrastructure/virtualisation"
+    },
+    {
+      "title": "postgresql.org 17",
+      "url": "https://www.postgresql.org/docs/17/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "services_and_databases/relational"
+    },
+    {
+      "title": "dev.mysql.com doc",
+      "url": "https://dev.mysql.com/doc/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "services_and_databases/relational"
+    },
+    {
+      "title": "dev.mysql.com en",
+      "url": "https://dev.mysql.com/doc/refman/8.0/en/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "services_and_databases/relational"
+    },
+    {
+      "title": "sqlite.org docs.html",
+      "url": "https://www.sqlite.org/docs.html",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "services_and_databases/relational"
+    },
+    {
+      "title": "learn.microsoft.com relational-databases",
+      "url": "https://learn.microsoft.com/en-us/sql/relational-databases/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "services_and_databases/relational"
+    },
+    {
+      "title": "pgadmin.org docs",
+      "url": "https://www.pgadmin.org/docs/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "services_and_databases/relational"
+    },
+    {
+      "title": "pgbackrest.org user-guide.html",
+      "url": "https://www.pgbackrest.org/user-guide.html",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "services_and_databases/relational"
+    },
+    {
+      "title": "mongodb.com docs",
+      "url": "https://www.mongodb.com/docs/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "services_and_databases/nosql_and_analytics"
+    },
+    {
+      "title": "valkey.io",
+      "url": "https://valkey.io/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "services_and_databases/nosql_and_analytics"
+    },
+    {
+      "title": "scylladb.com docs",
+      "url": "https://www.scylladb.com/docs/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "services_and_databases/nosql_and_analytics"
+    },
+    {
+      "title": "docs.couchdb.org",
+      "url": "https://docs.couchdb.org/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "services_and_databases/nosql_and_analytics"
+    },
+    {
+      "title": "duckdb.org stable",
+      "url": "https://duckdb.org/docs/stable/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "services_and_databases/nosql_and_analytics"
+    },
+    {
+      "title": "docs.influxdata.com",
+      "url": "https://docs.influxdata.com/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "services_and_databases/nosql_and_analytics"
+    },
+    {
+      "title": "elastic.co docs",
+      "url": "https://www.elastic.co/docs/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "services_and_databases/nosql_and_analytics"
+    },
+    {
+      "title": "neo4j.com docs",
+      "url": "https://neo4j.com/docs/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "services_and_databases/nosql_and_analytics"
+    },
+    {
+      "title": "cockroachlabs.com docs",
+      "url": "https://www.cockroachlabs.com/docs/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "services_and_databases/nosql_and_analytics"
+    },
+    {
+      "title": "docs.pingcap.com",
+      "url": "https://docs.pingcap.com/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "services_and_databases/nosql_and_analytics"
+    },
+    {
+      "title": "qdrant.tech documentation",
+      "url": "https://qdrant.tech/documentation/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "services_and_databases/nosql_and_analytics"
+    },
+    {
+      "title": "docs.weaviate.io weaviate",
+      "url": "https://docs.weaviate.io/weaviate/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "services_and_databases/nosql_and_analytics"
+    },
+    {
+      "title": "github.com pgvector",
+      "url": "https://github.com/pgvector/pgvector",
+      "type": "repository",
+      "access": "free",
+      "priority": 2,
+      "category": "services_and_databases/nosql_and_analytics"
+    },
+    {
+      "title": "docs.haproxy.org",
+      "url": "https://docs.haproxy.org/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "services_and_databases/network_services"
+    },
+    {
+      "title": "envoyproxy.io docs",
+      "url": "https://www.envoyproxy.io/docs/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "services_and_databases/network_services"
+    },
+    {
+      "title": "wiki.squid-cache.org",
+      "url": "https://wiki.squid-cache.org/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "services_and_databases/network_services"
+    },
+    {
+      "title": "learn.microsoft.com iis",
+      "url": "https://learn.microsoft.com/en-us/iis/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "services_and_databases/network_services"
+    },
+    {
+      "title": "thekelleys.org.uk doc.html",
+      "url": "https://thekelleys.org.uk/dnsmasq/doc.html",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "services_and_databases/network_services"
+    },
+    {
+      "title": "freeradius.org documentation",
+      "url": "https://www.freeradius.org/documentation/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "services_and_databases/network_services"
+    },
+    {
+      "title": "exim.org docs.html",
+      "url": "https://www.exim.org/docs.html",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "services_and_databases/network_services"
+    },
+    {
+      "title": "rabbitmq.com docs",
+      "url": "https://www.rabbitmq.com/docs",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "services_and_databases/network_services"
+    },
+    {
+      "title": "pulsar.apache.org docs",
+      "url": "https://pulsar.apache.org/docs/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "services_and_databases/network_services"
+    },
+    {
+      "title": "developer.hashicorp.com cli",
+      "url": "https://developer.hashicorp.com/terraform/cli",
+      "type": "documentation",
+      "access": "free",
+      "priority": 1,
+      "category": "cloud_iac_and_operations/infrastructure_as_code"
+    },
+    {
+      "title": "pulumi.com registry",
+      "url": "https://www.pulumi.com/registry/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 1,
+      "category": "cloud_iac_and_operations/infrastructure_as_code"
+    },
+    {
+      "title": "docs.aws.amazon.com home.html",
+      "url": "https://docs.aws.amazon.com/cdk/v2/guide/home.html",
+      "type": "documentation",
+      "access": "free",
+      "priority": 1,
+      "category": "cloud_iac_and_operations/infrastructure_as_code"
+    },
+    {
+      "title": "learn.microsoft.com templates",
+      "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 1,
+      "category": "cloud_iac_and_operations/infrastructure_as_code"
+    },
+    {
+      "title": "docs.oracle.com ResourceManager",
+      "url": "https://docs.oracle.com/en-us/iaas/Content/ResourceManager/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 1,
+      "category": "cloud_iac_and_operations/infrastructure_as_code"
+    },
+    {
+      "title": "puppet.com docs",
+      "url": "https://www.puppet.com/docs",
+      "type": "documentation",
+      "access": "free",
+      "priority": 1,
+      "category": "cloud_iac_and_operations/infrastructure_as_code"
+    },
+    {
+      "title": "docs.cloud-init.io",
+      "url": "https://docs.cloud-init.io/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 1,
+      "category": "cloud_iac_and_operations/infrastructure_as_code"
+    },
+    {
+      "title": "infracost.io docs",
+      "url": "https://www.infracost.io/docs/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 1,
+      "category": "cloud_iac_and_operations/infrastructure_as_code"
+    },
+    {
+      "title": "github.com tflint",
+      "url": "https://github.com/terraform-linters/tflint",
+      "type": "repository",
+      "access": "free",
+      "priority": 1,
+      "category": "cloud_iac_and_operations/infrastructure_as_code"
+    },
+    {
+      "title": "docs.aws.amazon.com framework",
+      "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "cloud_iac_and_operations/cloud_platforms"
+    },
+    {
+      "title": "docs.aws.amazon.com iam",
+      "url": "https://docs.aws.amazon.com/iam/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "cloud_iac_and_operations/cloud_platforms"
+    },
+    {
+      "title": "docs.aws.amazon.com ec2",
+      "url": "https://docs.aws.amazon.com/ec2/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "cloud_iac_and_operations/cloud_platforms"
+    },
+    {
+      "title": "docs.aws.amazon.com cloudwatch",
+      "url": "https://docs.aws.amazon.com/cloudwatch/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "cloud_iac_and_operations/cloud_platforms"
+    },
+    {
+      "title": "learn.microsoft.com well-architected",
+      "url": "https://learn.microsoft.com/en-us/azure/well-architected/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "cloud_iac_and_operations/cloud_platforms"
+    },
+    {
+      "title": "learn.microsoft.com azure-monitor",
+      "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "cloud_iac_and_operations/cloud_platforms"
+    },
+    {
+      "title": "cloud.google.com architecture",
+      "url": "https://cloud.google.com/architecture",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "cloud_iac_and_operations/cloud_platforms"
+    },
+    {
+      "title": "cloud.google.com docs",
+      "url": "https://cloud.google.com/kubernetes-engine/docs",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "cloud_iac_and_operations/cloud_platforms"
+    },
+    {
+      "title": "docs.oracle.com cloud",
+      "url": "https://docs.oracle.com/en/cloud/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "cloud_iac_and_operations/cloud_platforms"
+    },
+    {
+      "title": "docs.hetzner.com",
+      "url": "https://docs.hetzner.com/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "cloud_iac_and_operations/cloud_platforms"
+    },
+    {
+      "title": "argo-cd.readthedocs.io",
+      "url": "https://argo-cd.readthedocs.io/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "cloud_iac_and_operations/cloud_platforms"
+    },
+    {
+      "title": "docs.crossplane.io",
+      "url": "https://docs.crossplane.io/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "cloud_iac_and_operations/cloud_platforms"
+    },
+    {
+      "title": "opentelemetry.io specs",
+      "url": "https://opentelemetry.io/docs/specs/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 1,
+      "category": "observability_sre_and_performance/observability"
+    },
+    {
+      "title": "prometheus.io latest",
+      "url": "https://prometheus.io/docs/alerting/latest/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 1,
+      "category": "observability_sre_and_performance/observability"
+    },
+    {
+      "title": "grafana.com latest",
+      "url": "https://grafana.com/docs/tempo/latest/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 1,
+      "category": "observability_sre_and_performance/observability"
+    },
+    {
+      "title": "grafana.com latest",
+      "url": "https://grafana.com/docs/alloy/latest/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 1,
+      "category": "observability_sre_and_performance/observability"
+    },
+    {
+      "title": "thanos.io",
+      "url": "https://thanos.io/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 1,
+      "category": "observability_sre_and_performance/observability"
+    },
+    {
+      "title": "docs.datadoghq.com",
+      "url": "https://docs.datadoghq.com/",
+      "type": "documentation",
+      "access": "mixed",
+      "priority": 1,
+      "category": "observability_sre_and_performance/observability"
+    },
+    {
+      "title": "docs.honeycomb.io",
+      "url": "https://docs.honeycomb.io/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 1,
+      "category": "observability_sre_and_performance/observability"
+    },
+    {
+      "title": "help.splunk.com",
+      "url": "https://help.splunk.com/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 1,
+      "category": "observability_sre_and_performance/observability"
+    },
+    {
+      "title": "vector.dev docs",
+      "url": "https://vector.dev/docs/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 1,
+      "category": "observability_sre_and_performance/observability"
+    },
+    {
+      "title": "zipkin.io",
+      "url": "https://zipkin.io/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 1,
+      "category": "observability_sre_and_performance/observability"
+    },
+    {
+      "title": "docs.netdata.cloud",
+      "url": "https://docs.netdata.cloud/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 1,
+      "category": "observability_sre_and_performance/observability"
+    },
+    {
+      "title": "docs.kernel.org bpf",
+      "url": "https://docs.kernel.org/bpf/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "observability_sre_and_performance/performance_and_reliability"
+    },
+    {
+      "title": "perf.wiki.kernel.org",
+      "url": "https://perf.wiki.kernel.org/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "observability_sre_and_performance/performance_and_reliability"
+    },
+    {
+      "title": "docs.cilium.io observability",
+      "url": "https://docs.cilium.io/en/stable/observability/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "observability_sre_and_performance/performance_and_reliability"
+    },
+    {
+      "title": "grafana.com latest",
+      "url": "https://grafana.com/docs/k6/latest/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "observability_sre_and_performance/performance_and_reliability"
+    },
+    {
+      "title": "jmeter.apache.org usermanual",
+      "url": "https://jmeter.apache.org/usermanual/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "observability_sre_and_performance/performance_and_reliability"
+    },
+    {
+      "title": "fio.readthedocs.io",
+      "url": "https://fio.readthedocs.io/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "observability_sre_and_performance/performance_and_reliability"
+    },
+    {
+      "title": "chaos-mesh.org docs",
+      "url": "https://www.chaos-mesh.org/docs/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "observability_sre_and_performance/performance_and_reliability"
+    },
+    {
+      "title": "principlesofchaos.org",
+      "url": "https://principlesofchaos.org/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "observability_sre_and_performance/performance_and_reliability"
+    },
+    {
+      "title": "support.pagerduty.com",
+      "url": "https://support.pagerduty.com/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "observability_sre_and_performance/performance_and_reliability"
+    },
+    {
+      "title": "finops.org framework",
+      "url": "https://www.finops.org/framework/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "observability_sre_and_performance/performance_and_reliability"
+    },
+    {
+      "title": "comptia.org certifications",
+      "url": "https://www.comptia.org/en-us/certifications/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "certification_and_training/qualifications"
+    },
+    {
+      "title": "cisco.com index.html",
+      "url": "https://www.cisco.com/site/us/en/learn/training-certifications/certifications/index.html",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "certification_and_training/qualifications"
+    },
+    {
+      "title": "training.fortinet.com",
+      "url": "https://training.fortinet.com/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "certification_and_training/qualifications"
+    },
+    {
+      "title": "learn.microsoft.com credentials",
+      "url": "https://learn.microsoft.com/en-us/credentials/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "certification_and_training/qualifications"
+    },
+    {
+      "title": "cloudskillsboost.google",
+      "url": "https://www.cloudskillsboost.google/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "certification_and_training/qualifications"
+    },
+    {
+      "title": "training.linuxfoundation.org certification-catalog",
+      "url": "https://training.linuxfoundation.org/certification-catalog/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "certification_and_training/qualifications"
+    },
+    {
+      "title": "isc2.org certifications",
+      "url": "https://www.isc2.org/certifications",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "certification_and_training/qualifications"
+    },
+    {
+      "title": "giac.org certifications",
+      "url": "https://www.giac.org/certifications/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "certification_and_training/qualifications"
+    },
+    {
+      "title": "eccouncil.org train-certify",
+      "url": "https://www.eccouncil.org/train-certify/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "certification_and_training/qualifications"
+    },
+    {
+      "title": "peoplecert.org",
+      "url": "https://www.peoplecert.org/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "certification_and_training/qualifications"
+    },
+    {
+      "title": "iiba.org business-analysis-certifications",
+      "url": "https://www.iiba.org/business-analysis-certifications/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "certification_and_training/qualifications"
+    },
+    {
+      "title": "github.com exploitdb",
+      "url": "https://github.com/offensive-security/exploitdb",
+      "type": "repository",
+      "access": "free",
+      "priority": 2,
+      "category": "cybersecurity/archives_and_script_analysis"
+    },
+    {
+      "title": "phrack.org",
+      "url": "https://phrack.org/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "cybersecurity/archives_and_script_analysis"
+    },
+    {
+      "title": "nmap.org nsedoc",
+      "url": "https://nmap.org/nsedoc/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "cybersecurity/archives_and_script_analysis"
+    },
+    {
+      "title": "github.com modules",
+      "url": "https://github.com/rapid7/metasploit-framework/tree/master/modules",
+      "type": "repository",
+      "access": "free",
+      "priority": 2,
+      "category": "cybersecurity/archives_and_script_analysis"
+    },
+    {
+      "title": "github.com PayloadsAllTheThings",
+      "url": "https://github.com/swisskyrepo/PayloadsAllTheThings",
+      "type": "repository",
+      "access": "free",
+      "priority": 2,
+      "category": "cybersecurity/archives_and_script_analysis"
+    },
+    {
+      "title": "github.com Amass",
+      "url": "https://github.com/OWASP/Amass",
+      "type": "repository",
+      "access": "free",
+      "priority": 2,
+      "category": "cybersecurity/archives_and_script_analysis"
+    },
+    {
+      "title": "kali.org tools",
+      "url": "https://www.kali.org/tools/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "cybersecurity/archives_and_script_analysis"
+    },
+    {
+      "title": "book.hacktricks.wiki",
+      "url": "https://book.hacktricks.wiki/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 2,
+      "category": "cybersecurity/archives_and_script_analysis"
+    },
+    {
+      "title": "docs.ansible.com network",
+      "url": "https://docs.ansible.com/projects/ansible/latest/network/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 1,
+      "category": "automation/network_and_operations"
+    },
+    {
+      "title": "carlmontanari.github.io scrapli",
+      "url": "https://carlmontanari.github.io/scrapli/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 1,
+      "category": "automation/network_and_operations"
+    },
+    {
+      "title": "netbox.readthedocs.io",
+      "url": "https://netbox.readthedocs.io/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 1,
+      "category": "automation/network_and_operations"
+    },
+    {
+      "title": "docs.gitlab.com ci",
+      "url": "https://docs.gitlab.com/ci/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 1,
+      "category": "automation/network_and_operations"
+    },
+    {
+      "title": "docs.prefect.io",
+      "url": "https://docs.prefect.io/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 1,
+      "category": "automation/network_and_operations"
+    },
+    {
+      "title": "docs.n8n.io",
+      "url": "https://docs.n8n.io/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 1,
+      "category": "automation/network_and_operations"
+    },
+    {
+      "title": "nodered.org docs",
+      "url": "https://nodered.org/docs/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 1,
+      "category": "automation/network_and_operations"
+    },
+    {
+      "title": "shuffler.io docs",
+      "url": "https://shuffler.io/docs",
+      "type": "documentation",
+      "access": "free",
+      "priority": 1,
+      "category": "automation/network_and_operations"
+    },
+    {
+      "title": "docs.opencti.io",
+      "url": "https://docs.opencti.io/",
+      "type": "documentation",
+      "access": "free",
+      "priority": 1,
+      "category": "automation/network_and_operations"
+    },
+    {
+      "title": "owasp.org",
+      "url": "https://owasp.org/www-project-devsecops-guideline/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "cybersecurity/testing_and_secure_code"
+    },
+    {
+      "title": "owasp.org",
+      "url": "https://owasp.org/www-project-threat-dragon/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "cybersecurity/testing_and_secure_code"
+    },
+    {
+      "title": "portswigger.net",
+      "url": "https://portswigger.net/web-security/learning-paths",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "cybersecurity/testing_and_secure_code"
+    },
+    {
+      "title": "portswigger.net",
+      "url": "https://portswigger.net/web-security/race-conditions",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "cybersecurity/testing_and_secure_code"
+    },
+    {
+      "title": "www.zaproxy.org",
+      "url": "https://www.zaproxy.org/docs/automate/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "cybersecurity/testing_and_secure_code"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/zaproxy/action-baseline",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "cybersecurity/testing_and_secure_code"
+    },
+    {
+      "title": "semgrep.dev",
+      "url": "https://semgrep.dev/docs/writing-rules/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "cybersecurity/testing_and_secure_code"
+    },
+    {
+      "title": "codeql.github.com",
+      "url": "https://codeql.github.com/docs/writing-codeql-queries/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "cybersecurity/testing_and_secure_code"
+    },
+    {
+      "title": "clang.llvm.org",
+      "url": "https://clang.llvm.org/docs/AddressSanitizer.html",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "cybersecurity/testing_and_secure_code"
+    },
+    {
+      "title": "clang.llvm.org",
+      "url": "https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "cybersecurity/testing_and_secure_code"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/AFLplusplus/AFLplusplus",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "cybersecurity/testing_and_secure_code"
+    },
+    {
+      "title": "google.github.io",
+      "url": "https://google.github.io/oss-fuzz/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "cybersecurity/testing_and_secure_code"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/google/honggfuzz",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "cybersecurity/testing_and_secure_code"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/rustsec/rustsec",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "cybersecurity/testing_and_secure_code"
+    },
+    {
+      "title": "docs.pytest.org",
+      "url": "https://docs.pytest.org/en/stable/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "cybersecurity/testing_and_secure_code"
+    },
+    {
+      "title": "coverage.readthedocs.io",
+      "url": "https://coverage.readthedocs.io/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "cybersecurity/testing_and_secure_code"
+    },
+    {
+      "title": "docs.cypress.io",
+      "url": "https://docs.cypress.io/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "cybersecurity/testing_and_secure_code"
+    },
+    {
+      "title": "docs.pact.io",
+      "url": "https://docs.pact.io/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "cybersecurity/testing_and_secure_code"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/aquasecurity/trivy",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "cybersecurity/testing_and_secure_code"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/anchore/syft",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "cybersecurity/testing_and_secure_code"
+    },
+    {
+      "title": "docs.dependencytrack.org",
+      "url": "https://docs.dependencytrack.org/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "cybersecurity/testing_and_secure_code"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/google/osv-scanner",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "cybersecurity/testing_and_secure_code"
+    },
+    {
+      "title": "slsa.dev",
+      "url": "https://slsa.dev/spec/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "cybersecurity/testing_and_secure_code"
+    },
+    {
+      "title": "cyclonedx.org",
+      "url": "https://cyclonedx.org/docs/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "cybersecurity/testing_and_secure_code"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/WebGoat/WebGoat",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "cybersecurity/testing_and_secure_code"
+    },
+    {
+      "title": "fwupd.github.io",
+      "url": "https://fwupd.github.io/libfwupdplugin/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "hardware_firmware_and_endpoint_management"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/fwupd/fwupd",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "hardware_firmware_and_endpoint_management"
+    },
+    {
+      "title": "flashrom.org",
+      "url": "https://flashrom.org/user_docs/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "hardware_firmware_and_endpoint_management"
+    },
+    {
+      "title": "doc.coreboot.org",
+      "url": "https://doc.coreboot.org/security/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "hardware_firmware_and_endpoint_management"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/tianocore/edk2",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "hardware_firmware_and_endpoint_management"
+    },
+    {
+      "title": "uefi.org",
+      "url": "https://uefi.org/specifications",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "hardware_firmware_and_endpoint_management"
+    },
+    {
+      "title": "redfish.dmtf.org",
+      "url": "https://redfish.dmtf.org/schemas/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "hardware_firmware_and_endpoint_management"
+    },
+    {
+      "title": "www.openbmc.org",
+      "url": "https://www.openbmc.org/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "hardware_firmware_and_endpoint_management"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/openbmc/docs",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "hardware_firmware_and_endpoint_management"
+    },
+    {
+      "title": "www.dell.com",
+      "url": "https://www.dell.com/support/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "hardware_firmware_and_endpoint_management"
+    },
+    {
+      "title": "support.hpe.com",
+      "url": "https://support.hpe.com/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "hardware_firmware_and_endpoint_management"
+    },
+    {
+      "title": "pubs.lenovo.com",
+      "url": "https://pubs.lenovo.com/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "hardware_firmware_and_endpoint_management"
+    },
+    {
+      "title": "www.intel.com",
+      "url": "https://www.intel.com/content/www/us/en/security-center/default.html",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "hardware_firmware_and_endpoint_management"
+    },
+    {
+      "title": "learn.microsoft.com",
+      "url": "https://learn.microsoft.com/en-us/intune/intune-service/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "hardware_firmware_and_endpoint_management"
+    },
+    {
+      "title": "learn.microsoft.com",
+      "url": "https://learn.microsoft.com/en-us/autopilot/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "hardware_firmware_and_endpoint_management"
+    },
+    {
+      "title": "developer.apple.com",
+      "url": "https://developer.apple.com/documentation/devicemanagement",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "hardware_firmware_and_endpoint_management"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/micromdm/micromdm",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "hardware_firmware_and_endpoint_management"
+    },
+    {
+      "title": "developer.android.com",
+      "url": "https://developer.android.com/enterprise/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "hardware_firmware_and_endpoint_management"
+    },
+    {
+      "title": "docs.fleetdm.com",
+      "url": "https://docs.fleetdm.com/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "hardware_firmware_and_endpoint_management"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/fleetdm/fleet",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "hardware_firmware_and_endpoint_management"
+    },
+    {
+      "title": "www.uyuni-project.org",
+      "url": "https://www.uyuni-project.org/uyuni-docs/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "hardware_firmware_and_endpoint_management"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/LongSoft/UEFITool",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "hardware_firmware_and_endpoint_management"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/ReFirmLabs/binwalk",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "hardware_firmware_and_endpoint_management"
+    },
+    {
+      "title": "buildroot.org",
+      "url": "https://buildroot.org/docs.html",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "hardware_firmware_and_endpoint_management"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/linux-nvme/nvme-cli",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "hardware_firmware_and_endpoint_management"
+    },
+    {
+      "title": "docs.ollama.com",
+      "url": "https://docs.ollama.com/api/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "ai_and_local_inference_operations"
+    },
+    {
+      "title": "docs.ollama.com",
+      "url": "https://docs.ollama.com/gpu",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "ai_and_local_inference_operations"
+    },
+    {
+      "title": "docs.ollama.com",
+      "url": "https://docs.ollama.com/docker",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "ai_and_local_inference_operations"
+    },
+    {
+      "title": "docs.ollama.com",
+      "url": "https://docs.ollama.com/tool-calling",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "ai_and_local_inference_operations"
+    },
+    {
+      "title": "ollama.com",
+      "url": "https://ollama.com/library",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "ai_and_local_inference_operations"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/ollama/ollama-python",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "ai_and_local_inference_operations"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/ggml-org/ggml",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "ai_and_local_inference_operations"
+    },
+    {
+      "title": "llama-cpp-python.readthedocs.io",
+      "url": "https://llama-cpp-python.readthedocs.io/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "ai_and_local_inference_operations"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/oobabooga/text-generation-webui",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "ai_and_local_inference_operations"
+    },
+    {
+      "title": "docs.vllm.ai",
+      "url": "https://docs.vllm.ai/en/latest/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "ai_and_local_inference_operations"
+    },
+    {
+      "title": "huggingface.co",
+      "url": "https://huggingface.co/docs/text-generation-inference/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "ai_and_local_inference_operations"
+    },
+    {
+      "title": "nvidia.github.io",
+      "url": "https://nvidia.github.io/TensorRT-LLM/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "ai_and_local_inference_operations"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/bentoml/BentoML",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "ai_and_local_inference_operations"
+    },
+    {
+      "title": "pytorch.org",
+      "url": "https://pytorch.org/docs/stable/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "ai_and_local_inference_operations"
+    },
+    {
+      "title": "docs.openvino.ai",
+      "url": "https://docs.openvino.ai/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "ai_and_local_inference_operations"
+    },
+    {
+      "title": "rocm.docs.amd.com",
+      "url": "https://rocm.docs.amd.com/en/latest/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "ai_and_local_inference_operations"
+    },
+    {
+      "title": "huggingface.co",
+      "url": "https://huggingface.co/docs/trl/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "ai_and_local_inference_operations"
+    },
+    {
+      "title": "huggingface.co",
+      "url": "https://huggingface.co/docs/safetensors/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "ai_and_local_inference_operations"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/open-webui/open-webui",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "ai_and_local_inference_operations"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/Mintplex-Labs/anything-llm",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "ai_and_local_inference_operations"
+    },
+    {
+      "title": "lmstudio.ai",
+      "url": "https://lmstudio.ai/docs",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "ai_and_local_inference_operations"
+    },
+    {
+      "title": "docs.continue.dev",
+      "url": "https://docs.continue.dev/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "ai_and_local_inference_operations"
+    },
+    {
+      "title": "docs.all-hands.dev",
+      "url": "https://docs.all-hands.dev/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "ai_and_local_inference_operations"
+    },
+    {
+      "title": "docs.axolotl.ai",
+      "url": "https://docs.axolotl.ai/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "ai_and_local_inference_operations"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/QwenLM/Qwen3",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "ai_and_local_inference_operations"
+    },
+    {
+      "title": "huggingface.co",
+      "url": "https://huggingface.co/mistralai",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "ai_and_local_inference_operations"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/microsoft/Presidio",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "ai_and_local_inference_operations"
+    },
+    {
+      "title": "docs.llamaindex.ai",
+      "url": "https://docs.llamaindex.ai/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "ai_and_local_inference_operations"
+    },
+    {
+      "title": "modelcontextprotocol.io",
+      "url": "https://modelcontextprotocol.io/specification/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "ai_and_local_inference_operations"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/facebookresearch/faiss",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "ai_and_local_inference_operations"
+    },
+    {
+      "title": "www.promptfoo.dev",
+      "url": "https://www.promptfoo.dev/docs/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "ai_and_local_inference_operations"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/EleutherAI/lm-evaluation-harness",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "ai_and_local_inference_operations"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/syllo/nvtop",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "ai_and_local_inference_operations"
+    },
+    {
+      "title": "sre.google",
+      "url": "https://sre.google/sre-book/postmortem-culture/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "troubleshooting_and_root_cause"
+    },
+    {
+      "title": "response.pagerduty.com",
+      "url": "https://response.pagerduty.com/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "troubleshooting_and_root_cause"
+    },
+    {
+      "title": "www.brendangregg.com",
+      "url": "https://www.brendangregg.com/ebpf.html",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "troubleshooting_and_root_cause"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/brendangregg/FlameGraph",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "troubleshooting_and_root_cause"
+    },
+    {
+      "title": "wiki.archlinux.org",
+      "url": "https://wiki.archlinux.org/title/General_troubleshooting",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "troubleshooting_and_root_cause"
+    },
+    {
+      "title": "www.tcpdump.org",
+      "url": "https://www.tcpdump.org/manpages/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "troubleshooting_and_root_cause"
+    },
+    {
+      "title": "kubernetes.io",
+      "url": "https://kubernetes.io/docs/tasks/debug/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "troubleshooting_and_root_cause"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/nicolaka/netshoot",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "troubleshooting_and_root_cause"
+    },
+    {
+      "title": "learn.microsoft.com",
+      "url": "https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "troubleshooting_and_root_cause"
+    },
+    {
+      "title": "docs.aws.amazon.com",
+      "url": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "troubleshooting_and_root_cause"
+    },
+    {
+      "title": "www.postgresql.org",
+      "url": "https://www.postgresql.org/docs/current/performance-tips.html",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "troubleshooting_and_root_cause"
+    },
+    {
+      "title": "nodejs.org",
+      "url": "https://nodejs.org/en/learn/diagnostics/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "troubleshooting_and_root_cause"
+    },
+    {
+      "title": "go.dev",
+      "url": "https://go.dev/doc/diagnostics/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "troubleshooting_and_root_cause"
+    },
+    {
+      "title": "openwrt.org",
+      "url": "https://openwrt.org/docs/guide-user/troubleshooting/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "troubleshooting_and_root_cause"
+    },
+    {
+      "title": "www.reddit.com",
+      "url": "https://www.reddit.com/r/homelab/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "practitioner_discussions_and_incident_reports"
+    },
+    {
+      "title": "www.reddit.com",
+      "url": "https://www.reddit.com/r/dfir/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "practitioner_discussions_and_incident_reports"
+    },
+    {
+      "title": "www.reddit.com",
+      "url": "https://www.reddit.com/r/devops/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "practitioner_discussions_and_incident_reports"
+    },
+    {
+      "title": "www.reddit.com",
+      "url": "https://www.reddit.com/r/ollama/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "practitioner_discussions_and_incident_reports"
+    },
+    {
+      "title": "networkengineering.stackexchange.com",
+      "url": "https://networkengineering.stackexchange.com/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "practitioner_discussions_and_incident_reports"
+    },
+    {
+      "title": "forum.level1techs.com",
+      "url": "https://forum.level1techs.com/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "practitioner_discussions_and_incident_reports"
+    },
+    {
+      "title": "www.linuxquestions.org",
+      "url": "https://www.linuxquestions.org/questions/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "practitioner_discussions_and_incident_reports"
+    },
+    {
+      "title": "lwn.net",
+      "url": "https://lwn.net/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "practitioner_discussions_and_incident_reports"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/danluu/post-mortems",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "practitioner_discussions_and_incident_reports"
+    },
+    {
+      "title": "www.cloudflarestatus.com",
+      "url": "https://www.cloudflarestatus.com/history",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "practitioner_discussions_and_incident_reports"
+    },
+    {
+      "title": "status.cloud.google.com",
+      "url": "https://status.cloud.google.com/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "practitioner_discussions_and_incident_reports"
+    },
+    {
+      "title": "netflixtechblog.com",
+      "url": "https://netflixtechblog.com/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "practitioner_discussions_and_incident_reports"
+    },
+    {
+      "title": "blog.cloudflare.com",
+      "url": "https://blog.cloudflare.com/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "practitioner_discussions_and_incident_reports"
+    },
+    {
+      "title": "www.uber.com",
+      "url": "https://www.uber.com/blog/engineering/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "practitioner_discussions_and_incident_reports"
+    },
+    {
+      "title": "www.thedfirreport.com",
+      "url": "https://www.thedfirreport.com/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "practitioner_discussions_and_incident_reports"
+    },
+    {
+      "title": "bugs.debian.org",
+      "url": "https://bugs.debian.org/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "practitioner_discussions_and_incident_reports"
+    },
+    {
+      "title": "bugzilla.kernel.org",
+      "url": "https://bugzilla.kernel.org/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "practitioner_discussions_and_incident_reports"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/ggml-org/llama.cpp/issues",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "practitioner_discussions_and_incident_reports"
+    },
+    {
+      "title": "www.scamwatch.gov.au",
+      "url": "https://www.scamwatch.gov.au/report-a-scam",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "scams_social_engineering_and_fraud"
+    },
+    {
+      "title": "www.afca.org.au",
+      "url": "https://www.afca.org.au/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "scams_social_engineering_and_fraud"
+    },
+    {
+      "title": "moneysmart.gov.au",
+      "url": "https://moneysmart.gov.au/scams",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "scams_social_engineering_and_fraud"
+    },
+    {
+      "title": "www.fma.govt.nz",
+      "url": "https://www.fma.govt.nz/scams/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "scams_social_engineering_and_fraud"
+    },
+    {
+      "title": "www.actionfraud.police.uk",
+      "url": "https://www.actionfraud.police.uk/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "scams_social_engineering_and_fraud"
+    },
+    {
+      "title": "www.fca.org.uk",
+      "url": "https://www.fca.org.uk/scamsmart",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "scams_social_engineering_and_fraud"
+    },
+    {
+      "title": "reportfraud.ftc.gov",
+      "url": "https://reportfraud.ftc.gov/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "scams_social_engineering_and_fraud"
+    },
+    {
+      "title": "www.fbi.gov",
+      "url": "https://www.fbi.gov/how-we-can-help-you/scams-and-safety",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "scams_social_engineering_and_fraud"
+    },
+    {
+      "title": "www.europol.europa.eu",
+      "url": "https://www.europol.europa.eu/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "scams_social_engineering_and_fraud"
+    },
+    {
+      "title": "www.fatf-gafi.org",
+      "url": "https://www.fatf-gafi.org/en/publications.html",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "scams_social_engineering_and_fraud"
+    },
+    {
+      "title": "apwg.org",
+      "url": "https://apwg.org/trendsreports/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "scams_social_engineering_and_fraud"
+    },
+    {
+      "title": "www.scamadviser.com",
+      "url": "https://www.scamadviser.com/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "scams_social_engineering_and_fraud"
+    },
+    {
+      "title": "www.aarp.org",
+      "url": "https://www.aarp.org/money/scams-fraud/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "scams_social_engineering_and_fraud"
+    },
+    {
+      "title": "www.sans.org",
+      "url": "https://www.sans.org/security-awareness-training/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "scams_social_engineering_and_fraud"
+    },
+    {
+      "title": "www.hoxhunt.com",
+      "url": "https://www.hoxhunt.com/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "scams_social_engineering_and_fraud"
+    },
+    {
+      "title": "www.troyhunt.com",
+      "url": "https://www.troyhunt.com/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "scams_social_engineering_and_fraud"
+    },
+    {
+      "title": "www.reddit.com",
+      "url": "https://www.reddit.com/r/phishing/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "scams_social_engineering_and_fraud"
+    },
+    {
+      "title": "www.chainalysis.com",
+      "url": "https://www.chainalysis.com/blog/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "scams_social_engineering_and_fraud"
+    },
+    {
+      "title": "www.spamhaus.org",
+      "url": "https://www.spamhaus.org/blocklists/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "spam_email_phishing_abuse"
+    },
+    {
+      "title": "www.surbl.org",
+      "url": "https://www.surbl.org/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "spam_email_phishing_abuse"
+    },
+    {
+      "title": "www.dnswl.org",
+      "url": "https://www.dnswl.org/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "spam_email_phishing_abuse"
+    },
+    {
+      "title": "www.abuseipdb.com",
+      "url": "https://www.abuseipdb.com/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "spam_email_phishing_abuse"
+    },
+    {
+      "title": "www.stopforumspam.com",
+      "url": "https://www.stopforumspam.com/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "spam_email_phishing_abuse"
+    },
+    {
+      "title": "www.rfc-editor.org",
+      "url": "https://www.rfc-editor.org/rfc/rfc5322",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "spam_email_phishing_abuse"
+    },
+    {
+      "title": "www.rfc-editor.org",
+      "url": "https://www.rfc-editor.org/rfc/rfc6376",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "spam_email_phishing_abuse"
+    },
+    {
+      "title": "www.rfc-editor.org",
+      "url": "https://www.rfc-editor.org/rfc/rfc8461",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "spam_email_phishing_abuse"
+    },
+    {
+      "title": "www.rfc-editor.org",
+      "url": "https://www.rfc-editor.org/rfc/rfc8601",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "spam_email_phishing_abuse"
+    },
+    {
+      "title": "www.rfc-editor.org",
+      "url": "https://www.rfc-editor.org/rfc/rfc9787",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "spam_email_phishing_abuse"
+    },
+    {
+      "title": "dmarcian.com",
+      "url": "https://dmarcian.com/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "spam_email_phishing_abuse"
+    },
+    {
+      "title": "internet.nl",
+      "url": "https://internet.nl/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "spam_email_phishing_abuse"
+    },
+    {
+      "title": "www.postfix.org",
+      "url": "https://www.postfix.org/POSTSCREEN_README.html",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "spam_email_phishing_abuse"
+    },
+    {
+      "title": "man.openbsd.org",
+      "url": "https://man.openbsd.org/smtpd.conf",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "spam_email_phishing_abuse"
+    },
+    {
+      "title": "docker-mailserver.github.io",
+      "url": "https://docker-mailserver.github.io/docker-mailserver/latest/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "spam_email_phishing_abuse"
+    },
+    {
+      "title": "docs.iredmail.org",
+      "url": "https://docs.iredmail.org/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "spam_email_phishing_abuse"
+    },
+    {
+      "title": "rspamd.com",
+      "url": "https://rspamd.com/doc/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "spam_email_phishing_abuse"
+    },
+    {
+      "title": "spamassassin.apache.org",
+      "url": "https://spamassassin.apache.org/doc.html",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "spam_email_phishing_abuse"
+    },
+    {
+      "title": "sanesecurity.com",
+      "url": "https://sanesecurity.com/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "spam_email_phishing_abuse"
+    },
+    {
+      "title": "learn.microsoft.com",
+      "url": "https://learn.microsoft.com/en-us/defender-office-365/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "spam_email_phishing_abuse"
+    },
+    {
+      "title": "support.google.com",
+      "url": "https://support.google.com/a/topic/9061731",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "spam_email_phishing_abuse"
+    },
+    {
+      "title": "www.proofpoint.com",
+      "url": "https://www.proofpoint.com/us/threat-insight",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "spam_email_phishing_abuse"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/splunk/security_content",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "spam_email_phishing_abuse"
+    },
+    {
+      "title": "www.hybrid-analysis.com",
+      "url": "https://www.hybrid-analysis.com/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "malware_reverse_engineering_and_dfir"
+    },
+    {
+      "title": "www.any.run",
+      "url": "https://www.any.run/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "malware_reverse_engineering_and_dfir"
+    },
+    {
+      "title": "malpedia.caad.fkie.fraunhofer.de",
+      "url": "https://malpedia.caad.fkie.fraunhofer.de/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "malware_reverse_engineering_and_dfir"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/NationalSecurityAgency/ghidra",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "malware_reverse_engineering_and_dfir"
+    },
+    {
+      "title": "docs.binary.ninja",
+      "url": "https://docs.binary.ninja/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "malware_reverse_engineering_and_dfir"
+    },
+    {
+      "title": "book.rizin.re",
+      "url": "https://book.rizin.re/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "malware_reverse_engineering_and_dfir"
+    },
+    {
+      "title": "frida.re",
+      "url": "https://frida.re/docs/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "malware_reverse_engineering_and_dfir"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/x64dbg/x64dbg",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "malware_reverse_engineering_and_dfir"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/mandiant/capa",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "malware_reverse_engineering_and_dfir"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/mandiant/GoReSym",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "malware_reverse_engineering_and_dfir"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/Neo23x0/signature-base",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "malware_reverse_engineering_and_dfir"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/volatilityfoundation/volatility3",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "malware_reverse_engineering_and_dfir"
+    },
+    {
+      "title": "www.sleuthkit.org",
+      "url": "https://www.sleuthkit.org/autopsy/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "malware_reverse_engineering_and_dfir"
+    },
+    {
+      "title": "timesketch.org",
+      "url": "https://timesketch.org/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "malware_reverse_engineering_and_dfir"
+    },
+    {
+      "title": "www.remnux.org",
+      "url": "https://www.remnux.org/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "malware_reverse_engineering_and_dfir"
+    },
+    {
+      "title": "cuckoo.readthedocs.io",
+      "url": "https://cuckoo.readthedocs.io/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "malware_reverse_engineering_and_dfir"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/hasherezade/pe-sieve",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "malware_reverse_engineering_and_dfir"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/EricZimmerman/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "malware_reverse_engineering_and_dfir"
+    },
+    {
+      "title": "ericzimmerman.github.io",
+      "url": "https://ericzimmerman.github.io/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "malware_reverse_engineering_and_dfir"
+    },
+    {
+      "title": "aboutdfir.com",
+      "url": "https://aboutdfir.com/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "malware_reverse_engineering_and_dfir"
+    },
+    {
+      "title": "cfreds.nist.gov",
+      "url": "https://cfreds.nist.gov/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "malware_reverse_engineering_and_dfir"
+    },
+    {
+      "title": "malwareunicorn.org",
+      "url": "https://malwareunicorn.org/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "malware_reverse_engineering_and_dfir"
+    },
+    {
+      "title": "www.nist.gov",
+      "url": "https://www.nist.gov/privacy-engineering",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "privacy_engineering_investigations_digital_rights"
+    },
+    {
+      "title": "csrc.nist.gov",
+      "url": "https://csrc.nist.gov/projects/privacy-engineering",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "privacy_engineering_investigations_digital_rights"
+    },
+    {
+      "title": "opendp.org",
+      "url": "https://opendp.org/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "privacy_engineering_investigations_digital_rights"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/opendp/opendp",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "privacy_engineering_investigations_digital_rights"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/tensorflow/privacy",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "privacy_engineering_investigations_digital_rights"
+    },
+    {
+      "title": "microsoft.github.io",
+      "url": "https://microsoft.github.io/presidio/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "privacy_engineering_investigations_digital_rights"
+    },
+    {
+      "title": "www.iapp.org",
+      "url": "https://www.iapp.org/resources/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "privacy_engineering_investigations_digital_rights"
+    },
+    {
+      "title": "www.privacy.org.nz",
+      "url": "https://www.privacy.org.nz/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "privacy_engineering_investigations_digital_rights"
+    },
+    {
+      "title": "www.edpb.europa.eu",
+      "url": "https://www.edpb.europa.eu/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "privacy_engineering_investigations_digital_rights"
+    },
+    {
+      "title": "www.eff.org",
+      "url": "https://www.eff.org/issues/privacy",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "privacy_engineering_investigations_digital_rights"
+    },
+    {
+      "title": "atlasofsurveillance.org",
+      "url": "https://atlasofsurveillance.org/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "privacy_engineering_investigations_digital_rights"
+    },
+    {
+      "title": "citizenlab.ca",
+      "url": "https://citizenlab.ca/research/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "privacy_engineering_investigations_digital_rights"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/mvt-project/mvt",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "privacy_engineering_investigations_digital_rights"
+    },
+    {
+      "title": "www.accessnow.org",
+      "url": "https://www.accessnow.org/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "privacy_engineering_investigations_digital_rights"
+    },
+    {
+      "title": "www.hrw.org",
+      "url": "https://www.hrw.org/topic/technology-and-rights",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "privacy_engineering_investigations_digital_rights"
+    },
+    {
+      "title": "www.bellingcat.com",
+      "url": "https://www.bellingcat.com/category/resources/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "privacy_engineering_investigations_digital_rights"
+    },
+    {
+      "title": "gijn.org",
+      "url": "https://gijn.org/resource/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "privacy_engineering_investigations_digital_rights"
+    },
+    {
+      "title": "aleph.occrp.org",
+      "url": "https://aleph.occrp.org/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "privacy_engineering_investigations_digital_rights"
+    },
+    {
+      "title": "www.icij.org",
+      "url": "https://www.icij.org/investigations/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "privacy_engineering_investigations_digital_rights"
+    },
+    {
+      "title": "www.documentcloud.org",
+      "url": "https://www.documentcloud.org/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "privacy_engineering_investigations_digital_rights"
+    },
+    {
+      "title": "www.foia.gov",
+      "url": "https://www.foia.gov/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "privacy_engineering_investigations_digital_rights"
+    },
+    {
+      "title": "fyi.org.nz",
+      "url": "https://fyi.org.nz/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "privacy_engineering_investigations_digital_rights"
+    },
+    {
+      "title": "archivebox.io",
+      "url": "https://archivebox.io/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "privacy_engineering_investigations_digital_rights"
+    },
+    {
+      "title": "explorer.ooni.org",
+      "url": "https://explorer.ooni.org/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "privacy_engineering_investigations_digital_rights"
+    },
+    {
+      "title": "radar.cloudflare.com",
+      "url": "https://radar.cloudflare.com/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "privacy_engineering_investigations_digital_rights"
+    },
+    {
+      "title": "spec.torproject.org",
+      "url": "https://spec.torproject.org/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "privacy_engineering_investigations_digital_rights"
+    },
+    {
+      "title": "www.whonix.org",
+      "url": "https://www.whonix.org/wiki/Documentation",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "privacy_engineering_investigations_digital_rights"
+    },
+    {
+      "title": "grapheneos.org",
+      "url": "https://grapheneos.org/features",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "privacy_engineering_investigations_digital_rights"
+    },
+    {
+      "title": "www.privacytests.org",
+      "url": "https://www.privacytests.org/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "privacy_engineering_investigations_digital_rights"
+    },
+    {
+      "title": "coveryourtracks.eff.org",
+      "url": "https://coveryourtracks.eff.org/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "privacy_engineering_investigations_digital_rights"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/gorhill/uBlock",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "privacy_engineering_investigations_digital_rights"
+    },
+    {
+      "title": "www.signal.org",
+      "url": "https://www.signal.org/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "privacy_engineering_investigations_digital_rights"
+    },
+    {
+      "title": "matrix.org",
+      "url": "https://matrix.org/docs/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "privacy_engineering_investigations_digital_rights"
+    },
+    {
+      "title": "briarproject.org",
+      "url": "https://briarproject.org/how-it-works/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "privacy_engineering_investigations_digital_rights"
+    },
+    {
+      "title": "www.gnupg.org",
+      "url": "https://www.gnupg.org/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "privacy_engineering_investigations_digital_rights"
+    },
+    {
+      "title": "www.usenix.org",
+      "url": "https://www.usenix.org/conference/usenixsecurity",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "privacy_engineering_investigations_digital_rights"
+    },
+    {
+      "title": "www.cve.org",
+      "url": "https://www.cve.org/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "vulnerability_research_and_disclosure"
+    },
+    {
+      "title": "nvd.nist.gov",
+      "url": "https://nvd.nist.gov/developers",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "vulnerability_research_and_disclosure"
+    },
+    {
+      "title": "www.first.org",
+      "url": "https://www.first.org/epss/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "vulnerability_research_and_disclosure"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/CERTCC/Vulnerability-Analysis-and-Mapping",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "vulnerability_research_and_disclosure"
+    },
+    {
+      "title": "www.cisa.gov",
+      "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "vulnerability_research_and_disclosure"
+    },
+    {
+      "title": "securitytxt.org",
+      "url": "https://securitytxt.org/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "vulnerability_research_and_disclosure"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/disclose/diodb",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "vulnerability_research_and_disclosure"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/google/syzkaller",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "vulnerability_research_and_disclosure"
+    },
+    {
+      "title": "aflplus.plus",
+      "url": "https://aflplus.plus/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "vulnerability_research_and_disclosure"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/projectdiscovery/nuclei-templates",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "vulnerability_research_and_disclosure"
+    },
+    {
+      "title": "www.bugcrowd.com",
+      "url": "https://www.bugcrowd.com/bug-bounty-list/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "vulnerability_research_and_disclosure"
+    },
+    {
+      "title": "www.yeswehack.com",
+      "url": "https://www.yeswehack.com/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "vulnerability_research_and_disclosure"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/advisories",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "vulnerability_research_and_disclosure"
+    },
+    {
+      "title": "deps.dev",
+      "url": "https://deps.dev/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "vulnerability_research_and_disclosure"
+    },
+    {
+      "title": "www.zerodayinitiative.com",
+      "url": "https://www.zerodayinitiative.com/advisories/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "vulnerability_research_and_disclosure"
+    },
+    {
+      "title": "packetstormsecurity.com",
+      "url": "https://packetstormsecurity.com/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "vulnerability_research_and_disclosure"
+    },
+    {
+      "title": "www.mozilla.org",
+      "url": "https://www.mozilla.org/en-US/security/advisories/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "vulnerability_research_and_disclosure"
+    },
+    {
+      "title": "security.paloaltonetworks.com",
+      "url": "https://security.paloaltonetworks.com/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "vulnerability_research_and_disclosure"
+    },
+    {
+      "title": "www.oracle.com",
+      "url": "https://www.oracle.com/security-alerts/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "vulnerability_research_and_disclosure"
+    },
+    {
+      "title": "blog.trailofbits.com",
+      "url": "https://blog.trailofbits.com/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "vulnerability_research_and_disclosure"
+    },
+    {
+      "title": "www.ndss-symposium.org",
+      "url": "https://www.ndss-symposium.org/",
+      "type": "reference",
+      "access": "unknown",
+      "priority": 2,
+      "category": "vulnerability_research_and_disclosure"
+    }
+  ]
+}

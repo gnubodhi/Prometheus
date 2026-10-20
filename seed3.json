@@ -1,0 +1,1331 @@
+{
+  "schema_version": "1.0.0",
+  "title": "Mathematics for Computer Science, Cryptography, Logistics and Dynamical Systems — Agent Seed",
+  "intended_environment": {
+    "runtime": "local Linux Ollama / retrieval-based AI",
+    "gpu_vram_gb": 8,
+    "strategy": "This is a small seed manifest, not mathematical source contents. Index metadata, selectively download allowed pages, chunk the retrieved text and embed. Retrieve only relevant chunks. Do not inject entire websites or codebases into an 8GB model context.",
+    "recommended_context_tokens": 4096,
+    "retrieval_top_k": 5,
+    "max_document_chunk_tokens": 700
+  },
+  "agent_role": "Mathematics researcher, tutor, systems analyst and careful contributor to computational math projects.",
+  "core_instructions": [
+    "Study definitions and proofs before implementing formulas. Connect conceptual reasoning to numerics and testable code.",
+    "Prefer primary textbooks, standards, academic course materials and upstream maintained documentation; capture author, publication/version and license.",
+    "Contrast mathematically equivalent descriptions and note when discrete approximations differ from continuous models.",
+    "For cryptography study number theory, modular arithmetic, finite fields, group theory, elliptic curves, lattices, entropy, probability and complexity. Do not devise custom production cryptographic schemes; rely on reviewed standards and well-maintained implementations.",
+    "For logistics connect calculus and differential equations with conservation, graph flow, queuing, inventory, forecast uncertainty, optimal control and constrained optimisation.",
+    "For every algorithm analyze asymptotic complexity, numerical stability, convergence, threat/failure modes, model assumptions and sensitivity.",
+    "When mathematical statement depends on assumptions, label them explicitly; show counterexamples to oversimplified rules.",
+    "Link derivations to unit tests, simulations and representative data; report uncertainty and reproducibility details.",
+    "Respect licensing, robots and terms while crawling.",
+    "Before contributing upstream, reproduce issues, identify canonical repositories and contribution policy, test solutions, and seek human approval prior to publishing or opening pull requests."
+  ],
+  "study_path": [
+    "foundations_and_proofs",
+    "discrete_math_algorithms_complexity",
+    "probability_statistics_information_theory",
+    "number_theory_cryptography",
+    "calculus_differential_equations_control",
+    "operations_research_logistics",
+    "queueing_inventory_flow_networks",
+    "computer_systems_numerical_methods",
+    "advanced_topics"
+  ],
+  "source_catalogue": [
+    {
+      "category": "foundations_and_proofs",
+      "title": "MIT Mathematics OCW",
+      "url": "https://ocw.mit.edu/search/?d=Mathematics",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "foundations_and_proofs",
+      "title": "MIT Single Variable Calculus",
+      "url": "https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "foundations_and_proofs",
+      "title": "MIT Multivariable Calculus",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "foundations_and_proofs",
+      "title": "MIT Linear Algebra",
+      "url": "https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "foundations_and_proofs",
+      "title": "MIT Mathematics for Computer Science",
+      "url": "https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "foundations_and_proofs",
+      "title": "MIT Differential Equations",
+      "url": "https://ocw.mit.edu/courses/18-03sc-differential-equations-fall-2011/",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "foundations_and_proofs",
+      "title": "OpenStax Calculus",
+      "url": "https://openstax.org/subjects/math",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "foundations_and_proofs",
+      "title": "Open Textbook Library",
+      "url": "https://open.umn.edu/opentextbooks/subjects/mathematics",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "foundations_and_proofs",
+      "title": "LibreTexts Mathematics",
+      "url": "https://math.libretexts.org/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "foundations_and_proofs",
+      "title": "Paul Online Notes",
+      "url": "https://tutorial.math.lamar.edu/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "foundations_and_proofs",
+      "title": "MathWorld",
+      "url": "https://mathworld.wolfram.com/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "foundations_and_proofs",
+      "title": "ProofWiki",
+      "url": "https://proofwiki.org/wiki/Main_Page",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "foundations_and_proofs",
+      "title": "Lean theorem prover",
+      "url": "https://lean-lang.org/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "foundations_and_proofs",
+      "title": "Mathlib",
+      "url": "https://github.com/leanprover-community/mathlib4",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "foundations_and_proofs",
+      "title": "Coq/Rocq",
+      "url": "https://rocq-prover.org/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "foundations_and_proofs",
+      "title": "Isabelle",
+      "url": "https://isabelle.in.tum.de/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "number_theory_cryptography",
+      "title": "Cryptography Engineering textbook site",
+      "url": "https://www.schneier.com/books/cryptography-engineering/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "number_theory_cryptography",
+      "title": "Handbook of Applied Cryptography",
+      "url": "https://cacr.uwaterloo.ca/hac/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "number_theory_cryptography",
+      "title": "Cryptography I Stanford",
+      "url": "https://crypto.stanford.edu/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "number_theory_cryptography",
+      "title": "NIST CSRC Cryptography",
+      "url": "https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "number_theory_cryptography",
+      "title": "NIST FIPS 197 AES",
+      "url": "https://csrc.nist.gov/pubs/fips/197/final",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "number_theory_cryptography",
+      "title": "NIST FIPS 186 Digital Signatures",
+      "url": "https://csrc.nist.gov/pubs/fips/186-5/final",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "number_theory_cryptography",
+      "title": "NIST FIPS 203 ML-KEM",
+      "url": "https://csrc.nist.gov/pubs/fips/203/final",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "number_theory_cryptography",
+      "title": "NIST FIPS 204 ML-DSA",
+      "url": "https://csrc.nist.gov/pubs/fips/204/final",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "number_theory_cryptography",
+      "title": "NIST FIPS 205 SLH-DSA",
+      "url": "https://csrc.nist.gov/pubs/fips/205/final",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "number_theory_cryptography",
+      "title": "NIST Random Bit Generation",
+      "url": "https://csrc.nist.gov/projects/random-bit-generation",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "number_theory_cryptography",
+      "title": "IETF RFC editor",
+      "url": "https://www.rfc-editor.org/",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "number_theory_cryptography",
+      "title": "IETF TLS 1.3",
+      "url": "https://www.rfc-editor.org/rfc/rfc8446",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "number_theory_cryptography",
+      "title": "IETF HPKE",
+      "url": "https://www.rfc-editor.org/rfc/rfc9180",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "number_theory_cryptography",
+      "title": "IETF Noise Protocol",
+      "url": "https://noiseprotocol.org/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "number_theory_cryptography",
+      "title": "Libsodium docs",
+      "url": "https://doc.libsodium.org/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "number_theory_cryptography",
+      "title": "Cryptography Python",
+      "url": "https://cryptography.io/en/latest/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "number_theory_cryptography",
+      "title": "OpenSSL documentation",
+      "url": "https://docs.openssl.org/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "number_theory_cryptography",
+      "title": "BoringSSL repository",
+      "url": "https://github.com/google/boringssl",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "number_theory_cryptography",
+      "title": "RustCrypto repository",
+      "url": "https://github.com/RustCrypto",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "number_theory_cryptography",
+      "title": "GMP number theory library",
+      "url": "https://gmplib.org/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "number_theory_cryptography",
+      "title": "PARI GP number theory",
+      "url": "https://pari.math.u-bordeaux.fr/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "number_theory_cryptography",
+      "title": "SageMath",
+      "url": "https://doc.sagemath.org/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "number_theory_cryptography",
+      "title": "CrypTool learning",
+      "url": "https://www.cryptool.org/en/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "number_theory_cryptography",
+      "title": "CryptoHack practice",
+      "url": "https://cryptohack.org/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "number_theory_cryptography",
+      "title": "Cryptopals challenges",
+      "url": "https://cryptopals.com/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "number_theory_cryptography",
+      "title": "Lattice cryptography primer",
+      "url": "https://csrc.nist.gov/projects/post-quantum-cryptography",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "number_theory_cryptography",
+      "title": "ZKProof community",
+      "url": "https://zkproof.org/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "number_theory_cryptography",
+      "title": "Signal protocol specs",
+      "url": "https://signal.org/docs/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "number_theory_cryptography",
+      "title": "Google Tink",
+      "url": "https://developers.google.com/tink",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "number_theory_cryptography",
+      "title": "IACR ePrint",
+      "url": "https://eprint.iacr.org/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "discrete_math_algorithms_complexity",
+      "title": "Open Data Structures",
+      "url": "https://opendatastructures.org/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "discrete_math_algorithms_complexity",
+      "title": "MIT Algorithms",
+      "url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "discrete_math_algorithms_complexity",
+      "title": "MIT Design and Analysis Algorithms",
+      "url": "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2015/",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "discrete_math_algorithms_complexity",
+      "title": "CP Algorithms",
+      "url": "https://cp-algorithms.com/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "discrete_math_algorithms_complexity",
+      "title": "Algorithms Jeff Erickson",
+      "url": "https://jeffe.cs.illinois.edu/teaching/algorithms/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "discrete_math_algorithms_complexity",
+      "title": "Stanford Encyclopedia Logic",
+      "url": "https://plato.stanford.edu/entries/logic-classical/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "discrete_math_algorithms_complexity",
+      "title": "SAT competition",
+      "url": "https://satcompetition.github.io/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "discrete_math_algorithms_complexity",
+      "title": "Z3 theorem prover",
+      "url": "https://github.com/Z3Prover/z3",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "discrete_math_algorithms_complexity",
+      "title": "SMT LIB",
+      "url": "https://smt-lib.org/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "discrete_math_algorithms_complexity",
+      "title": "TLA plus",
+      "url": "https://lamport.azurewebsites.net/tla/tla.html",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "discrete_math_algorithms_complexity",
+      "title": "TLA plus specs",
+      "url": "https://github.com/tlaplus/tlaplus",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "discrete_math_algorithms_complexity",
+      "title": "Alloy",
+      "url": "https://alloytools.org/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "discrete_math_algorithms_complexity",
+      "title": "PRISM model checker",
+      "url": "https://www.prismmodelchecker.org/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "discrete_math_algorithms_complexity",
+      "title": "Graphviz",
+      "url": "https://graphviz.org/documentation/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "discrete_math_algorithms_complexity",
+      "title": "NetworkX",
+      "url": "https://networkx.org/documentation/stable/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "discrete_math_algorithms_complexity",
+      "title": "Formal verification seL4",
+      "url": "https://sel4.systems/Verification/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "discrete_math_algorithms_complexity",
+      "title": "Computational Complexity Zoo",
+      "url": "https://complexityzoo.net/Complexity_Zoo",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "calculus_differential_equations_control",
+      "title": "MIT Feedback Systems",
+      "url": "https://ocw.mit.edu/search/?q=control%20systems",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "calculus_differential_equations_control",
+      "title": "Control Bootcamp",
+      "url": "https://www.youtube.com/@Eigensteve",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "calculus_differential_equations_control",
+      "title": "Feedback Systems free book",
+      "url": "https://fbsbook.org/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "calculus_differential_equations_control",
+      "title": "Underactuated Robotics",
+      "url": "https://underactuated.mit.edu/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "calculus_differential_equations_control",
+      "title": "Python Control Systems Library",
+      "url": "https://python-control.readthedocs.io/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "calculus_differential_equations_control",
+      "title": "SciPy Integrate",
+      "url": "https://docs.scipy.org/doc/scipy/reference/integrate.html",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "calculus_differential_equations_control",
+      "title": "SciPy Optimize",
+      "url": "https://docs.scipy.org/doc/scipy/reference/optimize.html",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "calculus_differential_equations_control",
+      "title": "Julia DifferentialEquations",
+      "url": "https://docs.sciml.ai/DiffEqDocs/stable/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "calculus_differential_equations_control",
+      "title": "Julia SciML",
+      "url": "https://docs.sciml.ai/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "calculus_differential_equations_control",
+      "title": "CasADi",
+      "url": "https://web.casadi.org/docs/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "calculus_differential_equations_control",
+      "title": "GEKKO optimisation",
+      "url": "https://gekko.readthedocs.io/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "calculus_differential_equations_control",
+      "title": "APMonitor",
+      "url": "https://apmonitor.com/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "calculus_differential_equations_control",
+      "title": "Modelica language",
+      "url": "https://modelica.org/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "calculus_differential_equations_control",
+      "title": "OpenModelica",
+      "url": "https://openmodelica.org/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "calculus_differential_equations_control",
+      "title": "Octave",
+      "url": "https://docs.octave.org/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "calculus_differential_equations_control",
+      "title": "Scilab",
+      "url": "https://help.scilab.org/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "calculus_differential_equations_control",
+      "title": "MIT nonlinear dynamics",
+      "url": "https://ocw.mit.edu/search/?q=nonlinear%20dynamics",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "probability_statistics_information_theory",
+      "title": "MIT Probability",
+      "url": "https://ocw.mit.edu/courses/6-041sc-probabilistic-systems-analysis-and-applied-probability-fall-2013/",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "probability_statistics_information_theory",
+      "title": "MIT Statistics",
+      "url": "https://ocw.mit.edu/search/?q=statistics",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "probability_statistics_information_theory",
+      "title": "Statistics LibreTexts",
+      "url": "https://stats.libretexts.org/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "probability_statistics_information_theory",
+      "title": "Seeing Theory",
+      "url": "https://seeing-theory.brown.edu/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "probability_statistics_information_theory",
+      "title": "StatQuest",
+      "url": "https://statquest.org/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "probability_statistics_information_theory",
+      "title": "NIST e-Handbook Statistics",
+      "url": "https://www.itl.nist.gov/div898/handbook/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "probability_statistics_information_theory",
+      "title": "SciPy Statistics",
+      "url": "https://docs.scipy.org/doc/scipy/reference/stats.html",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "probability_statistics_information_theory",
+      "title": "Statsmodels",
+      "url": "https://www.statsmodels.org/stable/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "probability_statistics_information_theory",
+      "title": "PyMC",
+      "url": "https://www.pymc.io/projects/docs/en/stable/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "probability_statistics_information_theory",
+      "title": "Stan",
+      "url": "https://mc-stan.org/docs/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "probability_statistics_information_theory",
+      "title": "Entropy and Information Theory Stanford",
+      "url": "https://web.stanford.edu/class/ee376a/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "probability_statistics_information_theory",
+      "title": "Information Theory Elements notes",
+      "url": "https://ocw.mit.edu/search/?q=information%20theory",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "probability_statistics_information_theory",
+      "title": "NIST randomness testing",
+      "url": "https://csrc.nist.gov/projects/random-bit-generation/documentation-and-software",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "probability_statistics_information_theory",
+      "title": "scikit learn",
+      "url": "https://scikit-learn.org/stable/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "probability_statistics_information_theory",
+      "title": "Pandas",
+      "url": "https://pandas.pydata.org/docs/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "operations_research_logistics",
+      "title": "MIT Logistics and Supply Chain Management",
+      "url": "https://ocw.mit.edu/courses/esd-273j-logistics-and-supply-chain-management-fall-2009/",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "operations_research_logistics",
+      "title": "MIT Logistics Systems",
+      "url": "https://ocw.mit.edu/courses/esd-260j-logistics-systems-fall-2006/",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "operations_research_logistics",
+      "title": "MIT Supply Chain Planning",
+      "url": "https://ocw.mit.edu/courses/15-762j-supply-chain-planning-spring-2011/",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "operations_research_logistics",
+      "title": "MIT Systems Optimisation",
+      "url": "https://ocw.mit.edu/courses/15-057-systems-optimization-spring-2003/",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "operations_research_logistics",
+      "title": "MIT Transportation Logistics courses",
+      "url": "https://ocw.mit.edu/course-lists/transportation-logistics-and-supply-chains/",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "operations_research_logistics",
+      "title": "Google OR Tools",
+      "url": "https://developers.google.com/optimization",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "operations_research_logistics",
+      "title": "OR Tools GitHub",
+      "url": "https://github.com/google/or-tools",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "operations_research_logistics",
+      "title": "Pyomo",
+      "url": "https://pyomo.readthedocs.io/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "operations_research_logistics",
+      "title": "PuLP",
+      "url": "https://coin-or.github.io/pulp/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "operations_research_logistics",
+      "title": "COIN OR",
+      "url": "https://www.coin-or.org/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "operations_research_logistics",
+      "title": "HiGHS",
+      "url": "https://highs.dev/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "operations_research_logistics",
+      "title": "HiGHS repo",
+      "url": "https://github.com/ERGO-Code/HiGHS",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "operations_research_logistics",
+      "title": "SciPy linprog",
+      "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.linprog.html",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "operations_research_logistics",
+      "title": "JuMP",
+      "url": "https://jump.dev/JuMP.jl/stable/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "operations_research_logistics",
+      "title": "CVXPY",
+      "url": "https://www.cvxpy.org/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "operations_research_logistics",
+      "title": "CVXOPT",
+      "url": "https://cvxopt.org/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "operations_research_logistics",
+      "title": "Gurobi documentation",
+      "url": "https://docs.gurobi.com/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "operations_research_logistics",
+      "title": "IBM CPLEX",
+      "url": "https://www.ibm.com/docs/en/icos",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "operations_research_logistics",
+      "title": "MiniZinc",
+      "url": "https://www.minizinc.org/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "operations_research_logistics",
+      "title": "MiniZinc docs",
+      "url": "https://docs.minizinc.dev/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "operations_research_logistics",
+      "title": "OptaPlanner Timefold",
+      "url": "https://docs.timefold.ai/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "operations_research_logistics",
+      "title": "SimPy discrete event simulation",
+      "url": "https://simpy.readthedocs.io/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "operations_research_logistics",
+      "title": "AnyLogic",
+      "url": "https://www.anylogic.com/resources/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "operations_research_logistics",
+      "title": "Supply Chain MIT CTL",
+      "url": "https://ctl.mit.edu/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "operations_research_logistics",
+      "title": "INFORMS",
+      "url": "https://www.informs.org/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "operations_research_logistics",
+      "title": "INFORMS Analytics",
+      "url": "https://www.informs.org/Explore/Operations-Research-Analytics",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "operations_research_logistics",
+      "title": "NetworkX algorithms",
+      "url": "https://networkx.org/documentation/stable/reference/algorithms/index.html",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "operations_research_logistics",
+      "title": "OpenStreetMap OSMnx",
+      "url": "https://osmnx.readthedocs.io/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "operations_research_logistics",
+      "title": "OSRM",
+      "url": "https://project-osrm.org/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "operations_research_logistics",
+      "title": "GraphHopper",
+      "url": "https://github.com/graphhopper/graphhopper",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "operations_research_logistics",
+      "title": "VROOM",
+      "url": "https://github.com/VROOM-Project/vroom",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "queueing_inventory_flow_networks",
+      "title": "MIT Queueing Theory",
+      "url": "https://ocw.mit.edu/search/?q=queueing%20theory",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "queueing_inventory_flow_networks",
+      "title": "MIT Operations Research",
+      "url": "https://ocw.mit.edu/search/?q=operations%20research",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "queueing_inventory_flow_networks",
+      "title": "Little law explanation",
+      "url": "https://en.wikipedia.org/wiki/Little%27s_law",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "queueing_inventory_flow_networks",
+      "title": "Queueing theory",
+      "url": "https://en.wikipedia.org/wiki/Queueing_theory",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "queueing_inventory_flow_networks",
+      "title": "Network flow",
+      "url": "https://en.wikipedia.org/wiki/Flow_network",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "queueing_inventory_flow_networks",
+      "title": "Inventory theory",
+      "url": "https://en.wikipedia.org/wiki/Inventory_theory",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "queueing_inventory_flow_networks",
+      "title": "Bullwhip effect",
+      "url": "https://en.wikipedia.org/wiki/Bullwhip_effect",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "queueing_inventory_flow_networks",
+      "title": "System dynamics",
+      "url": "https://systemdynamics.org/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "queueing_inventory_flow_networks",
+      "title": "Vensim",
+      "url": "https://vensim.com/documentation/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "queueing_inventory_flow_networks",
+      "title": "Insight Maker",
+      "url": "https://insightmaker.com/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "queueing_inventory_flow_networks",
+      "title": "Stock and flow",
+      "url": "https://en.wikipedia.org/wiki/Stock_and_flow",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "queueing_inventory_flow_networks",
+      "title": "Google OR Tools routing",
+      "url": "https://developers.google.com/optimization/routing",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "queueing_inventory_flow_networks",
+      "title": "Google OR Tools flow",
+      "url": "https://developers.google.com/optimization/flow",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "queueing_inventory_flow_networks",
+      "title": "Google OR Tools scheduling",
+      "url": "https://developers.google.com/optimization/scheduling",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "queueing_inventory_flow_networks",
+      "title": "SciPy sparse graphs",
+      "url": "https://docs.scipy.org/doc/scipy/reference/sparse.csgraph.html",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "computer_systems_numerical_methods",
+      "title": "Numerical Recipes",
+      "url": "https://numerical.recipes/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "computer_systems_numerical_methods",
+      "title": "NumPy",
+      "url": "https://numpy.org/doc/stable/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "computer_systems_numerical_methods",
+      "title": "SciPy",
+      "url": "https://docs.scipy.org/doc/scipy/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "computer_systems_numerical_methods",
+      "title": "SymPy",
+      "url": "https://docs.sympy.org/latest/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "computer_systems_numerical_methods",
+      "title": "Jupyter",
+      "url": "https://docs.jupyter.org/en/latest/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "computer_systems_numerical_methods",
+      "title": "Matplotlib",
+      "url": "https://matplotlib.org/stable/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "computer_systems_numerical_methods",
+      "title": "FFTW",
+      "url": "https://www.fftw.org/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "computer_systems_numerical_methods",
+      "title": "BLAS LAPACK",
+      "url": "https://www.netlib.org/lapack/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "computer_systems_numerical_methods",
+      "title": "OpenBLAS",
+      "url": "https://github.com/OpenMathLib/OpenBLAS",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "computer_systems_numerical_methods",
+      "title": "MPFR",
+      "url": "https://www.mpfr.org/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "computer_systems_numerical_methods",
+      "title": "PETSc",
+      "url": "https://petsc.org/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "computer_systems_numerical_methods",
+      "title": "Eigen",
+      "url": "https://eigen.tuxfamily.org/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "computer_systems_numerical_methods",
+      "title": "FFI math with Python",
+      "url": "https://docs.python.org/3/library/math.html",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "computer_systems_numerical_methods",
+      "title": "GPU CUDA Math",
+      "url": "https://docs.nvidia.com/cuda/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "computer_systems_numerical_methods",
+      "title": "ROCm libraries",
+      "url": "https://rocm.docs.amd.com/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "computer_systems_numerical_methods",
+      "title": "CGAL Computational Geometry",
+      "url": "https://doc.cgal.org/latest/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "computer_systems_numerical_methods",
+      "title": "Boost Math",
+      "url": "https://www.boost.org/doc/libs/release/libs/math/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "computer_systems_numerical_methods",
+      "title": "GNU Scientific Library",
+      "url": "https://www.gnu.org/software/gsl/doc/html/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "advanced_topics",
+      "title": "MIT optimization",
+      "url": "https://ocw.mit.edu/search/?q=optimization",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "advanced_topics",
+      "title": "Convex Optimization book",
+      "url": "https://web.stanford.edu/~boyd/cvxbook/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "advanced_topics",
+      "title": "Boyd Stephen course",
+      "url": "https://web.stanford.edu/class/ee364a/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "advanced_topics",
+      "title": "Combinatorial optimization",
+      "url": "https://ocw.mit.edu/search/?q=combinatorial%20optimization",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "advanced_topics",
+      "title": "Stochastic processes",
+      "url": "https://ocw.mit.edu/search/?q=stochastic%20processes",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "advanced_topics",
+      "title": "Game theory",
+      "url": "https://ocw.mit.edu/search/?q=game%20theory",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "advanced_topics",
+      "title": "Graph theory",
+      "url": "https://ocw.mit.edu/search/?q=graph%20theory",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "advanced_topics",
+      "title": "Coding theory",
+      "url": "https://ocw.mit.edu/search/?q=coding%20theory",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "advanced_topics",
+      "title": "Signal processing",
+      "url": "https://ocw.mit.edu/search/?q=digital%20signal%20processing",
+      "priority": 1,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    },
+    {
+      "category": "advanced_topics",
+      "title": "Optimal transport",
+      "url": "https://pythonot.github.io/",
+      "priority": 2,
+      "usage": "read upstream docs; inspect versioned material; extract proofs, examples and implementation references"
+    }
+  ],
+  "assignments": [
+    {
+      "id": "crypto_modular_arithmetic",
+      "task": "Explain RSA, Diffie-Hellman and ECC at mathematical and implementation levels, and compare their security assumptions and appropriate standard libraries."
+    },
+    {
+      "id": "post_quantum_lattices",
+      "task": "Study ML-KEM and ML-DSA and explain their mathematical structures, failure probabilities and security validation without building new deployed crypto."
+    },
+    {
+      "id": "warehouse_balance",
+      "task": "Build differential and discrete time warehouse inventory models using conservation equations; identify boundaries, delays and steady-state conditions."
+    },
+    {
+      "id": "network_optimisation",
+      "task": "Model 3 warehouses, 5 destinations and transport capacity; solve a min-cost flow and test disruptions."
+    },
+    {
+      "id": "control_simulation",
+      "task": "Simulate a stock controller and compare proportional, PI and MPC strategies on volatility, shortage, cost and robustness."
+    },
+    {
+      "id": "os_scheduling_queueing",
+      "task": "Relate arrival-service queue mathematics and Little’s law to OS schedulers, network congestion and datacenter throughput."
+    }
+  ],
+  "evidence_and_results_schema": {
+    "claim": "text",
+    "definition": "text",
+    "equations": [
+      "..."
+    ],
+    "assumptions": [
+      "..."
+    ],
+    "derivation": "text",
+    "source_urls": [
+      "..."
+    ],
+    "source_version_or_date": "text",
+    "proof_or_test": "text",
+    "limitations": [
+      "..."
+    ],
+    "practical_impact": "text"
+  },
+  "final_concept": {
+    "title": "Water tank steady states as a foundation for logistics flow control",
+    "requested_metaphor": "A water tank can be considered at steady state if it has emptied, inflow and outflow are equal, or it is full. Distinguish a true dynamical equilibrium (zero derivative) from a constrained boundary state (empty or full): those boundaries are steady only when physical constraints or control rules prevent further net change.",
+    "tank_model": {
+      "state": "V(t), volume of water, with 0 <= V(t) <= C",
+      "conservation_differential_equation": "dV/dt = Q_in(t) - Q_out(t) - Q_loss(t), for 0 < V < C",
+      "interior_equilibrium": "dV/dt=0 implies Q_in=Q_out+Q_loss",
+      "empty_boundary": "V=0 is invariant if effective outflow is limited by available water and inflow equals losses or is zero; attempted withdrawal cannot drive V below 0",
+      "full_boundary": "V=C is invariant if excess inflow is spilled, throttled or stored elsewhere; gross inflow and outflow need not be equal if there is overflow",
+      "stability": "Zero derivative at one instant does not prove a stable equilibrium. Perturb the level and examine whether feedback drives it toward target volume.",
+      "control_law": "Q_in_command(t)=clip(Q_expected_out(t)+k*(V_target-V(t)),0,Q_max), with k>0 and correct sampling, latency, and saturation handling",
+      "examples": [
+        {
+          "scenario": "tank empty",
+          "interpretation": "boundary operating condition, not automatically desirable or efficient"
+        },
+        {
+          "scenario": "tank level steady at midpoint",
+          "interpretation": "inflow equals outflow plus losses"
+        },
+        {
+          "scenario": "tank full",
+          "interpretation": "boundary operating condition; overflow or upstream throttling can preserve volume"
+        }
+      ]
+    },
+    "logistics_analogue": {
+      "stock_state": "I(t), inventory/queue/work-in-progress at a warehouse or process node",
+      "conservation_differential_equation": "dI/dt = arrivals(t) - shipments(t) - scrap(t) + returns(t)",
+      "target_operating_condition": "Over a planning horizon, average arrivals = average shipments + average scrap - average returns for approximately constant inventory, while meeting demand and maintaining an adequate buffer.",
+      "flow_balance_not_sufficient": "Equal inflow and outflow can coexist with poor customer service, excessively large inventories, excessive transport costs, congested queues, or unstable bullwhip oscillations.",
+      "feedback_controller": "orders(t)=clip(forecast_demand(t)+k_p*(target_inventory-inventory(t))+k_i*integral(target_inventory-inventory)dt,0,order_capacity); tune for delay and avoid integral windup",
+      "discrete_time_form": "I[t+1] = clip(I[t] + arrivals[t] - shipments[t] - scrap[t] + returns[t],0,C); account separately for lost sales/backorders/overflow rather than silently clipping demand",
+      "multi_node_network": "For node i: dI_i/dt = sum_j f_ji(t) - sum_k f_ik(t) + production_i(t) - demand_i(t) - losses_i(t). Flow conservation is subject to finite capacities, transit times, and stochastic variability.",
+      "objective": "Minimise holding cost + shortage cost + transport cost + delay cost + energy cost + waste cost subject to service levels, capacity, safety and reliability constraints.",
+      "methods": [
+        "differential equations and difference equations",
+        "network flows and linear programming",
+        "queueing theory and Little’s law L=lambda*W under stationarity",
+        "economic order quantity and safety stock",
+        "model predictive control",
+        "robust/stochastic optimisation",
+        "discrete-event simulation",
+        "sensitivity analysis and Monte Carlo tests"
+      ],
+      "worked_example": {
+        "target_stock_units": 500,
+        "inflow_units_per_day": 120,
+        "outflow_units_per_day": 110,
+        "scrap_units_per_day": 10,
+        "inventory_change_units_per_day": 0,
+        "interpretation": "Stock stays constant at its current level; if it is 800 units, this does not by itself achieve the 500-unit target."
+      },
+      "critical_assumptions": [
+        "Conservation accounting is correct",
+        "Flow measurement units and time bases agree",
+        "Demand and lead times may be uncertain",
+        "Capacity constraints and spill/backorder rules are explicit",
+        "Steady-state and efficiency are distinct properties",
+        "Full or empty operation is sometimes feasible but rarely a universal optimum"
+      ]
+    },
+    "agent_instruction": "At the end of every substantive application of mathematics to logistics, revisit the water-tank analogy. First establish exact mass/stock conservation; then explain empty, interior-balanced, and full constrained states; then derive network differential or difference equations and optimise feedback so expected inflow matches outflow plus losses over time, without equating mere balance with efficiency. Cite relevant theory and supply a numerical test, limitations and proposed controller improvements."
+  }
+}

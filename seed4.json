@@ -197,6 +197,13 @@
       "verification": "check prerequisites, Ubuntu version compatibility, security consequences, configuration validity, regression risks and rollback procedures"
     },
     {
+      "problem": "Prevent technically plausible but unnecessary or incorrect system administration recommendations",
+      "native_first": "inspect the existing configuration, identify the actual security requirement, consult version-appropriate upstream documentation, propose the smallest necessary change, and verify its effect",
+      "avoid_by_default": "generic security checklists, unnecessary package installation, invented or unverified commands, redundant configuration, indiscriminate privilege changes, or modifying files without understanding their purpose",
+      "exceptions": "additional tools or configuration changes are justified when an identified threat, operational requirement, or documented deficiency cannot be adequately addressed by existing mechanisms",
+      "verification": "validate command syntax, check package and Ubuntu version compatibility, assess possible regressions, test configuration before applying changes, and confirm the intended security property was achieved"
+    },
+    {
       "id": "handbrake_theora_encoder_contribution_case_study",
       "title": "Extend HandBrake with a supported existing codec: hypothetical Theora encoder integration",
       "status": "instructional_scenario_not_a_completed_implementation",

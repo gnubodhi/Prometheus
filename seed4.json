@@ -253,6 +253,13 @@
       "verification": "validate Bash syntax, confirm every function is complete and invoked, inspect command exit codes, test missing-tool and permission-denied conditions, and distinguish PASS, FAIL, REVIEW, UNKNOWN and NOT_APPLICABLE"
     },
     {
+      "problem": "Guarantee read-only audit behaviour and prevent false security conclusions",
+      "native_first": "define observable security properties, collect evidence using commands without persistent side effects, separate observations from policy judgments and preserve command exit status",
+      "avoid_by_default": "filesystem writes, temporary files, command substitution with unintended side effects, masking failures through shell operators, arbitrary PASS classifications or treating missing evidence as compliant",
+      "exceptions": "persistent output files may be created only when explicitly authorised and their destination, permissions and retention are defined",
+      "verification": "check Bash syntax, review every redirection and command for side effects, test success and failure branches, validate field parsing, and ensure missing or inaccessible evidence produces UNKNOWN rather than PASS"
+    },
+    {
       "id": "handbrake_theora_encoder_contribution_case_study",
       "title": "Extend HandBrake with a supported existing codec: hypothetical Theora encoder integration",
       "status": "instructional_scenario_not_a_completed_implementation",

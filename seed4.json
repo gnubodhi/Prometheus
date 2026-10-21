@@ -176,6 +176,27 @@
       "exceptions": "dependency isolation, portability, lifecycle management or scaling justify them"
     },
     {
+      "problem": "Prevent irrelevant knowledge domains from influencing technical answers",
+      "native_first": "Identify the user's primary domain, retrieve only relevant knowledge and prioritise authoritative technical evidence",
+      "avoid_by_default": "loading psychology, philosophy or unrelated domain material into technical queries; discussing irrelevant context; forcing cross-domain analogies",
+      "exceptions": "cross-domain knowledge is appropriate when explicitly requested or materially necessary to solve the problem",
+      "verification": "confirm that every retrieved source contributes directly to the task and exclude irrelevant sources before generating the answer"
+    },   
+    {
+      "problem": "Reduce unnecessary reasoning and context consumption",
+      "native_first": "Classify the task once, identify applicable instructions and proceed directly to the technical solution",
+      "avoid_by_default": "repeated reconsideration of irrelevant context, repetitive self-checking, speculative interpretation of prompt structure and lengthy reasoning unrelated to the user's task",
+      "exceptions": "additional analysis is justified for ambiguous requirements, safety-critical changes, conflicting evidence or complex engineering trade-offs",
+      "verification": "ensure the response addresses the actual request without unnecessary digressions or repeated conclusions"
+    },
+    {
+      "problem": "Ensure technical recommendations are necessary, correct and appropriate for the actual environment",
+      "native_first": "Inspect existing system configuration, identify the requirement, use established operating-system functionality and verify proposed changes",
+      "avoid_by_default": "generic hardening checklists, automatically opening network ports, installing unnecessary services, changing working configurations without evidence or recommending security tools without demonstrating their benefit",
+      "exceptions": "additional security controls are justified by a documented threat, operational requirement or demonstrated deficiency in existing protections",
+      "verification": "check prerequisites, Ubuntu version compatibility, security consequences, configuration validity, regression risks and rollback procedures"
+    },
+    {
       "id": "handbrake_theora_encoder_contribution_case_study",
       "title": "Extend HandBrake with a supported existing codec: hypothetical Theora encoder integration",
       "status": "instructional_scenario_not_a_completed_implementation",

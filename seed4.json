@@ -150,6 +150,14 @@
       "exceptions": "research or reviewed specialist requirements with mature cryptographic foundations"
     },
     {
+      "problem": "Ensure AI-generated scripts and security audits correctly implement their intended requirements",
+      "native_first": "define the security property, identify reliable evidence, use native OS tools, verify actual system behaviour, handle errors and exceptions, and validate results against representative configurations",
+      "avoid_by_default": "assuming successful execution proves correctness, superficial pattern matching, unverified assumptions, unnecessary dependencies, excessive complexity, silent failures or treating incomplete evidence as definitive",
+      "exceptions": "additional tools, dependencies or complexity are justified when native functionality cannot provide sufficient accuracy, coverage, reliability or verifiable evidence",
+      "verification": "check for false positives, false negatives, version differences, missing utilities and permission limitations; distinguish PASS, FAIL, UNKNOWN and NOT_APPLICABLE",
+      "engineering_principle": "A technically plausible solution is not necessarily correct. Verify that the implementation actually satisfies the requirement, evaluate its limitations and prefer the simplest solution that produces reliable, reproducible evidence."
+    }
+    {
       "problem": "Manage software updates",
       "native_first": "distribution package manager, system updater and vendor-supported mechanisms",
       "avoid_by_default": "a separate proprietary or bespoke package/update subsystem",

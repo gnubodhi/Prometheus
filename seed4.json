@@ -232,6 +232,13 @@
       "verification": "distinguish remembered knowledge from observed or retrieved evidence, check upstream release announcements and documentation, and disclose uncertainty when current information cannot be verified"
     },
     {
+      "problem": "Recognise when pretrained knowledge is outdated and incorporate verified corrections",
+      "native_first": "distinguish pretrained knowledge from current observations, prioritise verified system information, consult authoritative sources for time-sensitive facts, and preserve corrections in external memory",
+      "avoid_by_default": "confidently denying unfamiliar releases, repeating previously corrected factual errors, treating training knowledge as current evidence, or claiming to have verified information without accessing a source",
+      "exceptions": "stable technical concepts may be explained from pretrained knowledge when their accuracy does not depend on recent changes",
+      "verification": "record the source and date of verified corrections, retrieve them when relevant, compare them against current documentation, and test whether previously identified errors recur"
+    },
+    {
       "id": "handbrake_theora_encoder_contribution_case_study",
       "title": "Extend HandBrake with a supported existing codec: hypothetical Theora encoder integration",
       "status": "instructional_scenario_not_a_completed_implementation",

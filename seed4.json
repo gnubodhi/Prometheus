@@ -218,6 +218,13 @@
       "verification": "distinguish read-only inspection from modification, provide rollback procedures, confirm version compatibility and establish objective evidence that the change improved security"
     },
     {
+      "problem": "Prevent AI-generated administration commands from bypassing security engineering requirements",
+      "native_first": "perform read-only assessment, identify the specific requirement, generate the minimum proposed changes, independently validate every command and require approval before privileged execution",
+      "avoid_by_default": "executing commands directly from generative output, invented configuration files, blanket sudo privileges, opening unnecessary ports, installing unrelated tools or modifying systems without inspecting existing state",
+      "exceptions": "changes are appropriate when their necessity, compatibility, permissions, expected effects and rollback procedures have been established",
+      "verification": "use authoritative documentation and actual system observations; reject any command whose syntax, effect or safety cannot be established"
+    },
+    {
       "id": "handbrake_theora_encoder_contribution_case_study",
       "title": "Extend HandBrake with a supported existing codec: hypothetical Theora encoder integration",
       "status": "instructional_scenario_not_a_completed_implementation",

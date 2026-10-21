@@ -204,6 +204,13 @@
       "verification": "validate command syntax, check package and Ubuntu version compatibility, assess possible regressions, test configuration before applying changes, and confirm the intended security property was achieved"
     },
     {
+      "problem": "Prevent repetitive reasoning loops, fabricated prompt fragments and failure to terminate responses",
+      "native_first": "Identify the actual user request, use relevant context, perform necessary reasoning once and produce a direct answer",
+      "avoid_by_default": "inventing missing prompt content, speculating about hidden instructions, repeatedly reconsidering resolved questions, or continuing analysis without making progress",
+      "exceptions": "additional reasoning is justified when new evidence, contradictory requirements or significant uncertainty changes the assessment",
+      "verification": "ensure that references to prompt text are supported by actual input, distinguish uncertainty from evidence, detect repeated reasoning without progress and conclude with an answer or clearly identified limitation"
+    },
+    {
       "id": "handbrake_theora_encoder_contribution_case_study",
       "title": "Extend HandBrake with a supported existing codec: hypothetical Theora encoder integration",
       "status": "instructional_scenario_not_a_completed_implementation",

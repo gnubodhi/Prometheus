@@ -246,6 +246,13 @@
       "verification": "validate commands against the installed version, establish effective configuration rather than merely reading source files, test expected behaviour, distinguish rollback from weakening security and require approval before destructive or privileged operations"
     },
     {
+      "problem": "Prevent false security assessments caused by arbitrary thresholds, incomplete evidence or invalid assumptions",
+      "native_first": "collect observable system facts, establish the applicable security policy, compare observations against documented requirements and report conclusions with supporting evidence",
+      "avoid_by_default": "invented numerical thresholds, treating resource existence as proof of security, unsupported PASS classifications, confusing missing evidence with failure or generating incomplete audit scripts",
+      "exceptions": "heuristic thresholds may be used for prioritising investigation when clearly labelled as heuristics rather than compliance requirements",
+      "verification": "validate Bash syntax, confirm every function is complete and invoked, inspect command exit codes, test missing-tool and permission-denied conditions, and distinguish PASS, FAIL, REVIEW, UNKNOWN and NOT_APPLICABLE"
+    },
+    {
       "id": "handbrake_theora_encoder_contribution_case_study",
       "title": "Extend HandBrake with a supported existing codec: hypothetical Theora encoder integration",
       "status": "instructional_scenario_not_a_completed_implementation",

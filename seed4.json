@@ -239,6 +239,13 @@
       "verification": "record the source and date of verified corrections, retrieve them when relevant, compare them against current documentation, and test whether previously identified errors recur"
     },
     {
+      "problem": "Ensure Ubuntu security guides are actionable, accurate and safe for real workstations",
+      "native_first": "identify the operating-system release, inspect existing controls using read-only commands, classify each proposed change by necessity and risk, and recommend only verified modifications",
+      "avoid_by_default": "mixing configuration text with executable shell commands, inventing command options, opening unnecessary ports, deleting accounts, disabling firewall protections, weakening AppArmor or assuming security controls are enabled without evidence",
+      "exceptions": "security modifications are appropriate when a demonstrated requirement justifies them and their effects are understood",
+      "verification": "validate commands against the installed version, establish effective configuration rather than merely reading source files, test expected behaviour, distinguish rollback from weakening security and require approval before destructive or privileged operations"
+    },
+    {
       "id": "handbrake_theora_encoder_contribution_case_study",
       "title": "Extend HandBrake with a supported existing codec: hypothetical Theora encoder integration",
       "status": "instructional_scenario_not_a_completed_implementation",

@@ -1,0 +1,3300 @@
+{
+  "schema_name": "Prometheus Cross-Unix Evidence-First Security Audit Knowledge",
+  "version": "1.0.0",
+  "generated_on": "2026-10-21",
+  "purpose": "A cross-platform, non-executable library of proposed audit checks and epistemic guardrails, not a certified benchmark or instructions to modify a host.",
+  "platform_vocabulary": {
+    "linux": "Linux general; distribution and version verification required",
+    "linux:systemd": "Linux only when systemd is the relevant service manager",
+    "freebsd": "FreeBSD, release-specific",
+    "openbsd": "OpenBSD, release-specific",
+    "netbsd": "NetBSD, release-specific",
+    "macos": "macOS/Darwin, version-specific"
+  },
+  "status_vocabulary": {
+    "NOT_EVALUATED": "No check executed or evidence collected",
+    "PASS": "Observed state meets selected documented policy with sufficient evidence",
+    "FAIL": "Observed state demonstrably contradicts selected documented policy",
+    "REVIEW": "Evidence exists but needs interpretation, risk acceptance or investigation",
+    "UNKNOWN": "Missing tools, permissions, incomplete observations, unverified assumptions or unavailable policy",
+    "NOT_APPLICABLE": "Feature/workload confirmed absent or out of scope"
+  },
+  "foundational_rules": [
+    "Never label a test PASS merely because a file or service exists.",
+    "Never invent thresholds, secure defaults or universal permissions.",
+    "Keep observation separate from expected policy and decision.",
+    "Commands in inspection.strategy are illustrative, not shell scripts; resolve aliases/version support before use.",
+    "A read-only audit must not install, enable, configure, rotate, vacuum, download or delete anything.",
+    "Never assume Linux, systemd, FreeBSD, OpenBSD and NetBSD have interchangeable utilities or semantics.",
+    "Absent tool means UNKNOWN unless irrelevant feature is confirmed NOT_APPLICABLE.",
+    "Risk labels are preliminary triage suggestions, not policy-backed severity ratings.",
+    "Do not inspect or print actual credential contents; metadata first.",
+    "Versioned authoritative sources and tested checks are required before production compliance claims."
+  ],
+  "source_references": [
+    {
+      "label": "SCAP Security Guide",
+      "url": "https://www.open-scap.org/security-policies/scap-security-guide/",
+      "purpose": "Reference for machine-readable benchmark methodology, not automatically inherited compliance"
+    },
+    {
+      "label": "FreeBSD security advisories",
+      "url": "https://www.freebsd.org/security/",
+      "purpose": "Security advisories and vendor status for FreeBSD"
+    },
+    {
+      "label": "Linux kernel security documentation",
+      "url": "https://docs.kernel.org/security/",
+      "purpose": "Kernel security feature documentation"
+    },
+    {
+      "label": "systemd manuals",
+      "url": "https://www.freedesktop.org/software/systemd/man/latest/",
+      "purpose": "systemd behaviour and syntax"
+    },
+    {
+      "label": "OpenBSD manual pages",
+      "url": "https://man.openbsd.org/",
+      "purpose": "OpenBSD utilities and policy semantics"
+    },
+    {
+      "label": "NetBSD Guide",
+      "url": "https://www.netbsd.org/docs/guide/en/",
+      "purpose": "NetBSD configuration and administration"
+    }
+  ],
+  "sample_observation_not_a_real_scan": {
+    "id": "shadow_file_permissions_example",
+    "domain": "identity",
+    "platforms": [
+      "linux",
+      "freebsd",
+      "openbsd",
+      "netbsd"
+    ],
+    "check": "shadow_file_permissions",
+    "status": "REVIEW",
+    "observed": {
+      "mode": "640",
+      "owner": "root",
+      "group": "shadow"
+    },
+    "expected": "Linux/Unix-version-specific ownership and permissions",
+    "evidence": "Filesystem metadata",
+    "limitations": "File permissions alone do not establish the security of password authentication; mode and group shown are illustrative, not measured on this workstation. BSD shadow-equivalent paths and account databases vary.",
+    "verified_against_policy": false,
+    "illustrative_only": true,
+    "applicability": "Only platforms with this specific shadow storage model; BSD equivalents require platform-specific mapping",
+    "inspection": {
+      "strategy": "read metadata of actual password database only; use stat syntax appropriate to platform",
+      "read_only": true
+    },
+    "decision_rule": "Do not elevate illustrative observation to PASS; select documented target release policy first.",
+    "risk": "high",
+    "references": []
+  },
+  "audit_rules": [
+    {
+      "id": "system_identity",
+      "domain": "inventory",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd",
+        "macos"
+      ],
+      "check": "Operating system and release",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Release and support status documented",
+      "evidence": "OS release metadata and kernel version",
+      "limitations": "Userland and kernel versions may differ",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "uname -a; cat /etc/os-release on Linux; freebsd-version on FreeBSD",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "kernel_support",
+      "domain": "patching",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "Kernel update support and current patch level",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Supported kernel and applied vendor fixes",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Release build does not prove all fixes; live-patch exceptions",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "uname -r; inspect vendor update history",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "arch_firmware",
+      "domain": "inventory",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd",
+        "macos"
+      ],
+      "check": "CPU architecture and firmware mode",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Documented architecture, BIOS/UEFI where applicable",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "VMs obscure firmware information",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "uname -m; inspect sysfs firmware on Linux or platform tooling",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "hardware_firmware",
+      "domain": "patching",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd",
+        "macos"
+      ],
+      "check": "BIOS, UEFI and peripheral firmware",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Vendor-supported firmware without known unresolved critical advisories",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Firmware versions cannot establish absence of vulnerabilities",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect firmware inventory and vendor advisories",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "boot_chain",
+      "domain": "boot",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd",
+        "macos"
+      ],
+      "check": "Boot-chain integrity controls",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Configured according to threat model",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "UEFI presence does not imply Secure Boot or measured boot",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect platform secure-boot tooling; verify boot chain",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "secure_boot",
+      "domain": "boot",
+      "platforms": [
+        "linux"
+      ],
+      "check": "UEFI Secure Boot effective state",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Policy-defined Secure Boot state for this device",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "mokutil absent or unsupported; signed boot does not guarantee whole-system security",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "mokutil --sb-state if installed; inspect UEFI variables",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "root_volume_encryption",
+      "domain": "storage",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd",
+        "macos"
+      ],
+      "check": "Root filesystem encryption",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "OS volume protected at rest where required",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "One LUKS or GELI volume does not prove root is encrypted",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "trace root mount to block or virtual-device hierarchy",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "home_volume_encryption",
+      "domain": "storage",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd",
+        "macos"
+      ],
+      "check": "User data encryption coverage",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Sensitive user data protected at rest",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Encrypted root may omit home, swap, temporary mounts, backups",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect mount topology and encryption mappings",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "swap_encryption",
+      "domain": "storage",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "Swap protection",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Swap policy satisfies data-at-rest requirements",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "No swap or compressed swap changes applicability",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect active swap devices and encryption layers",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "removable_media",
+      "domain": "storage",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd",
+        "macos"
+      ],
+      "check": "Removable device mounting policy",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Risk-appropriate mounting and encryption",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Mount options alone do not cover automount workflows",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect active mounts and automount rules",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "recovery_keys",
+      "domain": "recovery",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd",
+        "macos"
+      ],
+      "check": "Encryption recovery capability",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Recovery mechanisms escrowed securely and tested",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Cannot validate key existence without authorised procedure",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "review controlled recovery inventory and restore exercise",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "backup_inventory",
+      "domain": "recovery",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd",
+        "macos"
+      ],
+      "check": "Backup coverage",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Critical data and configuration included",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Snapshot is not necessarily isolated or durable",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "review backup manifests and exclusions",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "backup_immutability",
+      "domain": "recovery",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd",
+        "macos"
+      ],
+      "check": "Backup isolation and retention",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Protected against deletion by compromised primary account",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Offsite does not imply immutable",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect repository policy and identity permissions",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "restore_test",
+      "domain": "recovery",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd",
+        "macos"
+      ],
+      "check": "Restore validation",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Recent successful restore tests with integrity verification",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Backup command success does not imply usable restore",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "review recovery drill evidence",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "time_sync",
+      "domain": "operations",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd",
+        "macos"
+      ],
+      "check": "Time synchronisation",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Accurate and stable system clock",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Synchronisation service enabled does not prove it is synced",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "timedatectl or ntpq/chronyc if applicable; inspect time state",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "hostname_dns",
+      "domain": "network",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd",
+        "macos"
+      ],
+      "check": "Hostname and name resolution configuration",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Expected resolver and search settings",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Resolver list does not prove trust or transport privacy",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect resolver configuration and active daemon",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "network_listeners",
+      "domain": "network",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "Listening TCP and UDP sockets",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Only justified listeners bound on intended interfaces",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "UDP has no LISTEN state; namespaces/jails can hide sockets",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "ss -tulpen on Linux; sockstat -4 -6 -l on FreeBSD; netstat as supported",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "firewall_effective",
+      "domain": "network",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "Active host firewall enforcement",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Effective rules consistent with inbound/outbound requirements",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "A service being enabled does not prove filtering; containers can alter chains",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "nft list ruleset or iptables-save on Linux; pfctl -sr or ipfw list on BSD where used",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "firewall_scope",
+      "domain": "network",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "Firewall interface and namespace coverage",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Coverage includes intended interfaces, IPv4 and IPv6",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Container and VM traffic paths may bypass assumed hooks",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "compare interfaces, routing, namespaces/jails and loaded rules",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "remote_admin_exposure",
+      "domain": "network",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "Remote management exposure",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Remote admin restricted to justified origins",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Socket listening does not show upstream policy",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect bind addresses and relevant network ACLs",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "wireless_encryption",
+      "domain": "network",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd",
+        "macos"
+      ],
+      "check": "Wi-Fi authentication",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Network authentication meets local policy",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Connection name cannot prove encryption strength",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect network manager and association properties",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "bluetooth_exposure",
+      "domain": "network",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd",
+        "macos"
+      ],
+      "check": "Bluetooth activation and pairing",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Enabled only when needed with secure pairing settings",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Radio state may be transient",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect adapter state and paired devices",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "ipv6_policy",
+      "domain": "network",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "IPv6 effective configuration",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "IPv6 policy matches network architecture",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Disabling IPv6 is not a universal hardening measure",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect ipv6 addresses, routes, and host filtering",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "routing_forwarding",
+      "domain": "network",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "Packet forwarding",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Forwarding only for intended routers/VM bridges",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Virtualisation may justify forwarding",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "sysctl net.ipv4.ip_forward on Linux; platform-specific sysctl on BSD",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "dns_security",
+      "domain": "network",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd",
+        "macos"
+      ],
+      "check": "DNS resolver integrity",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Trusted resolver and update settings",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Configured DNS-over-TLS is not proof of authenticated resolution",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect effective resolver and policy",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "proxy_settings",
+      "domain": "network",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd",
+        "macos"
+      ],
+      "check": "Proxy configuration",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Approved trusted proxy settings",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Env variables are only one source of settings",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect system and user proxy locations",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "hosts_file",
+      "domain": "network",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd",
+        "macos"
+      ],
+      "check": "Static host mappings",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "No unexpected redirections",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Presence of entries is not alone malicious",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect hosts file with owner and provenance",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "services_running",
+      "domain": "services",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "Running services inventory",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Only authorised workloads running",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Running service may not listen; socket activation matters",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "systemctl list-units --type=service --state=running or service manager equivalents",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "services_enabled",
+      "domain": "services",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "Enabled services inventory",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Only approved boot-persistent services",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Enabled does not imply running or exposure",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "systemctl list-unit-files --state=enabled; rcctl/rc.conf or service equivalents",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "socket_activation",
+      "domain": "services",
+      "platforms": [
+        "linux:systemd"
+      ],
+      "check": "Systemd socket activation",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Only required sockets enabled",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Service may be inactive while its socket listens",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "systemctl list-sockets --all",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "service_privilege",
+      "domain": "services",
+      "platforms": [
+        "linux:systemd"
+      ],
+      "check": "Systemd service user and privilege boundaries",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Least privilege under workload requirements",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Static unit properties do not cover runtime modifications",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "systemctl show -p User -p Group -p NoNewPrivileges -p CapabilityBoundingSet UNIT",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "systemd_sandbox",
+      "domain": "services",
+      "platforms": [
+        "linux:systemd"
+      ],
+      "check": "Systemd sandboxing properties",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Policy-appropriate sandbox options",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "systemd-analyze security score is heuristic, not compliance",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "systemd-analyze security UNIT",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "systemd_unit_overrides",
+      "domain": "services",
+      "platforms": [
+        "linux:systemd"
+      ],
+      "check": "Systemd unit drop-ins",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Overrides justified and reviewed",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Vendor updates and runtime units can affect effective configuration",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "systemctl cat UNIT; systemctl show UNIT",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "timers",
+      "domain": "services",
+      "platforms": [
+        "linux:systemd"
+      ],
+      "check": "Scheduled systemd timer inventory",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Timers have documented owners and commands",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Timer presence says nothing about script integrity",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "systemctl list-timers --all",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "cron_jobs",
+      "domain": "services",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "Cron and periodic scheduled tasks",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Jobs approved and appropriately privileged",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Per-user crontabs may be unreadable to normal users",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect /etc/cron* and platform-specific per-user crontabs read-only",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "user_inventory",
+      "domain": "identity",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd",
+        "macos"
+      ],
+      "check": "Local and directory-backed accounts",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Every privileged identity has justified ownership",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "passwd alone omits networked identity providers",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "getent passwd where supported; inspect NSS/directory configuration",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "uid_zero",
+      "domain": "identity",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "UID 0 accounts",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Root-equivalent identities explicitly approved",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "UID 0 naming is not sufficient to measure access exposure",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "awk -F: $3==0 on /etc/passwd plus directory lookup",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "sudo_group",
+      "domain": "identity",
+      "platforms": [
+        "linux"
+      ],
+      "check": "Sudo administrator group membership",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Membership matches approved admin list",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Group membership is not total effective sudo authorisation",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "getent group sudo; sudo -l for specific account when authorised",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "sudo_policy",
+      "domain": "identity",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "Privilege escalation policy",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Validated command scope and approvals",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Text grep misses include order and aliases",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "visudo -c; inspect effective sudo policy where installed",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "passwordless_sudo",
+      "domain": "identity",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "NOPASSWD privileges",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Only narrowly scoped and justified exceptions",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Simple grep misses nested includes and aliases",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect parsed sudo policy and referenced files",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "root_login",
+      "domain": "identity",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "Direct root authentication",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Root access conforms to threat model",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Locked password does not block every key or console path",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "passwd -S root on Linux; inspect sshd effective policy",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "password_shadow_permissions",
+      "domain": "identity",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "Shadow password storage file permissions",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Version- and platform-specific protected ownership, modes and ACLs",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Permissions alone do not establish password authentication security",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "stat file mode owner group; inspect ACLs when applicable",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "password_policy",
+      "domain": "identity",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "Interactive password quality policy",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Effective PAM/login policy appropriate to auth provider",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "login.defs is not authoritative for all PAM flows",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect effective PAM or BSD login.conf and account provider settings",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "password_hash_policy",
+      "domain": "identity",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "Password hash algorithm policy",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Supported password hashing per vendor policy",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Configuration may apply only to newly created passwords",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect PAM and login policy; do not expose password hashes",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "login_lockout",
+      "domain": "identity",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "Authentication throttling or lockout",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Documented policy balances guessing and DoS risks",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Fail2ban not universally needed and can introduce lockout risk",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect PAM stack, SSH restrictions, and logs",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "mfa_coverage",
+      "domain": "identity",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd",
+        "macos"
+      ],
+      "check": "Multifactor authentication",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "MFA for applicable privileged and remote workflows",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Authenticator installed is not proof of enforcement",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "review effective authentication paths and IdP policy",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "ssh_daemon_presence",
+      "domain": "ssh",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "SSH server availability",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Only running when needed",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "SSH client package does not imply daemon is installed",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect listening sockets and ssh service state",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "ssh_effective_config",
+      "domain": "ssh",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "Effective SSH daemon configuration",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Policy-defined root login, auth methods and permitted principals",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "grep sshd_config misses Include/Match directives",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "sshd -T; sshd -T -C user=...,host=...,addr=... for Match cases",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "ssh_key_permissions",
+      "domain": "ssh",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "SSH key and authorized_keys access controls",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Protect keys and authorised principals",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "File modes alone do not confirm key safety or revocation",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect ~/.ssh permissions and ACLs without dumping private keys",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "ssh_host_keys",
+      "domain": "ssh",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "SSH host key management",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Trustworthy keys without unreviewed changes",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Key files existing does not establish trust distribution",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect key fingerprints and known-hosts expectations",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "ssh_config_validation",
+      "domain": "ssh",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "SSH configuration syntax",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Configuration parses with target executable",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "sshd -t may require privilege and key visibility; no proof auth works",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "sshd -t read-only validation",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "ssh_remote_access_test",
+      "domain": "ssh",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "Remote access behaviour",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Approved identities and methods work as intended",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "A local config check cannot prove end-to-end access",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "test controlled SSH connection from authorised origin without changes",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "package_updates",
+      "domain": "patching",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "Outstanding vendor updates",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Supported system without unmanaged critical updates",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Upgradable list is not vulnerability inventory",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "apt list --upgradable; dnf check-update; pkg version according to platform",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "auto_update_policy",
+      "domain": "patching",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "Automatic patching policy",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Scheduled policy with logged successful runs",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Timer enabled alone does not prove upgrades applied",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect update agent config, timer/cron and logs",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "third_party_repos",
+      "domain": "supply_chain",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "Third-party repository trust",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Only approved publishers and scoped signing keys",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Signed package does not guarantee benign package",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect sources and per-repository key scopes",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "package_integrity",
+      "domain": "supply_chain",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "Installed package integrity",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Unexpected modifications investigated",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Configuration files change legitimately; metadata may not be cryptographic",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "dpkg --verify; rpm -Va; pkg check -s as available",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "package_provenance",
+      "domain": "supply_chain",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "Package provenance",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Source and package ownership attributable",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Package manager DB cannot account for manual binaries",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect package ownership and filesystem provenance",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "local_binaries",
+      "domain": "supply_chain",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "Locally compiled or manually installed binaries",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Documented ownership, version and update process",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Custom binary presence alone is not malicious",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inventory /usr/local and user executable locations",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "container_images",
+      "domain": "supply_chain",
+      "platforms": [
+        "linux"
+      ],
+      "check": "Container image provenance",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Images trusted, pinned and patched per risk",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Digest pinning freezes version, not vulnerability state",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect runtime image metadata and policy",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "firmware_update_history",
+      "domain": "patching",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd",
+        "macos"
+      ],
+      "check": "Firmware update history",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Firmware tracked and patched as appropriate",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "No universal command across vendors",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect platform firmware tools and vendor changelogs",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "file_ownership",
+      "domain": "filesystem",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "Sensitive file ownership",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Protected files owned by expected principals",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Expected ownership differs by OS and release",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "stat and ACL inspection for scoped files",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "file_permissions",
+      "domain": "filesystem",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "Sensitive file modes",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Protected files lack excessive permissions",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Modes alone do not show ACLs, capabilities or MAC policies",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "stat -c on Linux; stat -f on BSD; getfacl if available",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "suid_sgid_inventory",
+      "domain": "filesystem",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "Setuid/setgid executable inventory",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Each privileged executable has a documented justification",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "No arbitrary acceptable count; absence/presence alone not verdict",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "find relevant filesystems -perm -4000 -o -perm -2000 with mount scope",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "file_capabilities",
+      "domain": "filesystem",
+      "platforms": [
+        "linux"
+      ],
+      "check": "Linux file capabilities",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Assigned capabilities are required by workload",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Capabilities on executables not shown by traditional mode bits",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "getcap -r selected directories where installed",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "acl_inventory",
+      "domain": "filesystem",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "Access control lists",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "ACLs reflect authorised access",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "ACL interfaces and semantics differ across platforms",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "getfacl where supported; ls -le on BSD/macOS as appropriate",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "mount_options",
+      "domain": "filesystem",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "Mount flags and writable/executable areas",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Mount restrictions meet workload needs",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "nosuid/noexec may break valid workflows and do not solve all execution paths",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "findmnt -o TARGET,OPTIONS on Linux; mount on BSD",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "tmp_permissions",
+      "domain": "filesystem",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "Shared temporary directory protections",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Safe sticky-bit and ownership under platform policy",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Mode checks do not prevent all temporary-file races",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "stat /tmp /var/tmp; inspect sticky bits and ACLs",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "world_writable",
+      "domain": "filesystem",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "World-writable file and directory inventory",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Writes justified; shared directories protected where necessary",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "World-writable does not universally imply insecure",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "find scoped mounts -xdev -perm -0002 with exclusions",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "home_exposure",
+      "domain": "filesystem",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "Home directory exposure",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "User homes and secrets have workload-appropriate access",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Modern desktop defaults vary; sharing can be intentional",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "stat home dirs and relevant ACLs",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "secret_locations",
+      "domain": "secrets",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd",
+        "macos"
+      ],
+      "check": "Credential storage locations",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Credentials protected by least-privilege storage",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Reading secret contents is unnecessary and sensitive",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect only metadata and authorised inventory",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "env_secrets",
+      "domain": "secrets",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "Credentials in environment variables",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "No unintended credential propagation",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Process env can be sensitive; privileged access required",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "review service definitions and process metadata with redaction",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "shell_history",
+      "domain": "secrets",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "Shell history confidentiality",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Secrets not persistently exposed in history",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "History availability depends shell and session",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect permissions and configuration without printing secret commands",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "core_dumps",
+      "domain": "secrets",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "Core dump policy",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Core dumps protected or disabled as appropriate",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "May be needed for debugging; systemd-coredump differs from BSD",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect ulimit, sysctl and coredump policy",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "ptrace_restrictions",
+      "domain": "kernel",
+      "platforms": [
+        "linux"
+      ],
+      "check": "Process tracing restrictions",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Ptrace policy appropriate to development workloads",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Restricting ptrace can break debugging",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "sysctl kernel.yama.ptrace_scope if present",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "kernel_lockdown",
+      "domain": "kernel",
+      "platforms": [
+        "linux"
+      ],
+      "check": "Kernel lockdown effective mode",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Mode consistent with Secure Boot/threat model",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Availability differs by kernel and build",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "cat /sys/kernel/security/lockdown if readable",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "lsm_stack",
+      "domain": "kernel",
+      "platforms": [
+        "linux"
+      ],
+      "check": "Linux Security Module availability",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Relevant LSMs loaded and enforcing where applicable",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "lsm list alone does not prove confinement of each workload",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "cat /sys/kernel/security/lsm; check each LSM status",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "apparmor_enforcement",
+      "domain": "mac",
+      "platforms": [
+        "linux"
+      ],
+      "check": "AppArmor effective confinement",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Relevant profiles in enforce mode for covered applications",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "aa-status counts do not prove complete system coverage",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "aa-status if available; inspect process profile linkage",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "selinux_enforcement",
+      "domain": "mac",
+      "platforms": [
+        "linux"
+      ],
+      "check": "SELinux effective enforcement",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Enforcing when selected by platform policy",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Permissive mode differs from disabled and may be intentional",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "getenforce or sestatus if available",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "landlock_scope",
+      "domain": "mac",
+      "platforms": [
+        "linux"
+      ],
+      "check": "Landlock usage and kernel support",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Landlock used where implemented in application sandbox",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Kernel support does not establish an application uses it",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect supported ABI and application sandbox design",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "seccomp_sandbox",
+      "domain": "mac",
+      "platforms": [
+        "linux"
+      ],
+      "check": "Seccomp filters for relevant processes",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Per-service syscall filtering where justified",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Filter enabled does not prove completeness",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect /proc/PID/status Seccomp field for specific workloads",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "kernel_modules",
+      "domain": "kernel",
+      "platforms": [
+        "linux"
+      ],
+      "check": "Loaded kernel modules",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Modules required and sourced appropriately",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Module count not security score; built-ins invisible",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "lsmod; modinfo for identified modules",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "module_signature",
+      "domain": "kernel",
+      "platforms": [
+        "linux"
+      ],
+      "check": "Kernel module authenticity policy",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Module loading policy meets boot trust requirements",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Secure Boot and lockdown interactions vary",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect module_sig_enforce and firmware state",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "sysctl_hardening",
+      "domain": "kernel",
+      "platforms": [
+        "linux"
+      ],
+      "check": "Kernel runtime networking/security sysctls",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Documented values per workload and official guidance",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Single sysctl seldom proves a security control",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "sysctl -a selected keys; compare vendor baseline",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "aslr",
+      "domain": "kernel",
+      "platforms": [
+        "linux"
+      ],
+      "check": "Address space randomisation",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "ASLR enabled as appropriate",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "ASLR is mitigation, not exploit prevention",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "sysctl kernel.randomize_va_space",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "kptr_restrict",
+      "domain": "kernel",
+      "platforms": [
+        "linux"
+      ],
+      "check": "Kernel pointer exposure controls",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Kernel pointers suitably restricted",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Kernel versions and tooling differ",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "sysctl kernel.kptr_restrict",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "dmesg_restrict",
+      "domain": "kernel",
+      "platforms": [
+        "linux"
+      ],
+      "check": "Kernel log access policy",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Restricted where threat model justifies",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "May impede troubleshooting",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "sysctl kernel.dmesg_restrict",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "bpf_exposure",
+      "domain": "kernel",
+      "platforms": [
+        "linux"
+      ],
+      "check": "Unprivileged eBPF access policy",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Policy appropriate to kernel version and tooling",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Unprivileged BPF toggles are version and feature dependent",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect kernel.unprivileged_bpf_disabled if supported",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "user_namespace_policy",
+      "domain": "kernel",
+      "platforms": [
+        "linux"
+      ],
+      "check": "Unprivileged user namespace permissions",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Sandboxing and exposure balanced for workload",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Disabling user namespaces can break browser/container isolation",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect distribution-specific kernel parameters",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "systemd_journal",
+      "domain": "logging",
+      "platforms": [
+        "linux:systemd"
+      ],
+      "check": "Journald logging and retention",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Relevant logs retained for investigations",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "No journal records may mean permission denial or volatile logging",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "journalctl --disk-usage; inspect effective journald config",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "auditd_presence",
+      "domain": "logging",
+      "platforms": [
+        "linux"
+      ],
+      "check": "Linux audit daemon and rules",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Audit coverage where required by threat/compliance",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Auditd not universally required and logging may occur elsewhere",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "systemctl status auditd; auditctl -s if installed",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "login_events",
+      "domain": "logging",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "Authentication logging coverage",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Relevant auth successes and failures logged",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Log location and format differ across distributions",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "journalctl for ssh; /var/log/auth.log or /var/log/authlog as applicable",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "log_integrity",
+      "domain": "logging",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "Log modification permissions",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Logs protected against unauthorised modification",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Privileged compromise can alter local logs",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "stat log storage; remote forwarding policy if needed",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "log_capacity",
+      "domain": "logging",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "Logging storage health",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Sufficient retention capacity with bounded growth",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Rotation configured not proof of successful rotation",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "journalctl --disk-usage; df -h; log retention state",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "ntp_trust",
+      "domain": "logging",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "Timestamp provenance",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Time sources and sync state appropriate for forensic accuracy",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Synchronized does not prove source authenticity",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect time sync service and source policy",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "desktop_screen_lock",
+      "domain": "desktop",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd",
+        "macos"
+      ],
+      "check": "Screen locking policy",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Automatic lock appropriate to risk",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Settings may be user/session specific",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect desktop environment settings and actual lock behaviour",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "desktop_autologin",
+      "domain": "desktop",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd",
+        "macos"
+      ],
+      "check": "Automatic login policy",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Automatic login disabled unless justified",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Display manager differs; presence of config not actual state",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect display manager effective settings",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "browser_sandbox",
+      "domain": "desktop",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd",
+        "macos"
+      ],
+      "check": "Browser sandbox effective state",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Browser sandbox on under supported platform",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Browser UI flags may be incomplete evidence",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect browser sandbox diagnostics and process protections",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "browser_extensions",
+      "domain": "desktop",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd",
+        "macos"
+      ],
+      "check": "Browser extension review",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Extensions trusted and least privileged",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Extension count not risk indicator",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect browser extension inventory and permissions",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "local_ai_api",
+      "domain": "ai_services",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "Local AI inference API exposure",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Bound only to trusted interfaces and authenticated where applicable",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Loopback binding may be bypassed by proxies or container mappings",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect process listener, proxy mapping and access controls",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "ai_agent_privileges",
+      "domain": "ai_services",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "AI agent privileges",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Least privilege with approval for privileged changes",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "System account existence does not prove isolation",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect runtime identity, sudo policy, tool scope",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "ai_agent_secret_access",
+      "domain": "ai_services",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "AI agent credential reachability",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Secrets segregated from untrusted task execution",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Path access depends mount, namespace, ACLs and inherited descriptors",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect filesystem mounts and effective process permissions",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "ai_agent_tool_audit",
+      "domain": "ai_services",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "AI tool execution auditability",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Tool operations logged with outcomes and approvals",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Model text is not evidence of tool execution",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "review tool event records and independent host logs",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "container_privilege",
+      "domain": "containers",
+      "platforms": [
+        "linux"
+      ],
+      "check": "Container runtime privileges",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Rootless or least privilege as appropriate",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Rootless does not eliminate kernel attack surface",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect running container runtime user and capabilities",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "container_mounts",
+      "domain": "containers",
+      "platforms": [
+        "linux"
+      ],
+      "check": "Container bind mounts",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Minimal host filesystem exposure",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Read-only bind mounts do not prevent all host effects",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect effective mounts and propagation",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "container_network",
+      "domain": "containers",
+      "platforms": [
+        "linux"
+      ],
+      "check": "Container published ports",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Published ports justified and constrained",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Host firewall may not behave as expected under runtime rules",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect published port mappings and effective firewall",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "container_secrets",
+      "domain": "containers",
+      "platforms": [
+        "linux"
+      ],
+      "check": "Container credential handling",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Short-lived secrets and minimal mounts",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Environment variables and mounted secrets can leak",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect metadata, do not print secret values",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "vms_security",
+      "domain": "virtualisation",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "VM isolation boundaries",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Guest privileges and access appropriately bounded",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Hypervisor presence alone not insecure",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect guest devices, shares and control sockets",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "freebsd_base_updates",
+      "domain": "patching",
+      "platforms": [
+        "freebsd"
+      ],
+      "check": "FreeBSD base-system security status",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Supported branch with applicable fixes installed",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "freebsd-update may not be used for source-built systems",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "freebsd-version -kru; review signed FreeBSD advisories",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "freebsd_pkg_audit",
+      "domain": "patching",
+      "platforms": [
+        "freebsd"
+      ],
+      "check": "FreeBSD ports/package vulnerability status",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Vulnerable packages assessed against VuXML",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Audit database freshness affects results",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "pkg audit -F requires download; pkg audit with existing local database for read-only",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "freebsd_pf_rules",
+      "domain": "network",
+      "platforms": [
+        "freebsd"
+      ],
+      "check": "FreeBSD PF effective rules",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Policy appropriate to the workload",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "PF may not be active; ipfw is an alternative",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "pfctl -s info; pfctl -sr where PF is used",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "freebsd_ipfw",
+      "domain": "network",
+      "platforms": [
+        "freebsd"
+      ],
+      "check": "FreeBSD ipfw state",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Firewall matches security baseline if ipfw in use",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Ruleset inspection not proof of packet path",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "ipfw list if installed and active",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "freebsd_jails",
+      "domain": "isolation",
+      "platforms": [
+        "freebsd"
+      ],
+      "check": "FreeBSD jail boundaries",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Jails configured with minimal privileges and mounts",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Host jail inventory does not prove all applications isolated",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "jls -v; inspect jail.conf and effective parameters",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "freebsd_capsicum",
+      "domain": "isolation",
+      "platforms": [
+        "freebsd"
+      ],
+      "check": "FreeBSD Capsicum usage",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Capsicum applied in applications designed for it",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Framework exists does not imply application use",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "review application design and cap_enter behaviour with evidence",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "freebsd_mac",
+      "domain": "mac",
+      "platforms": [
+        "freebsd"
+      ],
+      "check": "FreeBSD MAC policy modules",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Policy modules loaded and configured only where required",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "MAC modules are not universal hardening requirement",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "kldstat and relevant sysctl/configuration",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "freebsd_geli_zfs",
+      "domain": "storage",
+      "platforms": [
+        "freebsd"
+      ],
+      "check": "FreeBSD GELI/ZFS encryption coverage",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Sensitive datasets or devices encrypted per policy",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "ZFS encryption and GELI have distinct semantics",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "geli status; zfs get encryption,keylocation for selected datasets",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "freebsd_securelevel",
+      "domain": "kernel",
+      "platforms": [
+        "freebsd"
+      ],
+      "check": "FreeBSD securelevel policy",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Securelevel matches threat model",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Securelevel impacts administration and is not universal",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "sysctl kern.securelevel",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "openbsd_release",
+      "domain": "patching",
+      "platforms": [
+        "openbsd"
+      ],
+      "check": "OpenBSD installed release and patches",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Supported release with security fixes",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "syspatch may not apply in every scenario",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "uname -a; syspatch -l for installed patches",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "openbsd_pf",
+      "domain": "network",
+      "platforms": [
+        "openbsd"
+      ],
+      "check": "OpenBSD PF effective state",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Ruleset and interfaces implement policy",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Rule presence does not prove all paths covered",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "pfctl -s info; pfctl -sr",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "openbsd_pledge_unveil",
+      "domain": "isolation",
+      "platforms": [
+        "openbsd"
+      ],
+      "check": "OpenBSD pledge/unveil application confinement",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Available mitigations used by relevant applications",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "OS feature existence does not prove any specific process uses it",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "review application source/build docs and focused runtime observation",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "openbsd_sandbox_accounts",
+      "domain": "identity",
+      "platforms": [
+        "openbsd"
+      ],
+      "check": "OpenBSD service-account separation",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Service processes use intended unprivileged users",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Account names alone do not prove privilege state",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "ps -axo user,pid,command; service configuration",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "netbsd_security_updates",
+      "domain": "patching",
+      "platforms": [
+        "netbsd"
+      ],
+      "check": "NetBSD update and advisory posture",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Supported release and addressed advisories",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Package and base update mechanisms differ",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "uname -a; inspect NetBSD advisories and installed versions",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "netbsd_npfilter",
+      "domain": "network",
+      "platforms": [
+        "netbsd"
+      ],
+      "check": "NetBSD packet filtering",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "NPF or selected firewall matches policy",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Firewall presence alone not active protection",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "npfctl show if NPF in use",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "netbsd_veriexec",
+      "domain": "integrity",
+      "platforms": [
+        "netbsd"
+      ],
+      "check": "NetBSD Veriexec configuration",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Integrity enforcement where required",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Feature availability and runtime policy vary",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect veriexec policy and status when enabled",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "netbsd_kauth",
+      "domain": "identity",
+      "platforms": [
+        "netbsd"
+      ],
+      "check": "NetBSD kauth policy and privilege decisions",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Authorisation model fits workload",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Framework presence does not imply secure policy",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "review effective policy modules and observed privileges",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "unix_resource_limits",
+      "domain": "operations",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "Resource limits for exposed workloads",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Limits suit DoS and service reliability needs",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Aggressive limits can cause outages",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "ulimit -a and service-specific limits",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "unix_umask",
+      "domain": "filesystem",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "Default file creation masks",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Appropriate for data sensitivity and collaboration",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Session umask cannot establish every service default",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "umask; inspect service/login policies",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "unix_path_trust",
+      "domain": "supply_chain",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "Executable search path integrity",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "No unintended writable directories before trusted ones",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "PATH inspection alone insufficient for privileged exec context",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect effective PATH and directory ownership",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "unix_trust_files",
+      "domain": "identity",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "Legacy trust files and remote auth",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Legacy trust mechanisms justified or absent",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "File presence may be benign if unused",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect .rhosts hosts.equiv only if applicable",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "unix_nfs_exports",
+      "domain": "network",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "NFS shares and exports",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Exports least privilege and bounded to clients",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Export configuration does not prove effective network ACLs",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "exportfs -v Linux; showmount or platform equivalent",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "unix_samba_exports",
+      "domain": "network",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "SMB shares and authentication",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Shares properly authenticated and scoped",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "smb.conf may not reflect runtime or included files",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "testparm -s if installed; inspect SMB listeners and shares",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "unix_integrity_monitor",
+      "domain": "integrity",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "File integrity monitoring scope",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Critical paths baselined and compared where justified",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Stored baseline itself can be compromised",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "inspect FIM scope, baseline provenance and change history",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    },
+    {
+      "id": "unix_incident_readiness",
+      "domain": "recovery",
+      "platforms": [
+        "linux",
+        "freebsd",
+        "openbsd",
+        "netbsd"
+      ],
+      "check": "Incident response preparedness",
+      "status": "NOT_EVALUATED",
+      "observed": null,
+      "expected": "Isolation, evidence preservation, recovery processes tested",
+      "evidence": "Read-only system observations and applicable policy documentation",
+      "limitations": "Document existence does not establish readiness",
+      "applicability": "if_feature_present",
+      "inspection": {
+        "strategy": "review exercises and restoration records",
+        "read_only": true,
+        "commands_are_examples_not_validated_for_target": true
+      },
+      "decision_rule": "Never infer PASS from presence, a count, or unverified defaults; compare observations with selected versioned policy and workload context. Missing access/tool => UNKNOWN; absent applicable feature => NOT_APPLICABLE only after confirmation.",
+      "risk": "medium",
+      "references": []
+    }
+  ],
+  "evaluation_contract": {
+    "required_runtime_fields": [
+      "target_os",
+      "target_release",
+      "policy_id",
+      "policy_revision",
+      "time_observed",
+      "effective_privileges",
+      "evidence",
+      "status",
+      "rationale"
+    ],
+    "execution": "External, separately approved collector applies only applicable read-only methods and records evidence; this JSON performs no checks.",
+    "policy_binding": "Bind each applicable check to an explicit, versioned source and expected value or leave UNKNOWN/REVIEW.",
+    "status_mapping": "No PASS without verified evidence and an explicit expected criterion; no FAIL without confirmed non-compliance; no simulated observations."
+  },
+  "coverage_limits": "Broad but not exhaustive of all Unix variants, workload-specific risks, policy versions, vulnerabilities, and regulatory frameworks. Rule methods require platform testing."
+}

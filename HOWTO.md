@@ -20,3 +20,5 @@ Commands:
 8. `sudo ufw status verbose`
 9. `sudo apt-mark hold openssl`
 10. `sudo systemctl reload ssh`
+
+You can also go through the howto's in the json's and ensure the ai outputs workable solutions for your workloads using chatGPT as well. 

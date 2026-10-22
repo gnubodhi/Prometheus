@@ -260,6 +260,13 @@
       "verification": "check Bash syntax, review every redirection and command for side effects, test success and failure branches, validate field parsing, and ensure missing or inaccessible evidence produces UNKNOWN rather than PASS"
     },
     {
+      "problem": "Select appropriate firewall rules without combining incompatible or unnecessary examples",
+      "native_first": "establish the machine role, existing firewall state, required inbound services and trusted source networks; use documented default-policy commands and add only necessary exceptions",
+      "avoid_by_default": "treating example firewall rules as mandatory, confusing default policies with individual allow or deny rules, exposing management APIs, opening database ports globally or substituting rate limiting for source restrictions",
+      "exceptions": "inbound exceptions are appropriate when a real service requires network access and its authorised clients and security controls are established",
+      "verification": "validate UFW syntax against documentation, distinguish inbound from outbound traffic, assess rule precedence and verify that the resulting ruleset permits only required traffic"
+    },
+    {
       "id": "handbrake_theora_encoder_contribution_case_study",
       "title": "Extend HandBrake with a supported existing codec: hypothetical Theora encoder integration",
       "status": "instructional_scenario_not_a_completed_implementation",

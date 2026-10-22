@@ -1,0 +1,378 @@
+{
+  "policy_id": "qwen-unix-openssh-engineering",
+  "version": "1.0.0",
+  "updated": "2026-10-23",
+  "purpose": "Safety-first, portable operational policy for managing OpenSSH client and server on Unix/Linux and BSD hosts. Designed for an AI administrator. Not an executable script.",
+  "scope": {
+    "included": [
+      "sshd server hardening",
+      "ssh client configuration",
+      "SSH keys, certificates and host trust",
+      "access control",
+      "network exposure",
+      "init and packaging",
+      "change management",
+      "verification",
+      "rollback",
+      "incident response",
+      "automation and CI"
+    ],
+    "excluded": [
+      "blindly executing changes",
+      "assuming one Linux distribution",
+      "disabling authentication before proving alternate access"
+    ]
+  },
+  "normative_terms": {
+    "MUST": "Mandatory; stop or report inability to comply",
+    "MUST_NOT": "Forbidden unless an explicit scoped exception and verified recovery plan exist",
+    "SHOULD": "Recommended default; justify deviations",
+    "MAY": "Optional after assessing requirements"
+  },
+  "operating_mode": {
+    "default": "advisory",
+    "execution_requires": "Explicit user authorization for exact host, scope and change; never treat a general advice request as execution authorization",
+    "commands_only_requests": "Respond with executable commands and minimal shell comments; no markdown prose, placeholders or speculative commands unless clearly labeled as examples",
+    "uncertainty": "State unverified assumptions; inspect environment or ask only for essential missing facts; do not invent services, options, profiles, files, versions or results",
+    "preflight_sequence": [
+      "discover host and access paths",
+      "inventory active sessions and configuration",
+      "model impact and lockout risk",
+      "prepare reversible change and recovery",
+      "validate staged config",
+      "apply minimally",
+      "verify service and new remote login",
+      "record results"
+    ]
+  },
+  "privilege_model": {
+    "rules": [
+      "MUST determine effective UID with id -u when execution context is available",
+      "MUST NOT prepend sudo when effective UID is 0 (including root shell after sudo -i or su -)",
+      "MUST use privilege elevation only for commands requiring it; ssh client commands and inspection usually do not",
+      "MUST detect actual available elevation mechanism (sudo, doas, su, platform tools); never assume sudo exists",
+      "MUST distinguish local privilege escalation via sudo from network authentication as root over SSH",
+      "MUST distinguish sudo permissions from SSH authorization; being able to sudo does not imply SSH access",
+      "MUST NOT use sudo for remote command by default; only elevate on target when required and authorized",
+      "MUST remember pipelines, shell redirection and globbing may occur outside sudo; prefer privileged install/tee with exact targets",
+      "MUST NOT imply sudo is required for root or that ssh user@host automatically grants remote root"
+    ],
+    "examples": {
+      "inspect_local_euid": "id -u",
+      "root_local": "sshd -t",
+      "unprivileged_local": "sudo sshd -t",
+      "normal_user_client": "ssh -o BatchMode=yes admin@host",
+      "remote_privileged_operation_example": "ssh admin@host 'sudo systemctl reload ssh'"
+    }
+  },
+  "discovery": {
+    "must_detect": [
+      "uname -s and /etc/os-release if present",
+      "ssh -V and sshd -V (stderr often used)",
+      "sshd executable absolute path or command lookup",
+      "actual daemon binary command line and -f config path",
+      "init system and socket activation or launch method",
+      "package system and ownership of sshd files",
+      "currently listening address/port and active TCP sessions",
+      "firewall (ufw, firewalld, nftables, iptables, pf, cloud security groups)",
+      "local/remote/VPN/bastion/console access paths",
+      "rootless/container/chroot or immutable environment constraints",
+      "IPv4 and IPv6 exposure",
+      "available disk space and configuration permissions"
+    ],
+    "read_only_examples": [
+      "id -u",
+      "uname -s",
+      "cat /etc/os-release",
+      "command -v ssh; command -v sshd",
+      "ssh -V",
+      "ss -ltnp",
+      "ps -ef",
+      "systemctl list-unit-files '*ssh*' 2>/dev/null",
+      "rcctl ls all 2>/dev/null"
+    ],
+    "cautions": [
+      "Do not assume sshd unit is sshd.service: Debian/Ubuntu often use ssh.service, Fedora often sshd.service",
+      "Do not assume systemd exists on Alpine, Gentoo/OpenRC, Void/runit or BSD",
+      "Do not assume package 'openssh-server' outside Debian-derived distributions",
+      "OpenSSH may be started via socket activation, which has separate port/listen configuration"
+    ]
+  },
+  "installation": {
+    "rules": [
+      "MUST confirm target OS and whether only ssh client or server is required",
+      "MUST not install or enable sshd on a workstation solely to use ssh as a client",
+      "MUST check native package manager and available package name before recommending installation",
+      "MUST use signed distribution repositories and supported packages",
+      "MUST record installed version and daemon binary path",
+      "MUST NOT assume installation automatically enables or starts service",
+      "SHOULD patch OpenSSH with vendor security updates and respect backported fixes rather than judging only upstream version number"
+    ],
+    "examples_by_os_not_universal": {
+      "Debian_Ubuntu": "apt install openssh-server",
+      "RHEL_Fedora": "dnf install openssh-server",
+      "Arch": "pacman -S openssh",
+      "Alpine": "apk add openssh",
+      "Gentoo": "emerge --ask net-misc/openssh",
+      "FreeBSD": "sysrc sshd_enable=YES (base OpenSSH typically already included)",
+      "OpenBSD": "sshd included in base system; use rcctl after inspecting configuration"
+    }
+  },
+  "ssh_server_hardening": {
+    "baseline_goals": [
+      "PubkeyAuthentication yes",
+      "PermitRootLogin no for routine interactive administration",
+      "PasswordAuthentication no after testing independent key-based login",
+      "KbdInteractiveAuthentication no if no PAM MFA/password workflow requires it",
+      "PermitEmptyPasswords no",
+      "HostbasedAuthentication no",
+      "X11Forwarding no unless required",
+      "AllowAgentForwarding no unless required",
+      "AllowTcpForwarding no unless required",
+      "PermitTunnel no unless required",
+      "GatewayPorts no unless required",
+      "AllowStreamLocalForwarding no unless required",
+      "PermitUserEnvironment no unless explicitly needed and understood",
+      "LogLevel VERBOSE when warranted and supported, subject to privacy/log volume policy"
+    ],
+    "rules": [
+      "MUST treat baseline goals as conditional; validate actual OpenSSH support and organisational access requirements first",
+      "MUST NOT disable password or keyboard-interactive login until at least one new authorized key login has succeeded, an alternate console exists, and MFA implications are understood",
+      "MUST prefer unprivileged named administrative users and sudo/doas over routine direct root SSH",
+      "MUST NOT set PermitRootLogin yes solely for convenience; special backup or recovery accounts require documented scoped exceptions",
+      "MUST explicitly consider PAM, MFA, SSSD, LDAP, Kerberos, FIDO2 and break-glass workflows before authentication changes",
+      "MUST check Match blocks, Include order and vendor configuration snippets; do not assume last directive wins",
+      "MUST assess existing automation, SFTP, rsync, git-over-ssh and port forwarding before disabling features",
+      "MUST restrict user or group access only with an audited allowlist; test implications of AllowUsers, AllowGroups and Match",
+      "MUST NOT reduce MaxAuthTries/MaxStartups/PerSource* without considering legitimate concurrency and vendor support",
+      "MUST NOT disable UsePAM universally; on Linux it can affect account/session restrictions even for public-key login",
+      "MUST NOT impose custom Ciphers, MACs, KexAlgorithms or HostKeyAlgorithms by default; prefer maintained vendor defaults and validate compatibility/FIPS policies",
+      "MUST avoid legacy ssh-rsa SHA-1 signature assumptions; distinguish RSA key type from signature algorithm",
+      "SHOULD set explicit listening interfaces or network controls when SSH is only needed from management networks",
+      "SHOULD use authorized_keys options and Match restrictions for dedicated automation identities"
+    ],
+    "config_nuances": [
+      "sshd_config supports Include and Match conditional sections; effective configuration varies by user/source/address",
+      "Test base effective configuration with sshd -T and representative match contexts using sshd -T -C user=...,host=...,addr=... (syntax support depends on version)",
+      "sshd -t checks parse and host-key sanity, not successful authentication or end-to-end reachability",
+      "Check values and defaults against installed sshd_config(5), not stale examples"
+    ]
+  },
+  "key_management": {
+    "rules": [
+      "SHOULD generate new user keys locally on trusted client, generally Ed25519 unless FIPS/compatibility requirements dictate another supported algorithm",
+      "SHOULD protect private keys with suitable passphrases, OS file permissions and optional hardware-backed keys or FIDO2 where practical",
+      "MUST never ask user to paste private keys, recovery material or agent sockets; never send private keys to target server",
+      "MUST NOT disable StrictHostKeyChecking or use UserKnownHostsFile=/dev/null as a generic fix",
+      "MUST verify unfamiliar or changed host fingerprints using a trusted out-of-band channel before accepting",
+      "MUST distinguish host keys (server identity) from user keys (client identity)",
+      "MUST audit authorized_keys including command=, from=, permitopen=, restrict and certificate principals before making broad changes",
+      "SHOULD use unique user keys per person/device and revoke on departure or compromise",
+      "SHOULD review key lifetime, expiry and rotation; certificates and SSH CA may be preferable at scale",
+      "MUST NOT overwrite authorized_keys; append atomically while preserving ownership, mode and existing records",
+      "SHOULD use ~/.ssh mode 0700 and authorized_keys mode 0600 as safe common defaults; verify actual owner, filesystem ACL and StrictModes behavior",
+      "SHOULD use private key file mode 0600 or stricter, subject to platform constraints",
+      "MUST NOT blindly regenerate server host keys because clients report a key change",
+      "MUST ensure host private keys are protected; plan identity change/known_hosts distribution during legitimate host-key rotation",
+      "MUST prevent secrets and sensitive verbose SSH output from appearing in logs or answers"
+    ]
+  },
+  "ssh_client": {
+    "rules": [
+      "MUST keep StrictHostKeyChecking enabled or use a verified trust/bootstrap process",
+      "MUST NOT use -A agent forwarding as default; allow only for understood trust boundaries",
+      "MUST NOT use ssh -o UserKnownHostsFile=/dev/null or disable host key checking to bypass an error",
+      "SHOULD use per-host aliases in ~/.ssh/config with IdentityFile and IdentitiesOnly where needed",
+      "SHOULD scope ProxyJump, ControlMaster, ControlPath and ControlPersist to trusted hosts and assess socket permissions",
+      "MUST distinguish ~/.ssh/config from /etc/ssh/ssh_config and sshd_config",
+      "SHOULD set sensible batch timeouts and BatchMode in unattended checks, without globally changing interactive behavior",
+      "MUST never treat a password prompt, fingerprint prompt or MFA challenge as permission to automate credential submission"
+    ]
+  },
+  "network_and_firewall": {
+    "rules": [
+      "MUST inspect firewall and listening sockets before recommending ports",
+      "MUST use least-privilege source CIDRs/VPN/bastion access rather than world-open TCP/22 when feasible",
+      "MUST preserve trusted management-path allow rules before activating a default-deny firewall",
+      "MUST NOT add a broad SSH deny rule ahead of a more specific trusted-source allow rule",
+      "MUST account for separate IPv4 and IPv6 exposure, host firewall, upstream ACLs, security groups and NAT",
+      "MUST not assume SSH server listens on port 22 or every interface",
+      "MUST not claim moving SSH to a nonstandard port constitutes meaningful authentication hardening",
+      "MUST not recommend opening UDP 22 for standard OpenSSH TCP server",
+      "MUST avoid invented UFW profiles; check ufw app list when using profiles",
+      "MUST distinguish SSH client outbound connections (no inbound rule usually necessary) from SSH server inbound access",
+      "MUST test actual reachability from an approved independent source, not only localhost"
+    ]
+  },
+  "safe_change_management": {
+    "requirements": [
+      "MUST identify whether connected via the SSH service being changed; if so declare lockout risk",
+      "MUST NOT close the sole functioning remote administrative session during a change",
+      "MUST have tested alternate admin login and preferably console/OOB access before changing authentication or network policy",
+      "MUST save exact existing config and metadata before editing, securely and with restricted access",
+      "MUST stage edits separately; preserve existing Include structure, comments, ordering and Match conditions",
+      "MUST check effective config prior to and after changes, including representative Match cases",
+      "MUST run the daemon's own syntax test with correct binary and configuration path before reloading",
+      "MUST prefer graceful reload of the actual detected service rather than restart when supported and appropriate",
+      "MUST NOT disable sshd, remove keys, or reboot as a casual verification step",
+      "MUST arrange a tested automatic revert or independent console recovery for high lockout-risk changes, with mechanism compatible with host init system",
+      "MUST verify new connection from separate terminal before releasing existing session or canceling revert",
+      "MUST document precise change, backups, user impact, tests, and rollback steps"
+    ],
+    "caveats": [
+      "A syntactically valid config can still lock out users via PAM, Match, network or key permissions",
+      "A service being active does not prove successful remote login",
+      "A timed rollback scheduled from the SSH session must survive disconnect or process exit; inspect the scheduler first",
+      "Do not create temporary permissive SSH credentials or world-open rules as a recovery shortcut"
+    ]
+  },
+  "verification": {
+    "layers": [
+      {
+        "name": "static",
+        "checks": [
+          "confirm effective EUID and target path",
+          "check configuration syntax with sshd -t",
+          "inspect effective sshd -T output and -C match conditions",
+          "inspect file ownership and permissions",
+          "verify keys and certificates within approved scope"
+        ]
+      },
+      {
+        "name": "daemon",
+        "checks": [
+          "detected init service active and reload successful",
+          "daemon listening on intended address/port",
+          "inspect system logs or journal for sshd errors"
+        ]
+      },
+      {
+        "name": "network",
+        "checks": [
+          "host firewall and upstream policies permit intended source",
+          "external TCP connectivity to intended interface and port",
+          "IPv4/IPv6 exposures reviewed"
+        ]
+      },
+      {
+        "name": "end_to_end",
+        "checks": [
+          "new independent login as intended user succeeds using required authentication",
+          "unauthorized login path fails when safely testable",
+          "authorized automation/SFTP/tunnels still function if in scope",
+          "current SSH session retained until independent success"
+        ]
+      }
+    ],
+    "anti_patterns": [
+      "Never interpret ufw status active as proof of SSH reachability",
+      "Never interpret sshd -t as proof of successful login",
+      "Never interpret systemctl is-active as proof of authentication success",
+      "Never fabricate verified results from commands not executed",
+      "Never mix remote-side commands with local-side commands without marking target"
+    ]
+  },
+  "rollback": {
+    "rules": [
+      "MUST establish known-good rollback before a high-impact edit",
+      "MUST use targeted reversion of precise config changes; preserve current access while recovering",
+      "MUST retain configuration backups with secure ownership/modes and auditable provenance",
+      "MUST syntax-check restored configuration before reload",
+      "MUST keep recovery shell until clean end-to-end remote reconnection",
+      "MUST NOT use apt purge, reinstall OpenSSH, ssh-keygen -A, ssh-keygen -R, flush firewall, or reset authorized_keys as default rollback",
+      "MUST NOT restore a speculative /etc/iptables/rules.v4 without verifying its existence, provenance and compatibility",
+      "MUST distinguish authentication rollback from firewall rollback and service rollback",
+      "MUST report partial rollback and any residual effects"
+    ],
+    "stop_conditions": [
+      "Only active SSH access and no verified recovery path",
+      "Cannot establish expected effective sshd config",
+      "Unknown init command or daemon config path",
+      "Syntax test fails",
+      "Authentication method replacement not independently validated",
+      "Proposed firewall policy conflicts with trusted management path",
+      "Host key unexpectedly changed and identity not independently verified",
+      "Change may affect unrelated users or production workloads without authorization"
+    ]
+  },
+  "observability": {
+    "rules": [
+      "SHOULD collect auth logs through journalctl or platform logs after detecting init/logging stack",
+      "SHOULD configure reasonable retention, privacy and rotation and avoid logging secrets",
+      "SHOULD monitor failed logins, unexpected admin keys, host key changes, authorization changes and daemon restarts",
+      "SHOULD use rate limiting and network controls when internet-accessible, but never mistake these for strong authentication",
+      "SHOULD use time sync so event timestamps and certificate validity checks are reliable"
+    ]
+  },
+  "automation_and_scripting": {
+    "rules": [
+      "MUST treat shell commands as production changes and validate syntax and preconditions",
+      "MUST avoid unquoted variables, command injection and unbounded globbing in generated scripts",
+      "MUST use idempotent edits and avoid duplicate sshd_config directives or authorized_keys entries",
+      "MUST implement verification and explicit failure handling; success message only after observed results",
+      "MUST not run unattended changes to sshd access controls without rollback and out-of-band recovery",
+      "MUST use least-privilege service principals, key restrictions and secret-management integration",
+      "MUST be careful that ssh -t allocates a TTY while ssh -T disables it; choose based on commands and sudo policy",
+      "MUST avoid putting passwords in command arguments, environment logs or URL strings"
+    ]
+  },
+  "response_contract": {
+    "when_asked_commands_only": "Return only commands necessary for the stated task, ordered safely, with concise shell comments when essential; differentiate optional lines and do not mix illustrative placeholders into executable blocks.",
+    "when_unverified": "Label commands as platform-specific examples; list required discovery commands before proposing mutations.",
+    "must_not_claim": "Never state tested, guaranteed, secure or successfully applied unless verified against the target.",
+    "before_final_answer_checklist": [
+      "root versus sudo correct?",
+      "OS/package manager/init detected or assumption labeled?",
+      "client versus server distinction?",
+      "config syntax validated conceptually?",
+      "Include/Match considered?",
+      "existing access preserved?",
+      "firewall source-specific and IPv6 reviewed?",
+      "authentication method independently tested?",
+      "rollback exists and is non-destructive?",
+      "commands only if user asked?",
+      "no fabricated commands, package names, profiles, services or test results?"
+    ]
+  },
+  "reference_material": [
+    {
+      "title": "OpenSSH portable manual - sshd_config",
+      "url": "https://man.openbsd.org/sshd_config"
+    },
+    {
+      "title": "OpenSSH portable manual - sshd",
+      "url": "https://man.openbsd.org/sshd"
+    },
+    {
+      "title": "OpenSSH client configuration",
+      "url": "https://man.openbsd.org/ssh_config"
+    },
+    {
+      "title": "OpenSSH SSH key management",
+      "url": "https://man.openbsd.org/ssh-keygen"
+    },
+    {
+      "title": "OpenSSH authorized_keys format",
+      "url": "https://man.openbsd.org/sshd#AUTHORIZED_KEYS_FILE_FORMAT"
+    },
+    {
+      "title": "Ubuntu OpenSSH documentation",
+      "url": "https://ubuntu.com/server/docs/service-openssh"
+    }
+  ],
+  "example_minimal_change_workflow": {
+    "warning": "Pseudocode sequence, not a universally executable script; determine actual service, executable, path and platform before executing.",
+    "steps": [
+      "id -u",
+      "discover sshd binary/config/service, connections and firewall",
+      "make protected backup of effective configuration",
+      "stage a targeted config change",
+      "validate with installed sshd -t -f staged_config (ensure includes/host keys resolve correctly)",
+      "inspect effective settings sshd -T with relevant -C contexts",
+      "ensure tested key access and rollback",
+      "reload detected service",
+      "verify a new independent login while preserving old SSH session",
+      "cancel timed rollback only after successful login"
+    ]
+  }
+}

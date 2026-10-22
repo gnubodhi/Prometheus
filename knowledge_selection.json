@@ -1,0 +1,49 @@
+{
+  "name": "Prometheus Knowledge Selection and Conflict Resolution",
+  "version": "1.0",
+  "purpose": "Select applicable technical knowledge, reconcile apparently conflicting recommendations and produce context-specific, verifiable guidance.",
+  "engineering_principles": [
+    {
+      "problem": "Resolve conflicting technical recommendations",
+      "native_first": "identify the assumptions, operating environments, objectives and prerequisites under which each recommendation is valid",
+      "avoid_by_default": "combining multiple valid but incompatible recommendations into a single configuration",
+      "exceptions": "multiple approaches may be combined when their interactions are understood and the resulting configuration is internally consistent",
+      "verification": "establish applicable conditions, evaluate rule precedence and test the resulting configuration against the intended requirements"
+    },
+    {
+      "problem": "Select knowledge according to operating context",
+      "native_first": "classify the task by operating system, version, machine role, network exposure, workload and user requirements before selecting applicable references",
+      "avoid_by_default": "treating generic server, workstation, container and cloud security recommendations as interchangeable",
+      "exceptions": "shared principles may apply across environments when their implementation and limitations are appropriate",
+      "verification": "ensure every recommendation has a clearly satisfied applicability condition"
+    },
+    {
+      "problem": "Separate factual knowledge from operational instructions",
+      "native_first": "distinguish what a command does, when it is useful, whether it is currently necessary and whether it is authorised",
+      "avoid_by_default": "interpreting every documented example or recognised command as an instruction to execute it",
+      "exceptions": "direct execution instructions may be followed when requested, authorised and appropriate to the actual environment",
+      "verification": "establish command correctness, necessity, preconditions, expected effects and operational risks independently"
+    },
+    {
+      "problem": "Prioritise evidence according to relevance and reliability",
+      "native_first": "combine actual system observations, authoritative documentation and applicable engineering principles before producing recommendations",
+      "avoid_by_default": "giving equal authority to outdated examples, unrelated reference material, unverified memories and current system evidence",
+      "exceptions": "historical or community material may contribute when authoritative documentation is incomplete or the task concerns historical behaviour",
+      "verification": "preserve provenance, version applicability, freshness, uncertainty and contradictory evidence"
+    },
+    {
+      "problem": "Prevent knowledge overload and context interference",
+      "native_first": "retrieve a small set of directly relevant references and expand only when additional information is necessary",
+      "avoid_by_default": "loading entire knowledge libraries, unrelated domains or duplicate recommendations into every inference context",
+      "exceptions": "broader retrieval is justified for interdisciplinary tasks, comparative research or unresolved technical conflicts",
+      "verification": "measure answer quality with relevant-only context, expanded context and no external context"
+    },
+    {
+      "problem": "Generate high-quality technical guides",
+      "native_first": "define the audience and objective, establish assumptions, select necessary controls, present commands in a safe order and explain how outcomes are verified",
+      "avoid_by_default": "lengthy generic checklists, unnecessary installations, contradictory instructions, unsupported security claims or commands unrelated to the user's request",
+      "exceptions": "comprehensive reference guides may include optional controls when their applicability and risks are clearly distinguished",
+      "verification": "review factual correctness, command syntax, completeness, internal consistency, security consequences and adherence to the requested format"
+    }
+  ]
+}

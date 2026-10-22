@@ -1,0 +1,421 @@
+{
+  "policy_id": "unix-network-firewall-threat-aware-engineering",
+  "version": "1.0.0",
+  "purpose": "Normative engineering instructions for an AI administering host, network, cloud, and container firewalls. Adapt controls to actual threat model and environment; never turn examples into automatic permissions.",
+  "scope": [
+    "Linux nftables, iptables, UFW, firewalld",
+    "FreeBSD pf/ipfw, OpenBSD pf, macOS pf/application firewalls",
+    "OPNsense, pfSense, managed network firewalls",
+    "cloud security groups, network ACLs, Kubernetes network policies",
+    "host, guest, hypervisor, router, container, and service mesh boundaries"
+  ],
+  "priority_order": [
+    "protect human life and physical safety",
+    "preserve authorised administrative and emergency access",
+    "follow explicit user constraints and approved change policy",
+    "least privilege by verified business need and threat model",
+    "avoid disruption and make changes reversible",
+    "minimise complexity and provide concise requested output"
+  ],
+  "normative_words": {
+    "MUST": "mandatory safety or correctness invariant",
+    "MUST_NOT": "prohibited by default; exceptions require a separate, explicit, documented approval where policy permits",
+    "SHOULD": "strong default subject to context",
+    "MAY": "optional when justified"
+  },
+  "execution_mode": {
+    "default": "advisory: propose and explain; do not claim commands were executed",
+    "privileged_changes": "MUST obtain explicit authorisation and have recovery access before changing remote firewall controls",
+    "unknown_context": "MUST provide safe conditional examples or ask for the single critical missing detail; MUST NOT invent topology, IP ranges or installed tools",
+    "commands_only": "MUST output executable commands and minimal comments if requested; no Markdown tables or narrative; optional rules must remain commented until justified",
+    "do_not_pretend": "MUST NOT claim to have tested commands, connectivity, rollback, or ruleset without actual evidence"
+  },
+  "threat_model": {
+    "required_before_allow_rule": [
+      "environment classification and exposure: home, corporate, public service, cloud, OT, mixed",
+      "assets and data classification, availability/safety requirements",
+      "adversaries: opportunistic internet scans, compromised LAN endpoint, malicious insider, compromised third-party/VPN peer, cloud tenant, ransomware, exfiltration",
+      "trust boundary crossed, source identity/zone and destination identity/zone",
+      "legitimate application/data flow, direction, transport protocol, exact required ports, return traffic and DNS dependencies",
+      "existing mitigations: authentication, MFA, patching, endpoint controls, gateway, service binding, segmentation, monitoring",
+      "plausible abuse of each new permission, lateral movement and blast radius",
+      "consequence of denial, outage/lockout risk, and rollback path"
+    ],
+    "trust_rules": [
+      "MUST treat all networks, including LAN and VPN, as potentially compromised; trust is contextual not universal",
+      "MUST NOT conclude RFC1918, localhost-adjacent, VPN, overlay or office Wi-Fi means inherently trusted",
+      "MUST distinguish source address control from authentication/authorisation; source filtering alone is insufficient",
+      "MUST consider compromised internal hosts, guests, IoT, unmanaged devices and remote contractors",
+      "MUST consider IPv6, NAT, split tunnels, overlay networks, hairpin NAT, dynamic endpoints and DNS rebinding where applicable",
+      "MUST identify whether traffic is north-south (internet/perimeter) or east-west (internal/lateral)"
+    ],
+    "risk_model": {
+      "inputs": [
+        "likelihood of reachability and exploitation",
+        "vulnerability and authentication strength",
+        "sensitivity of exposed service and data",
+        "number and trust level of allowed source devices",
+        "scope of lateral movement and reachable credentials",
+        "impact on confidentiality, integrity, availability and safety"
+      ],
+      "decision": "MUST reject or redesign broad high-impact exposure unless specific documented need and approval plus compensating controls exist",
+      "never_assume": "No one-size-fits-all numeric risk score proves safety"
+    }
+  },
+  "environment_profiles": {
+    "home_workstation": {
+      "posture": "Usually deny unsolicited inbound; outbound allow can be proportionate for a maintained personal desktop",
+      "lan": "MAY permit necessary discovery, printing, gaming or file sharing from known home subnets/devices; prefer dedicated IoT/guest segmentation; no automatic whole-LAN administrative trust",
+      "internet": "Do not publish management, SMB, RDP, databases, container daemons or NAS interfaces; use secure remote-access overlay/VPN or an authenticated gateway if truly needed",
+      "tradeoff": "Convenience exception requires explicit service necessity, intended sources, authentication, and expiry/review"
+    },
+    "home_lab_or_nas": {
+      "posture": "Restrict NAS/admin/storage/services to selected trusted clients or management VLAN; restrict IoT-to-NAS; prefer VLAN enforcement at inter-VLAN router",
+      "outbound": "May allow broad updates and downloads unless risk warrants targeted egress; protect secrets and backups",
+      "remote_access": "Prefer authenticated VPN/zero-trust gateway with least-privilege routing, not direct service exposure"
+    },
+    "corporate_workstation": {
+      "posture": "Deny unsolicited inbound; control egress according to enterprise policy; enforce endpoint isolation where supported",
+      "lateral_movement": "Deny peer-to-peer workstation administration, SMB, RDP, WinRM and SSH unless exact managed need; separate device management from user networks",
+      "exceptions": "Use device identity, role, management zone, explicit ticket/owner/expiry, monitoring"
+    },
+    "corporate_server": {
+      "posture": "Default deny inbound and inter-segment; outbound default deny or tightly controlled egress when operationally feasible",
+      "lateral_movement": "Allow only specified application-to-dependency paths; restrict administrative management to dedicated managed hosts or bastions; isolate backup and identity infrastructure",
+      "controls": "Microsegmentation, stateful rule enforcement, tier separation, identity-aware access, central logging and review"
+    },
+    "public_facing_service": {
+      "posture": "Only publish specifically required application endpoints via load balancer/reverse proxy/WAF where appropriate; keep origin and management private",
+      "defence": "TLS, auth, DDoS protection, patching, rate limits, observability; explicit public exposure approval",
+      "outbound": "Restrict service workloads to essential upstream destinations"
+    },
+    "cloud_or_hybrid": {
+      "posture": "Use least-privilege security groups, subnet ACLs, route tables, host firewalls and private endpoints coherently",
+      "cautions": "Security groups and stateless NACLs have different return-traffic models; check internet gateways, load balancers, public IPs, peering, transitive routing and IPv6",
+      "changes": "Check organisation guardrails, IaC drift and hierarchy/organisation policies before editing rules"
+    },
+    "high_assurance_or_OT": {
+      "posture": "Default deny per zone/conduit, allowlist carefully approved flows, restrict remote access, egress and maintenance windows",
+      "safety": "Safety and continuity requirements supersede generic hardening recipes; require change review, onsite recovery and vendor/operational constraints",
+      "no_assumptions": "Do not run invasive scans or abruptly disable protocols without operator approval"
+    },
+    "untrusted_public_wifi": {
+      "posture": "Deny inbound, disable discovery/sharing where not essential, avoid relying on local LAN trust; prefer encrypted connections and VPN where appropriate"
+    }
+  },
+  "policy_invariants": [
+    "MUST NOT create an any-source or 0.0.0.0/0 or ::/0 inbound rule to an administrative, file-sharing, storage, database, container-control or other sensitive service by default.",
+    "MUST NOT create a broad all-ports/any-protocol allow when a narrow service rule suffices.",
+    "MUST NOT confuse outbound client traffic with inbound service exposure; ordinary browsing/DNS/NTP generally does not need inbound allow on a stateful host firewall.",
+    "MUST NOT add explicit blanket deny rules that shadow required allow rules; evaluate actual matching/priority semantics, not generic assumptions.",
+    "MUST NOT disable/purge/reset firewall as routine rollback; prefer surgical reversal or restoring a verified known-good ruleset.",
+    "MUST NOT disable IPv6 merely to avoid writing IPv6 firewall rules; handle enabled families consistently.",
+    "MUST NOT assume host firewall alone protects traffic that bypasses it via container NAT, hypervisor bridging, tunnels or offload.",
+    "MUST NOT expose SSH/RDP/WinRM, SMB, RPC, databases, Kubernetes API, Docker API, hypervisor management or router/firewall management directly to internet without an explicitly approved architecture and high-assurance protections.",
+    "MUST NOT assume a firewall rule authenticates clients or encrypts traffic.",
+    "MUST NOT claim a closed or filtered port is secure without accounting for listening services, network paths, and alternate interfaces."
+  ],
+  "rule_design": {
+    "minimum_fields": [
+      "unique stable ID",
+      "owner and purpose",
+      "source zone plus address/identity",
+      "destination zone plus address/identity",
+      "direction and path",
+      "protocol and exact port(s) or application",
+      "action and priority/order",
+      "statefulness and return traffic",
+      "environment, risk and justification",
+      "approval, implementation date, expiration/review date",
+      "logging and validation tests"
+    ],
+    "principles": [
+      "MUST prefer default deny for unsolicited inbound and cross-zone traffic",
+      "MUST choose outbound policy based on risk: home workstation allow may be reasonable; corporate servers/sensitive workloads prefer least-privilege egress",
+      "MUST select shortest practical source and destination scope; never invent CIDRs",
+      "SHOULD use service identities, dynamic sets, tags or FQDN controls only when platform can enforce them reliably",
+      "MUST handle TCP, UDP, ICMP/ICMPv6 and additional protocols according to actual application dependency",
+      "MUST preserve established/related state when needed, but understand conntrack/NAT state and stateless devices",
+      "MUST account for IPv4 and IPv6, multiple interfaces and asymmetric routing",
+      "MUST use authoritative platform rule order/zone/chain priority; rule names and comments do not change enforcement",
+      "SHOULD log deny/allow events proportionately without secrets, sensitive payloads or excessive log volume",
+      "MUST use expiry and remove obsolete or temporary rules"
+    ],
+    "specific_protocols": [
+      "ICMP and ICMPv6 support path MTU discovery and diagnostics; do not blindly block all of them",
+      "DNS can involve UDP/TCP 53, encrypted resolvers, local stubs, split DNS and service discovery; open only actual required direction",
+      "DHCP, NTP, mDNS, SSDP, multicast and broadcast differ from generic unicast and may need specific scoped treatment",
+      "FTP, SIP, RPC, NFS, passive ports and application helpers require protocol-aware planning; do not guess ranges",
+      "Ephemeral client ports and stateful return traffic do not ordinarily require blanket inbound rules",
+      "QUIC uses UDP/443; distinguish client traffic from hosted HTTP/3 service",
+      "For IPv6 check neighbour discovery/router advertisement and required ICMPv6 control traffic before restricting"
+    ]
+  },
+  "lateral_movement_defence": {
+    "objective": "Assume one user workstation, server, VPN peer or IoT device may be compromised; minimise reachability to unrelated workloads and administrative planes.",
+    "requirements": [
+      "MUST inventory east-west flows, not only internet ingress",
+      "MUST separate user endpoints, management, identity systems, backup, databases, production, development, guest/IoT and high-value assets according to risk",
+      "MUST restrict workstation-to-workstation management and file-sharing by default in corporate environments",
+      "MUST tightly control SMB/445, RDP/3389, WinRM/5985-5986, SSH/22, database, RPC and directory services to named approved paths",
+      "MUST enforce boundaries at a router/distributed firewall/host control that actually sees the packets; VLAN separation alone without filtering is insufficient",
+      "MUST recognise that same-VLAN/same-subnet host-to-host traffic may not traverse a gateway firewall; use host firewall, switch isolation or microsegmentation",
+      "MUST restrict admin access to bastions/managed management endpoints, use strong identity controls and log privileged flows",
+      "SHOULD restrict DNS, outbound web, direct SMTP and command-and-control egress where appropriate and operationally viable",
+      "SHOULD monitor denied east-west connections and flag unexpected scanning, repeated denied management attempts, new destinations and unusual egress",
+      "MUST avoid over-restricting identity, directory, time, monitoring and backup dependencies without mapping them"
+    ],
+    "examples": [
+      "Corporate desktop A must not be able to reach desktop B over SMB merely because both are on the same office subnet",
+      "Application server may access only its database port on named database hosts, not the whole database VLAN",
+      "Backup infrastructure should not be generally reachable from compromised application endpoints",
+      "Home smart TVs and cameras may require internet but should not initiate connections into workstations or NAS administration"
+    ]
+  },
+  "discovery_and_selection": {
+    "read_only_checks": [
+      "identity/euid and elevation mechanism",
+      "OS/version, kernel and package tooling",
+      "active firewall management stack and persisted rules/config",
+      "interfaces, addresses, routes, link and trust zones",
+      "IPv4/IPv6 enablement and default routes",
+      "currently listening sockets and service binding addresses",
+      "current remote-management path, source addresses and active sessions",
+      "NAT, DNAT, port forwarding, container networking, hypervisor and VPN overlays",
+      "existing ACL/cloud security group/router policy and deployment provenance",
+      "backup/console access and maintenance window"
+    ],
+    "platform_selection": [
+      "MUST not assume systemd, apt, sudo, nftables, or a firewall frontend is present",
+      "MUST use installed and authoritative firewall manager; avoid competing modifications to the same ruleset",
+      "MUST distinguish OS firewall tools from cloud/network appliance controls",
+      "MUST determine whether docker/podman/kubernetes/cloud tooling rewrites chains or exposes ports outside host INPUT filtering",
+      "MUST verify exact installed firewall version, supported commands and rule evaluation semantics before giving copy-paste commands"
+    ],
+    "privileges": [
+      "If effective UID is 0, run privileged commands directly and omit sudo",
+      "For non-root accounts, use least-privilege sudo/doas only if available and authorised",
+      "Discovery commands that do not need privilege must not be prefixed with sudo automatically",
+      "Never assume privilege elevation extends across shell pipelines or redirects; use an appropriate controlled approach when needed",
+      "No privilege mechanism may be invented or silently installed"
+    ]
+  },
+  "change_workflow": {
+    "ordered_steps": [
+      "1. Discover authoritative enforcement points, exposure and source of truth.",
+      "2. Build explicit threat model and service-flow matrix; classify environment.",
+      "3. Review current rules, remote access, dependencies and conflict/shadow risks.",
+      "4. Confirm proposed changes, blast radius, approval and outage tolerance.",
+      "5. Capture timestamped, access-controlled known-good configuration and relevant system metadata.",
+      "6. Prepare and test rollback method; preserve console/out-of-band or independent recovery.",
+      "7. Stage narrowly scoped rules; ensure necessary administration/established flows before tightening or activation.",
+      "8. Validate syntax and platform rule evaluation, commit atomically if supported.",
+      "9. Verify local active policy, policy persistence, service availability, negative tests and outside-in connectivity from representative source zones.",
+      "10. Record evidence, monitoring, expiry, owner and next review."
+    ],
+    "remote_change_safety": [
+      "MUST never close the only working management session until a second independently verified connection succeeds",
+      "MUST add and verify management allow before enabling a deny-by-default policy where applicable",
+      "SHOULD arrange automated time-bound revert using an independently reliable scheduler or platform safe-commit facility if available and approved",
+      "MUST not pretend a rollback timer is available or dependable without checking it",
+      "MUST use console/out-of-band access or explicit acceptance of lockout risk for highly disruptive remote changes",
+      "SHOULD avoid simultaneous firewall, routing, DNS, SSH, VPN and interface changes"
+    ],
+    "validation": [
+      "Syntax check is necessary but not sufficient",
+      "MUST confirm applied/effective rules and persistence after restart where safe",
+      "MUST distinguish installed, enabled, active, bound/listening, routable, firewall-allowed, authentication-allowed and externally reachable",
+      "MUST test permitted flows from intended source zones and denied flows from unintended zones, including IPv6 where present",
+      "MUST validate rule ordering, groups/zones, NAT interactions, counters and packets via appropriate native tools",
+      "MUST test outbound dependencies if egress tightened",
+      "MUST not claim a port scan from localhost proves remote exposure; use an independent network viewpoint",
+      "MUST distinguish successful firewall accept from application-layer authentication success"
+    ],
+    "rollback": [
+      "MUST identify exact previous known-good state before change",
+      "SHOULD prefer delete/update of only newly added rules or atomic restore of backed-up ruleset",
+      "MUST verify restoration and administrative access after rollback",
+      "MUST NOT recommend purging firewall packages, wiping policy, flushing all rules, rebooting or disabling firewall as normal rollback",
+      "Emergency disable MAY be considered as an explicitly authorised last-resort to regain access with external compensating protection, narrow window and documented follow-up",
+      "MUST preserve backups and avoid restoring configurations for a different backend/platform/version without verification"
+    ]
+  },
+  "technology_notes": {
+    "UFW": [
+      "`ufw default deny incoming` and `ufw default allow outgoing` set default policies; they do not create only-new-rule semantics",
+      "Use `ufw status verbose` or `ufw status numbered` to inspect status; `ufw show` requires a supported argument",
+      "A `ufw allow` rule typically creates inbound access unless `out` is specified; do not call an inbound HTTPS allowance an outbound browser rule",
+      "Review source-qualified SSH rules before enable, and avoid any-source SSH unless consciously approved",
+      "Never invent app profiles; inspect available profiles before use",
+      "Avoid `ufw reset`, purge, and unrelated iptables-restore as ordinary recovery"
+    ],
+    "nftables": [
+      "Determine chain families, hook, priority, default policy and includes",
+      "Use supported dry-run/syntax validation for the installed nft version and stage atomic ruleset changes when possible",
+      "Do not flush unmanaged rules or conflict with container-managed chains"
+    ],
+    "iptables_legacy_or_nft": [
+      "Detect actual backend and who manages it",
+      "Do not assume listing iptables alone captures all nftables or cloud filtering",
+      "Beware destructive flush, NAT and connection tracking side effects"
+    ],
+    "firewalld": [
+      "Detect active zones, runtime vs permanent changes, rich rules/policies and service definitions",
+      "Ensure both runtime enforcement and persistence are correct without accidental unreviewed widening"
+    ],
+    "pf_and_BSD": [
+      "Use native syntax checking, anchors and platform-specific service management; avoid assuming Linux commands",
+      "Distinguish host and interface-specific packet filtering, NAT, state and routing"
+    ],
+    "OPNsense_pfSense": [
+      "Assess WAN/LAN/VLAN interface rules, floating rules, aliases, NAT port forwarding, anti-lockout, established state, IPv6 and automation/API authority",
+      "Before changing management access, use documented config backup and console recovery"
+    ],
+    "cloud": [
+      "Distinguish stateful security groups, stateless ACLs, route/firewall policies and LB ingress",
+      "Check all public exposure paths, public IPs, ephemeral return traffic, service endpoints, peering and IPv6",
+      "Prefer IaC source-of-truth and change review; detect console drift"
+    ],
+    "containers": [
+      "Docker-published ports can bypass expected UFW INPUT processing; assess DNAT/FORWARD and platform-specific hooks",
+      "Do not expose 2375/2376 or Kubernetes management endpoints merely because Docker/Kubernetes is installed",
+      "Prefer binding ports only to necessary host addresses plus upstream ACLs, or not publishing at all",
+      "Consider pod, bridge, host/macvlan/ipvlan/overlay networking and rootless differences",
+      "Do not blindly disable container firewall integration: it may break isolation and routing"
+    ]
+  },
+  "anti_patterns": [
+    {
+      "bad": "allow inbound tcp 443 from any for ordinary web browsing",
+      "reason": "browser is a client; outbound plus established return is generally sufficient",
+      "better": "no inbound rule unless running a deliberately public HTTPS service"
+    },
+    {
+      "bad": "allow ssh or smb from any on a home or corporate host by default",
+      "reason": "exposes management/file services beyond intended clients",
+      "better": "explicit trusted management clients/zone plus authentication; remote access via VPN/zero-trust gateway when appropriate"
+    },
+    {
+      "bad": "deny SSH for everyone, then append trusted-source allow",
+      "reason": "earlier blanket deny may shadow later allow",
+      "better": "default deny with correctly ordered source-qualified permit"
+    },
+    {
+      "bad": "allow all RFC1918 or all VPN client addresses as trusted",
+      "reason": "private networks and VPN peers can be compromised",
+      "better": "named source devices, device identity, segment and intended ports"
+    },
+    {
+      "bad": "open router/firewall to WAN for convenient management",
+      "reason": "unnecessary high-impact control-plane exposure",
+      "better": "management VLAN plus authenticated restricted remote access"
+    },
+    {
+      "bad": "treat docker container published port as covered by UFW host input rules",
+      "reason": "container NAT and forwarding can bypass INPUT evaluation",
+      "better": "inspect effective forward path and container platform controls"
+    },
+    {
+      "bad": "purge firewall package or flush rules as standard rollback",
+      "reason": "destructive, unpredictable and may remove unrelated protections",
+      "better": "revert changed rules or restore verified backup"
+    },
+    {
+      "bad": "block all ICMPv6 to harden IPv6",
+      "reason": "may break neighbour discovery and path MTU",
+      "better": "permit protocol-required control traffic with appropriately scoped policy"
+    },
+    {
+      "bad": "assume separate VLANs inherently prevent east-west movement",
+      "reason": "router inter-VLAN rules or misconfiguration may permit transit; same VLAN may bypass router",
+      "better": "explicit inter-zone ACLs, host microsegmentation and isolation tests"
+    },
+    {
+      "bad": "open inbound DNS/NTP for a workstation that only consumes them",
+      "reason": "traffic direction error",
+      "better": "outbound client flows, with stateful replies"
+    },
+    {
+      "bad": "claim pass because firewall service is running",
+      "reason": "service status is not packet-path enforcement or reachability",
+      "better": "effective rules plus positive and negative connectivity tests"
+    }
+  ],
+  "response_contract": {
+    "when_generating_commands": [
+      "Separate read-only discovery, change commands and verification",
+      "Use only commands known valid for the detected platform; label conditional examples",
+      "Use placeholders clearly outside executable scripts, or parameter validation that fails closed",
+      "Do not insert non-shell bullet lines within copy-paste code blocks",
+      "Do not mix root-only and sudo-prefixed commands without identifying intended execution context",
+      "Provide no unnecessary inbound exceptions; comment out optional home-lab services",
+      "If asked for commands only, keep risk warnings in concise shell comments and no unrequested lengthy essay"
+    ],
+    "when_audit_requested": [
+      "Report actual exposure, severity, evidence and exploitability limits",
+      "Identify wrong traffic direction, source scope, rule ordering, bypasses, rollback risks and verification shortcomings",
+      "Offer precise minimal corrective actions, not a full firewall reset"
+    ],
+    "confidence": "If uncertain on platform syntax, explicitly mark unverified and ask for command help/man output or use supported validation tooling"
+  },
+  "rule_proposal_schema": {
+    "id": "stable-change-id",
+    "environment": "home_workstation | home_lab_or_nas | corporate_workstation | corporate_server | public_facing_service | cloud_or_hybrid | high_assurance_or_OT | untrusted_public_wifi",
+    "service": "required named application",
+    "business_justification": "why the flow is needed",
+    "source_zone": "approved source zone",
+    "source_identity_or_cidr": "confirmed source devices/addresses",
+    "destination_zone": "destination trust zone",
+    "destination_identity_or_cidr": "confirmed destination",
+    "direction": "ingress | egress | east_west",
+    "transport_and_ports": "specific validated protocols/ports",
+    "action": "allow | deny | reject | log",
+    "exposure": "local_only | restricted_private | public_approved",
+    "authentication_controls": "identity and security controls independent of firewall",
+    "lateral_movement_impact": "expected reachable assets if source compromised",
+    "order_and_conflict_review": "priority and shadow analysis",
+    "ipv6_review": "equivalent or intentionally different v6 enforcement",
+    "NAT_container_cloud_review": "all intervening policies and paths",
+    "validation_plan": "positive and negative tests from independent vantage points",
+    "rollback_plan": "specific reversible change and recovery access",
+    "owner": "accountable person/team",
+    "approval": "required change approval",
+    "expiry_or_review_date": "time limit for exception"
+  },
+  "self_review_gate": [
+    "Can I name precisely what listens on the destination and why it must accept this connection?",
+    "Did I correctly identify source, destination, traffic direction and connection state?",
+    "Is any-source inbound permission present? If yes, is this deliberately public, documented and approved?",
+    "Would this rule make internal lateral movement easier if an endpoint is compromised?",
+    "Could an ordinary client task be satisfied without any inbound opening?",
+    "Could UFW, NAT, Docker, cloud, VPN, IPv6 or same-subnet switching bypass the intended enforcement?",
+    "Have I verified tool syntax, rule order and persistence on the actual platform?",
+    "Will remote management remain accessible after change, and is recovery independently available?",
+    "Can the change be reversed without disabling or uninstalling the entire firewall?",
+    "Are both authorised-allowed and unauthorised-denied flows included in testing?",
+    "Do the commands honour effective UID 0 vs non-root and user request for output format?",
+    "If any mandatory check fails, do not issue a confident apply-ready configuration."
+  ],
+  "references": [
+    {
+      "title": "NIST SP 800-41 Rev.1 Guidelines on Firewalls and Firewall Policy",
+      "url": "https://csrc.nist.gov/pubs/sp/800/41/r1/final"
+    },
+    {
+      "title": "CISA Microsegmentation in Zero Trust introduction and planning",
+      "url": "https://www.cisa.gov/news-events/alerts/2025/07/29/cisa-releases-part-one-zero-trust-microsegmentation-guidance"
+    },
+    {
+      "title": "NSA Advancing Zero Trust Maturity Throughout the Network and Environment Pillar",
+      "url": "https://media.defense.gov/2024/Mar/05/2003405462/-1/-1/0/CSI-ZERO-TRUST-NETWORK-ENVIRONMENT-PILLAR.PDF"
+    },
+    {
+      "title": "Docker Packet filtering and firewalls",
+      "url": "https://docs.docker.com/engine/network/packet-filtering-firewalls/"
+    },
+    {
+      "title": "CISA StopRansomware Guide",
+      "url": "https://www.cisa.gov/stopransomware/ransomware-guide"
+    }
+  ]
+}

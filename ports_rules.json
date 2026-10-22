@@ -1,0 +1,381 @@
+{
+  "name": "Prometheus Network Ports, Exposure and Firewall Decision Rules",
+  "version": "1.0",
+  "purpose": "Teach an AI to understand network ports, traffic direction, service exposure, firewall safety and the specific conditions under which an inbound exception is justified.",
+  "default_policy": {
+    "incoming": "deny",
+    "outgoing": "allow",
+    "forwarding": "deny unless routing is explicitly required",
+    "principle": "An application's use of a network port does not automatically justify opening that port for incoming connections."
+  },
+  "engineering_principles": [
+    {
+      "problem": "Determine whether a network port needs opening",
+      "native_first": "identify the service, determine whether it acts as a client or server, inspect listening addresses, identify authorised remote clients and establish whether the existing firewall blocks required traffic",
+      "avoid_by_default": "opening ports merely because an application is installed or a port number appears in documentation",
+      "exceptions": "inbound rules are appropriate when a required service must accept connections from authorised clients",
+      "verification": "confirm direction, protocol, destination port, source network, interface, listening address and successful authorised connectivity"
+    },
+    {
+      "problem": "Distinguish inbound from outbound network connections",
+      "native_first": "understand connection initiation, stateful firewall tracking and established or related return traffic",
+      "avoid_by_default": "opening inbound HTTPS, DNS, NTP, email or package-management ports for ordinary outbound client workloads",
+      "exceptions": "inbound exceptions are appropriate when the workstation itself operates the corresponding server",
+      "verification": "identify which endpoint initiates the connection and which endpoint listens for incoming requests"
+    },
+    {
+      "problem": "Apply default-deny firewall policies",
+      "native_first": "use documented firewall syntax to deny unsolicited incoming connections and permit ordinary outgoing connections, while retaining only required inbound exceptions",
+      "avoid_by_default": "confusing individual allow or deny rules with default policies, adding redundant exceptions or assuming default deny guarantees complete isolation",
+      "exceptions": "different policies may be required for routers, servers, isolated networks or specialised security environments",
+      "verification": "inspect effective policies, ordered rules, IPv4 and IPv6 coverage, and actual traffic behaviour"
+    },
+    {
+      "problem": "Minimise network exposure",
+      "native_first": "prefer loopback binding for local-only services, then trusted-host restrictions, trusted-subnet restrictions and authenticated VPN access before considering public exposure",
+      "avoid_by_default": "binding services to every interface, exposing management ports publicly or treating a trusted LAN as automatically secure",
+      "exceptions": "public services may require wider exposure when intentionally hosted and appropriately secured",
+      "verification": "inspect the effective listening address, network interfaces, firewall rules and reachability from authorised and unauthorised sources"
+    },
+    {
+      "problem": "Interpret standard port numbers",
+      "native_first": "use authoritative port registries and application documentation to identify common service conventions while verifying the actual process and protocol",
+      "avoid_by_default": "assuming a familiar port guarantees a particular application or that a registered service is safe",
+      "exceptions": "applications may use custom ports, dynamic allocations, proxies or multiple protocols",
+      "verification": "correlate listening sockets with processes, service configuration and observed traffic"
+    },
+    {
+      "problem": "Avoid exposing sensitive administrative interfaces",
+      "native_first": "keep Docker, container runtimes, local AI inference servers, databases and administrative dashboards bound to loopback or protected management networks",
+      "avoid_by_default": "publicly exposing unauthenticated APIs, Docker TCP 2375, database administration interfaces or unrestricted development dashboards",
+      "exceptions": "remote management may be justified through authenticated, encrypted and tightly restricted channels",
+      "verification": "confirm authentication, transport encryption, source restrictions and effective network reachability"
+    },
+    {
+      "problem": "Handle SSH firewall exceptions safely",
+      "native_first": "confirm that an SSH server is required, establish trusted management sources and permit only the configured SSH listening port from those sources",
+      "avoid_by_default": "opening SSH globally, confusing rate limiting with authentication or source restrictions, or enabling a firewall before preserving an active remote management connection",
+      "exceptions": "public SSH may be justified for explicitly administered systems with appropriate authentication and additional controls",
+      "verification": "test authorised SSH access and unauthorised connection rejection before terminating an existing administrative session"
+    },
+    {
+      "problem": "Understand service authentication and firewall separation",
+      "native_first": "treat network filtering, service authentication, authorisation and transport encryption as complementary controls",
+      "avoid_by_default": "assuming an open port is secure because a firewall is enabled or that a source-restricted port removes the need for authentication",
+      "exceptions": "some discovery or infrastructure protocols use alternative security architectures",
+      "verification": "independently assess reachability, authentication, authorisation, encryption and exposure"
+    },
+    {
+      "problem": "Handle Docker and container networking",
+      "native_first": "inspect container port publishing, host bindings, forwarding and runtime-managed firewall rules before changing host firewall configuration",
+      "avoid_by_default": "assuming UFW always filters published container traffic or opening Docker daemon ports for normal container workloads",
+      "exceptions": "deliberately published container services may require scoped network access through appropriate runtime and firewall controls",
+      "verification": "test actual published-port reachability and inspect runtime-generated firewall and forwarding rules"
+    },
+    {
+      "problem": "Preserve network connectivity during firewall changes",
+      "native_first": "identify active remote sessions, required management paths and existing exceptions before applying changes",
+      "avoid_by_default": "enabling default-deny rules remotely without allowing management access, blindly resetting firewall rules or applying conflicting exceptions",
+      "exceptions": "complete isolation may be an intentional response to a confirmed security incident",
+      "verification": "confirm continued access, maintain a recovery path and test the effective ruleset"
+    },
+    {
+      "problem": "Generate accurate minimal firewall guides",
+      "native_first": "produce only the commands necessary for the requested configuration, distinguish optional workload exceptions and present changes in dependency-safe order",
+      "avoid_by_default": "adding unrelated services, speculative open ports, redundant examples, unnecessary packages or commands that conflict with the stated requirements",
+      "exceptions": "additional explanation or controls are warranted when necessary to prevent lockout or a material security exposure",
+      "verification": "validate syntax, ordering, traffic direction, necessity and post-change connectivity"
+    }
+  ],
+  "port_rules": [
+    {
+      "service": "Ordinary web browsing",
+      "ports": [
+        "80/tcp",
+        "443/tcp"
+      ],
+      "direction": "outbound",
+      "default_inbound_action": "DENY",
+      "allow_inbound_when": "The workstation intentionally hosts an HTTP or HTTPS service accessed by other devices.",
+      "reason": "Web browsing initiates outbound connections and does not require inbound HTTP or HTTPS exceptions.",
+      "safety": "Restrict hosted services to authorised sources where possible; use HTTPS and appropriate authentication."
+    },
+    {
+      "service": "SSH server",
+      "ports": [
+        "22/tcp"
+      ],
+      "direction": "inbound when hosting",
+      "default_inbound_action": "DENY",
+      "allow_inbound_when": "Authorised administrators require remote shell access.",
+      "reason": "An SSH daemon must accept connections from its authorised clients.",
+      "safety": "Prefer key-based authentication, prohibit direct root login and restrict access to management hosts or VPN networks."
+    },
+    {
+      "service": "DNS client",
+      "ports": [
+        "53/udp",
+        "53/tcp",
+        "853/tcp"
+      ],
+      "direction": "outbound",
+      "default_inbound_action": "DENY",
+      "allow_inbound_when": "The workstation intentionally serves DNS queries to other devices.",
+      "reason": "Normal DNS lookups do not require opening an inbound DNS server port.",
+      "safety": "Never expose an unintended open recursive resolver; scope DNS server access to authorised networks."
+    },
+    {
+      "service": "NTP client",
+      "ports": [
+        "123/udp"
+      ],
+      "direction": "outbound",
+      "default_inbound_action": "DENY",
+      "allow_inbound_when": "The machine is intentionally operating an NTP server.",
+      "reason": "Ordinary time synchronisation does not require a general inbound NTP exception.",
+      "safety": "Restrict NTP server access where appropriate and avoid enabling unnecessary public time services."
+    },
+    {
+      "service": "Samba SMB file sharing",
+      "ports": [
+        "445/tcp",
+        "139/tcp",
+        "137/udp",
+        "138/udp"
+      ],
+      "direction": "inbound when hosting",
+      "default_inbound_action": "DENY",
+      "allow_inbound_when": "Trusted LAN clients need to access shares hosted by the workstation.",
+      "reason": "An SMB server must accept requests from devices accessing shared files.",
+      "safety": "Prefer modern SMB over TCP 445, restrict access to trusted hosts, disable obsolete SMB versions and open legacy NetBIOS ports only when required."
+    },
+    {
+      "service": "NFS file sharing",
+      "ports": [
+        "2049/tcp",
+        "2049/udp"
+      ],
+      "direction": "inbound when hosting",
+      "default_inbound_action": "DENY",
+      "allow_inbound_when": "The workstation intentionally exports NFS shares to trusted clients.",
+      "reason": "NFS clients require access to the server's configured service endpoints.",
+      "safety": "Restrict exports and network access; verify NFS version and whether additional RPC services or ports are required."
+    },
+    {
+      "service": "Remote desktop",
+      "ports": [
+        "3389/tcp",
+        "3389/udp",
+        "5900/tcp"
+      ],
+      "direction": "inbound when hosting",
+      "default_inbound_action": "DENY",
+      "allow_inbound_when": "Other devices need remote desktop access and the configured RDP or VNC service actually uses these ports.",
+      "reason": "Remote desktop software accepts inbound graphical-session connections.",
+      "safety": "Prefer VPN or trusted-host access, strong authentication and encrypted sessions; do not expose unsecured VNC publicly."
+    },
+    {
+      "service": "WireGuard VPN server",
+      "ports": [
+        "51820/udp"
+      ],
+      "direction": "inbound when hosting",
+      "default_inbound_action": "DENY",
+      "allow_inbound_when": "The workstation hosts a WireGuard tunnel using this configured listening port.",
+      "reason": "Remote VPN peers must reach the tunnel endpoint.",
+      "safety": "Verify the actual configured port, peer keys, allowed addresses and routing policies."
+    },
+    {
+      "service": "OpenVPN server",
+      "ports": [
+        "1194/udp"
+      ],
+      "direction": "inbound when hosting",
+      "default_inbound_action": "DENY",
+      "allow_inbound_when": "The workstation runs an OpenVPN server using this port and protocol.",
+      "reason": "VPN peers require access to the configured listening endpoint.",
+      "safety": "Use authenticated encrypted tunnels, validate certificates or credentials and restrict forwarding to authorised networks."
+    },
+    {
+      "service": "PostgreSQL",
+      "ports": [
+        "5432/tcp"
+      ],
+      "direction": "inbound only for remote database clients",
+      "default_inbound_action": "DENY",
+      "allow_inbound_when": "Authorised applications on other machines need direct database connections.",
+      "reason": "Local development databases normally need no external exposure.",
+      "safety": "Prefer loopback, Unix sockets or authenticated private networks; never expose PostgreSQL indiscriminately."
+    },
+    {
+      "service": "MySQL and MariaDB",
+      "ports": [
+        "3306/tcp"
+      ],
+      "direction": "inbound only for remote database clients",
+      "default_inbound_action": "DENY",
+      "allow_inbound_when": "An authorised application requires remote database access.",
+      "reason": "A database listener only needs an inbound exception for non-local clients.",
+      "safety": "Use restricted accounts, transport encryption and source IP restrictions; prefer local sockets for local applications."
+    },
+    {
+      "service": "Redis",
+      "ports": [
+        "6379/tcp"
+      ],
+      "direction": "inbound only for authorised remote clients",
+      "default_inbound_action": "DENY",
+      "allow_inbound_when": "A verified distributed application needs private network access to Redis.",
+      "reason": "Locally hosted applications generally do not need Redis accessible from the network.",
+      "safety": "Avoid public exposure; use authentication, protected configuration and private networking."
+    },
+    {
+      "service": "Docker remote API",
+      "ports": [
+        "2375/tcp",
+        "2376/tcp"
+      ],
+      "direction": "administrative",
+      "default_inbound_action": "DENY",
+      "allow_inbound_when": "A documented remote Docker management architecture genuinely requires TCP access and provides strong authentication, encryption and network restrictions.",
+      "reason": "Normal Docker use relies on local interfaces and does not require an inbound TCP API.",
+      "safety": "Never open unauthenticated TCP 2375 as a standard workstation exception. Prefer local Unix sockets or appropriately secured remote management."
+    },
+    {
+      "service": "Ollama API",
+      "ports": [
+        "11434/tcp"
+      ],
+      "direction": "inbound only for remote inference clients",
+      "default_inbound_action": "DENY",
+      "allow_inbound_when": "An authorised device on a trusted network must access the workstation's Ollama API.",
+      "reason": "Local AI applications can generally use the loopback interface without a firewall exception.",
+      "safety": "Prefer loopback or authenticated gateway access; do not publicly expose an API that lacks appropriate access controls."
+    },
+    {
+      "service": "Sonarr",
+      "ports": [
+        "8989/tcp"
+      ],
+      "direction": "inbound only for remote web interface access",
+      "default_inbound_action": "DENY",
+      "allow_inbound_when": "Authorised devices on a trusted LAN need access to Sonarr's web interface.",
+      "reason": "Local management requires no general inbound exception.",
+      "safety": "Restrict to trusted hosts or networks and enable the application's authentication."
+    },
+    {
+      "service": "SABnzbd",
+      "ports": [
+        "8080/tcp"
+      ],
+      "direction": "inbound only for remote web interface access",
+      "default_inbound_action": "DENY",
+      "allow_inbound_when": "Authorised LAN devices need access to SABnzbd on its actual configured port.",
+      "reason": "The service's web interface is not needed by external clients unless remote management is intended.",
+      "safety": "Verify its configured listening port and host binding, use authentication and restrict source addresses."
+    },
+    {
+      "service": "Plex media server",
+      "ports": [
+        "32400/tcp"
+      ],
+      "direction": "inbound when serving remote clients",
+      "default_inbound_action": "DENY",
+      "allow_inbound_when": "Authorised network devices require access to the Plex server.",
+      "reason": "Media clients need connectivity to a hosted media service.",
+      "safety": "Prefer trusted LAN or VPN access; verify whether remote streaming is necessary before enabling wider exposure."
+    },
+    {
+      "service": "Local development web services",
+      "ports": [
+        "3000/tcp",
+        "5000/tcp",
+        "8000/tcp",
+        "8080/tcp"
+      ],
+      "direction": "inbound only for remote development clients",
+      "default_inbound_action": "DENY",
+      "allow_inbound_when": "A development environment must be accessed from another authorised device.",
+      "reason": "Local web development generally works through loopback without inbound exceptions.",
+      "safety": "Do not expose debugging endpoints, development servers or unauthenticated applications beyond trusted clients."
+    },
+    {
+      "service": "mDNS service discovery",
+      "ports": [
+        "5353/udp"
+      ],
+      "direction": "local-network discovery",
+      "default_inbound_action": "CONDITIONAL",
+      "allow_inbound_when": "Required local discovery functionality does not already work under existing firewall rules.",
+      "reason": "mDNS supports local service discovery and differs from ordinary unicast server access.",
+      "safety": "Scope discovery to appropriate local interfaces and multicast behaviour; inspect existing UFW rules before adding exceptions."
+    },
+    {
+      "service": "DHCP client",
+      "ports": [
+        "67/udp",
+        "68/udp"
+      ],
+      "direction": "local network infrastructure",
+      "default_inbound_action": "NO_EXTRA_RULE_BY_DEFAULT",
+      "allow_inbound_when": "A verified custom firewall configuration blocks necessary DHCP communication.",
+      "reason": "A DHCP client requires protocol-specific request and response traffic, which normal host firewall defaults typically accommodate.",
+      "safety": "Do not open broad inbound DHCP ports without diagnosing the actual problem."
+    },
+    {
+      "service": "Email clients",
+      "ports": [
+        "993/tcp",
+        "995/tcp",
+        "587/tcp",
+        "465/tcp"
+      ],
+      "direction": "outbound",
+      "default_inbound_action": "DENY",
+      "allow_inbound_when": "The workstation intentionally hosts an email server rather than merely using an email client.",
+      "reason": "Reading and sending email normally initiates outbound connections.",
+      "safety": "Use encrypted connections and authenticated mail providers; no inbound mail-port exception is normally necessary."
+    }
+  ],
+  "decision_workflow": [
+    "Identify the machine's role and requested workload.",
+    "Determine whether each application acts as a network client, server or both.",
+    "Inspect actual listening addresses, ports and protocols.",
+    "Determine which remote clients genuinely need access.",
+    "Prefer loopback access when communication is entirely local.",
+    "Prefer specific trusted hosts over broad network ranges.",
+    "Check whether the existing firewall already permits required traffic.",
+    "Verify firewall command syntax before recommending changes.",
+    "Avoid redundant, conflicting or overly broad exceptions.",
+    "Preserve remote administrative access before enabling restrictive firewall policies.",
+    "Verify connectivity from both authorised and unauthorised sources.",
+    "Record the reason, owner and review requirements for each approved exception."
+  ],
+  "validation_requirements": {
+    "must_check": [
+      "traffic direction",
+      "transport protocol",
+      "destination port",
+      "listening application",
+      "listening interface",
+      "authorised source addresses",
+      "authentication requirements",
+      "encryption requirements",
+      "existing rule interactions",
+      "container or virtualisation networking",
+      "IPv4 and IPv6 coverage",
+      "rollback and recovery access"
+    ],
+    "prohibited_assumptions": [
+      "Web browsing requires inbound port 443.",
+      "DNS lookups require opening inbound port 53.",
+      "NTP synchronisation requires opening inbound port 123.",
+      "Installing SSH automatically justifies opening port 22.",
+      "Docker requires opening ports 2375 or 2376.",
+      "All local development servers need external accessibility.",
+      "A recognised port number proves the listening application is trustworthy.",
+      "An active firewall guarantees every service is protected.",
+      "Rate limiting is equivalent to restricting authorised source addresses."
+    ]
+  }
+}

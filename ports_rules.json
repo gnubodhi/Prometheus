@@ -1,13 +1,865 @@
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "name": "Prometheus Network Ports, Exposure and Firewall Decision Rules",
-  "version": "1.0",
-  "purpose": "Teach an AI to understand network ports, traffic direction, service exposure, firewall safety and the specific conditions under which an inbound exception is justified.",
+  "version": "3.0.0",
+  "purpose": "Threat-aware reference; port entries are not instructions to open ports. Select relevant entries rather than loading all entries into a small model context.",
   "default_policy": {
     "incoming": "deny",
-    "outgoing": "allow",
-    "forwarding": "deny unless routing is explicitly required",
-    "principle": "An application's use of a network port does not automatically justify opening that port for incoming connections."
+    "outgoing": "allow_for_home_clients_or_as_authorised",
+    "forwarding": "deny_unless_required",
+    "principle": "A conventional port mapping never authorises opening a firewall rule."
   },
+  "rules": {
+    "management_access": "Allow management access only from explicitly authorised sources, to verified target listeners and configured ports. Reject blanket internet exposure by default; evaluate source identity, network trust, business need, strong authentication, encryption, review and recovery.",
+    "threat_model": "Segment home, guest, IoT, corporate workstation, management, application and backup trust zones. Private addresses and VPN membership alone do not establish trust.",
+    "corporate_east_west": "Deny unnecessary peer-to-peer and lateral movement paths. Allow minimum approved workload flows between network segments.",
+    "home_flexibility": "Home trusted-LAN exceptions may be appropriate when devices are explicitly authorised; still isolate guest/IoT networks.",
+    "client_vs_server": "Client initiation with stateful return traffic normally needs no new inbound allow.",
+    "no_automatic_open": "Entries are examples, never unconditional configuration. Verify listening sockets, assigned ports, network interface and actual need first.",
+    "docker_nuance": "Inspect publishing/NAT/forwarding; host INPUT rules may not govern container traffic.",
+    "approval": "Public administrative services and sensitive data interfaces require explicit approvals and protections.",
+    "public_access_boundary": "Internet-facing service exposure requires explicit user intent, scope assessment and operational approval. A service default port is never authorisation.",
+    "verification_truth": "Distinguish guidance, proposed action, syntax checks, actual host observations, and remotely tested reachability.",
+    "connection_integrity": "Before applying policy remotely, preserve an independent administrative path and prepare an appropriate verified rollback."
+  },
+  "environment_profiles": {
+    "home_workstation": {
+      "inbound": "default_deny",
+      "outbound": "usually_allow",
+      "lateral": "limit high-risk services to authorised hosts"
+    },
+    "home_server": {
+      "inbound": "scoped LAN/VPN exceptions",
+      "outbound": "as needed",
+      "lateral": "isolate IoT and guests"
+    },
+    "corporate_workstation": {
+      "inbound": "deny except managed endpoints",
+      "outbound": "approved egress policy",
+      "lateral": "block unauthorised workstation-to-workstation administration"
+    },
+    "corporate_server": {
+      "inbound": "approved app and management sources",
+      "outbound": "approved workload dependencies",
+      "lateral": "microsegment by function and sensitivity"
+    },
+    "public_cloud": {
+      "inbound": "layer cloud and host filtering",
+      "outbound": "controlled where feasible",
+      "lateral": "separate public, application, data and management tiers"
+    }
+  },
+  "port_rules": [
+    {
+      "id": "web_browser",
+      "service": "Ordinary web browsing",
+      "role": "client",
+      "direction": "outbound",
+      "transport_endpoints": [
+        {
+          "port": 80,
+          "protocol": "tcp",
+          "typical_only": true
+        },
+        {
+          "port": 443,
+          "protocol": "tcp",
+          "typical_only": true
+        }
+      ],
+      "default_inbound_action": "deny",
+      "default_source_scope": "none",
+      "exposure_risk": "low",
+      "allow_inbound_when": "The workstation intentionally hosts an HTTP or HTTPS service accessed by other devices.",
+      "authentication_required": false,
+      "requires_listener_verification": false,
+      "security_notes": "No inbound rule for browsing.",
+      "verification": [
+        "Verify effective direction, port, protocol and applicable firewall rules",
+        "Test only relevant authorised and unauthorised paths"
+      ],
+      "configuration_status": "reference_not_observed",
+      "requires_explicit_approval_for_public_exposure": true,
+      "reason": "Web browsing initiates outbound connections and does not require inbound HTTP or HTTPS exceptions.",
+      "exceptions": "The workstation intentionally hosts an HTTP or HTTPS service accessed by other devices.",
+      "service_specific_verification": [
+        "Opening inbound 80 or 443 is not needed for browsing; outbound HTTPS may also use QUIC UDP/443."
+      ],
+      "authentication_model": "remote_server_tls_as_applicable"
+    },
+    {
+      "id": "ssh_server",
+      "service": "SSH server",
+      "role": "server",
+      "direction": "inbound",
+      "transport_endpoints": [
+        {
+          "port": 22,
+          "protocol": "tcp",
+          "typical_only": true
+        }
+      ],
+      "default_inbound_action": "deny",
+      "default_source_scope": "management_hosts",
+      "exposure_risk": "critical",
+      "allow_inbound_when": "Only when verified host is serving authorised remote clients and the exact listening endpoint requires it.",
+      "authentication_required": true,
+      "requires_listener_verification": true,
+      "security_notes": "Authenticated remote management only.",
+      "verification": [
+        "Verify effective direction, port, protocol and applicable firewall rules",
+        "Test only relevant authorised and unauthorised paths"
+      ],
+      "configuration_status": "reference_not_observed",
+      "requires_explicit_approval_for_public_exposure": true,
+      "reason": "An SSH daemon must accept connections from its authorised clients.",
+      "exceptions": "Authorised administrators require remote shell access.",
+      "service_specific_verification": [
+        "Verify the configured port, effective SSH policy, trusted administration sources, and a fresh independent SSH login before closing the existing session."
+      ],
+      "authentication_model": "service_account_or_application_auth"
+    },
+    {
+      "id": "dns_client",
+      "service": "DNS client",
+      "role": "client",
+      "direction": "outbound",
+      "transport_endpoints": [
+        {
+          "port": 53,
+          "protocol": "udp",
+          "typical_only": true
+        },
+        {
+          "port": 53,
+          "protocol": "tcp",
+          "typical_only": true
+        },
+        {
+          "port": 853,
+          "protocol": "tcp",
+          "typical_only": true
+        }
+      ],
+      "default_inbound_action": "deny",
+      "default_source_scope": "none",
+      "exposure_risk": "low",
+      "allow_inbound_when": "The workstation intentionally serves DNS queries to other devices.",
+      "authentication_required": false,
+      "requires_listener_verification": false,
+      "security_notes": "Do not make an open recursive resolver.",
+      "verification": [
+        "Verify effective direction, port, protocol and applicable firewall rules",
+        "Test only relevant authorised and unauthorised paths"
+      ],
+      "configuration_status": "reference_not_observed",
+      "requires_explicit_approval_for_public_exposure": true,
+      "reason": "Normal DNS lookups do not require opening an inbound DNS server port.",
+      "exceptions": "The workstation intentionally serves DNS queries to other devices.",
+      "service_specific_verification": [
+        "Ordinary DNS client traffic does not imply a local DNS server; never create an open recursive resolver."
+      ],
+      "authentication_model": "resolver_transport_optional"
+    },
+    {
+      "id": "ntp_client",
+      "service": "NTP client",
+      "role": "client",
+      "direction": "outbound",
+      "transport_endpoints": [
+        {
+          "port": 123,
+          "protocol": "udp",
+          "typical_only": true
+        }
+      ],
+      "default_inbound_action": "deny",
+      "default_source_scope": "none",
+      "exposure_risk": "low",
+      "allow_inbound_when": "The machine is intentionally operating an NTP server.",
+      "authentication_required": false,
+      "requires_listener_verification": false,
+      "security_notes": "No inbound NTP rule for client sync.",
+      "verification": [
+        "Verify effective direction, port, protocol and applicable firewall rules",
+        "Test only relevant authorised and unauthorised paths"
+      ],
+      "configuration_status": "reference_not_observed",
+      "requires_explicit_approval_for_public_exposure": true,
+      "reason": "Ordinary time synchronisation does not require a general inbound NTP exception.",
+      "exceptions": "The machine is intentionally operating an NTP server.",
+      "service_specific_verification": [
+        "Do not open inbound NTP for time synchronisation clients."
+      ],
+      "authentication_model": "deployment_dependent"
+    },
+    {
+      "id": "samba_server",
+      "service": "Samba SMB file sharing",
+      "role": "server",
+      "direction": "inbound",
+      "transport_endpoints": [
+        {
+          "port": 445,
+          "protocol": "tcp",
+          "typical_only": true
+        },
+        {
+          "port": 139,
+          "protocol": "tcp",
+          "typical_only": true
+        },
+        {
+          "port": 137,
+          "protocol": "udp",
+          "typical_only": true
+        },
+        {
+          "port": 138,
+          "protocol": "udp",
+          "typical_only": true
+        }
+      ],
+      "default_inbound_action": "deny",
+      "default_source_scope": "trusted_lan_hosts",
+      "exposure_risk": "high",
+      "allow_inbound_when": "Only when verified host is serving authorised remote clients and the exact listening endpoint requires it.",
+      "authentication_required": true,
+      "requires_listener_verification": true,
+      "security_notes": "445 TCP normally sufficient for modern direct SMB; legacy NetBIOS only if needed.",
+      "verification": [
+        "Verify effective direction, port, protocol and applicable firewall rules",
+        "Test only relevant authorised and unauthorised paths"
+      ],
+      "configuration_status": "reference_not_observed",
+      "requires_explicit_approval_for_public_exposure": true,
+      "reason": "An SMB server must accept requests from devices accessing shared files.",
+      "exceptions": "Trusted LAN clients need to access shares hosted by the workstation.",
+      "service_specific_verification": [
+        "Prefer TCP 445; allow legacy NetBIOS endpoints only for verified compatibility needs; test from allowed LAN host and excluded guest/IoT zones."
+      ],
+      "authentication_model": "service_account_or_application_auth"
+    },
+    {
+      "id": "nfs_server",
+      "service": "NFS file sharing",
+      "role": "server",
+      "direction": "inbound",
+      "transport_endpoints": [
+        {
+          "port": 2049,
+          "protocol": "tcp",
+          "typical_only": true
+        },
+        {
+          "port": 2049,
+          "protocol": "udp",
+          "typical_only": true
+        }
+      ],
+      "default_inbound_action": "deny",
+      "default_source_scope": "trusted_lan_hosts",
+      "exposure_risk": "high",
+      "allow_inbound_when": "Only when verified host is serving authorised remote clients and the exact listening endpoint requires it.",
+      "authentication_required": true,
+      "requires_listener_verification": true,
+      "security_notes": "Version-dependent RPC services and transport requirements must be discovered.",
+      "verification": [
+        "Verify effective direction, port, protocol and applicable firewall rules",
+        "Test only relevant authorised and unauthorised paths"
+      ],
+      "configuration_status": "reference_not_observed",
+      "requires_explicit_approval_for_public_exposure": true,
+      "reason": "NFS clients require access to the server's configured service endpoints.",
+      "exceptions": "The workstation intentionally exports NFS shares to trusted clients.",
+      "service_specific_verification": [
+        "Determine NFS version and required RPC/mountd/lockd endpoints before proposing any exception."
+      ],
+      "authentication_model": "service_account_or_application_auth"
+    },
+    {
+      "id": "remote_desktop",
+      "service": "Remote desktop",
+      "role": "server",
+      "direction": "inbound",
+      "transport_endpoints": [
+        {
+          "port": 3389,
+          "protocol": "tcp",
+          "typical_only": true
+        },
+        {
+          "port": 3389,
+          "protocol": "udp",
+          "typical_only": true
+        },
+        {
+          "port": 5900,
+          "protocol": "tcp",
+          "typical_only": true
+        }
+      ],
+      "default_inbound_action": "deny",
+      "default_source_scope": "management_hosts",
+      "exposure_risk": "high",
+      "allow_inbound_when": "Only when verified host is serving authorised remote clients and the exact listening endpoint requires it.",
+      "authentication_required": true,
+      "requires_listener_verification": true,
+      "security_notes": "RDP/VNC must be authenticated and preferably VPN-restricted.",
+      "verification": [
+        "Verify effective direction, port, protocol and applicable firewall rules",
+        "Test only relevant authorised and unauthorised paths"
+      ],
+      "configuration_status": "reference_not_observed",
+      "requires_explicit_approval_for_public_exposure": true,
+      "reason": "Remote desktop software accepts inbound graphical-session connections.",
+      "exceptions": "Other devices need remote desktop access and the configured RDP or VNC service actually uses these ports.",
+      "service_specific_verification": [
+        "Prefer VPN or trusted-host access, strong authentication and encrypted sessions; do not expose unsecured VNC publicly."
+      ],
+      "authentication_model": "service_account_or_application_auth"
+    },
+    {
+      "id": "wireguard_server",
+      "service": "WireGuard VPN server",
+      "role": "server",
+      "direction": "inbound",
+      "transport_endpoints": [
+        {
+          "port": 51820,
+          "protocol": "udp",
+          "typical_only": true
+        }
+      ],
+      "default_inbound_action": "deny",
+      "default_source_scope": "approved_peers",
+      "exposure_risk": "high",
+      "allow_inbound_when": "Only when verified host is serving authorised remote clients and the exact listening endpoint requires it.",
+      "authentication_required": true,
+      "requires_listener_verification": true,
+      "security_notes": "Actual port may vary; forwarding and tunnel policies separate.",
+      "verification": [
+        "Verify effective direction, port, protocol and applicable firewall rules",
+        "Test only relevant authorised and unauthorised paths"
+      ],
+      "configuration_status": "reference_not_observed",
+      "requires_explicit_approval_for_public_exposure": true,
+      "reason": "Remote VPN peers must reach the tunnel endpoint.",
+      "exceptions": "The workstation hosts a WireGuard tunnel using this configured listening port.",
+      "service_specific_verification": [
+        "Validate peer keys, AllowedIPs, forwarding routes and tunnel ACLs; WireGuard cryptographically authenticates peers."
+      ],
+      "authentication_model": "cryptographic_peer_keys"
+    },
+    {
+      "id": "openvpn_server",
+      "service": "OpenVPN server",
+      "role": "server",
+      "direction": "inbound",
+      "transport_endpoints": [
+        {
+          "port": 1194,
+          "protocol": "udp",
+          "typical_only": true
+        }
+      ],
+      "default_inbound_action": "deny",
+      "default_source_scope": "approved_peers",
+      "exposure_risk": "high",
+      "allow_inbound_when": "Only when verified host is serving authorised remote clients and the exact listening endpoint requires it.",
+      "authentication_required": true,
+      "requires_listener_verification": true,
+      "security_notes": "Use configured port, approved peers and strong authentication.",
+      "verification": [
+        "Verify effective direction, port, protocol and applicable firewall rules",
+        "Test only relevant authorised and unauthorised paths"
+      ],
+      "configuration_status": "reference_not_observed",
+      "requires_explicit_approval_for_public_exposure": true,
+      "reason": "VPN peers require access to the configured listening endpoint.",
+      "exceptions": "The workstation runs an OpenVPN server using this port and protocol.",
+      "service_specific_verification": [
+        "Verify TLS/certificate/credential authentication and encrypted transport as distinct controls."
+      ],
+      "authentication_model": "tls_certificates_and_or_credentials"
+    },
+    {
+      "id": "postgresql",
+      "service": "PostgreSQL",
+      "role": "server",
+      "direction": "inbound",
+      "transport_endpoints": [
+        {
+          "port": 5432,
+          "protocol": "tcp",
+          "typical_only": true
+        }
+      ],
+      "default_inbound_action": "deny",
+      "default_source_scope": "application_hosts",
+      "exposure_risk": "critical",
+      "allow_inbound_when": "Only when verified host is serving authorised remote clients and the exact listening endpoint requires it.",
+      "authentication_required": true,
+      "requires_listener_verification": true,
+      "security_notes": "Prefer Unix socket or loopback for local development.",
+      "verification": [
+        "Verify effective direction, port, protocol and applicable firewall rules",
+        "Test only relevant authorised and unauthorised paths"
+      ],
+      "configuration_status": "reference_not_observed",
+      "requires_explicit_approval_for_public_exposure": true,
+      "reason": "Local development databases normally need no external exposure.",
+      "exceptions": "Authorised applications on other machines need direct database connections.",
+      "service_specific_verification": [
+        "Check listen_addresses and pg_hba.conf; prefer Unix sockets or loopback for local-only access."
+      ],
+      "authentication_model": "service_account_or_application_auth"
+    },
+    {
+      "id": "mysql_mariadb",
+      "service": "MySQL and MariaDB",
+      "role": "server",
+      "direction": "inbound",
+      "transport_endpoints": [
+        {
+          "port": 3306,
+          "protocol": "tcp",
+          "typical_only": true
+        }
+      ],
+      "default_inbound_action": "deny",
+      "default_source_scope": "application_hosts",
+      "exposure_risk": "critical",
+      "allow_inbound_when": "Only when verified host is serving authorised remote clients and the exact listening endpoint requires it.",
+      "authentication_required": true,
+      "requires_listener_verification": true,
+      "security_notes": "Require authorised app clients and authentication.",
+      "verification": [
+        "Verify effective direction, port, protocol and applicable firewall rules",
+        "Test only relevant authorised and unauthorised paths"
+      ],
+      "configuration_status": "reference_not_observed",
+      "requires_explicit_approval_for_public_exposure": true,
+      "reason": "A database listener only needs an inbound exception for non-local clients.",
+      "exceptions": "An authorised application requires remote database access.",
+      "service_specific_verification": [
+        "Use restricted accounts, transport encryption and source IP restrictions; prefer local sockets for local applications."
+      ],
+      "authentication_model": "service_account_or_application_auth"
+    },
+    {
+      "id": "redis",
+      "service": "Redis",
+      "role": "server",
+      "direction": "inbound",
+      "transport_endpoints": [
+        {
+          "port": 6379,
+          "protocol": "tcp",
+          "typical_only": true
+        }
+      ],
+      "default_inbound_action": "deny",
+      "default_source_scope": "application_hosts",
+      "exposure_risk": "critical",
+      "allow_inbound_when": "Only when verified host is serving authorised remote clients and the exact listening endpoint requires it.",
+      "authentication_required": true,
+      "requires_listener_verification": true,
+      "security_notes": "Avoid public exposure; use private binding and authentication.",
+      "verification": [
+        "Verify effective direction, port, protocol and applicable firewall rules",
+        "Test only relevant authorised and unauthorised paths"
+      ],
+      "configuration_status": "reference_not_observed",
+      "requires_explicit_approval_for_public_exposure": true,
+      "reason": "Locally hosted applications generally do not need Redis accessible from the network.",
+      "exceptions": "A verified distributed application needs private network access to Redis.",
+      "service_specific_verification": [
+        "Avoid public exposure; use authentication, protected configuration and private networking."
+      ],
+      "authentication_model": "service_account_or_application_auth"
+    },
+    {
+      "id": "docker_api",
+      "service": "Docker remote API",
+      "role": "management",
+      "direction": "inbound",
+      "transport_endpoints": [
+        {
+          "port": 2375,
+          "protocol": "tcp",
+          "typical_only": true
+        },
+        {
+          "port": 2376,
+          "protocol": "tcp",
+          "typical_only": true
+        }
+      ],
+      "default_inbound_action": "deny",
+      "default_source_scope": "management_hosts",
+      "exposure_risk": "critical",
+      "allow_inbound_when": "Only when verified host is serving authorised remote clients and the exact listening endpoint requires it.",
+      "authentication_required": true,
+      "requires_listener_verification": true,
+      "security_notes": "2375 insecure; no remote TCP API by default.",
+      "verification": [
+        "Verify effective direction, port, protocol and applicable firewall rules",
+        "Test only relevant authorised and unauthorised paths"
+      ],
+      "configuration_status": "reference_not_observed",
+      "requires_explicit_approval_for_public_exposure": true,
+      "reason": "Normal Docker use relies on local interfaces and does not require an inbound TCP API.",
+      "exceptions": "A documented remote Docker management architecture genuinely requires TCP access and provides strong authentication, encryption and network restrictions.",
+      "service_specific_verification": [
+        "Never expose unauthenticated Docker TCP API; verify whether remote API access is required at all; inspect container publishing, forwarding and NAT independently."
+      ],
+      "authentication_model": "service_account_or_application_auth"
+    },
+    {
+      "id": "ollama_api",
+      "service": "Ollama API",
+      "role": "server",
+      "direction": "inbound",
+      "transport_endpoints": [
+        {
+          "port": 11434,
+          "protocol": "tcp",
+          "typical_only": true
+        }
+      ],
+      "default_inbound_action": "deny",
+      "default_source_scope": "trusted_lan_hosts",
+      "exposure_risk": "high",
+      "allow_inbound_when": "Only when verified host is serving authorised remote clients and the exact listening endpoint requires it.",
+      "authentication_required": true,
+      "requires_listener_verification": true,
+      "security_notes": "Prefer loopback/authenticated reverse proxy.",
+      "verification": [
+        "Verify effective direction, port, protocol and applicable firewall rules",
+        "Test only relevant authorised and unauthorised paths"
+      ],
+      "configuration_status": "reference_not_observed",
+      "requires_explicit_approval_for_public_exposure": true,
+      "reason": "Local AI applications can generally use the loopback interface without a firewall exception.",
+      "exceptions": "An authorised device on a trusted network must access the workstation's Ollama API.",
+      "service_specific_verification": [
+        "Prefer loopback or authenticated gateway access; do not publicly expose an API that lacks appropriate access controls."
+      ],
+      "authentication_model": "service_account_or_application_auth"
+    },
+    {
+      "id": "sonarr",
+      "service": "Sonarr",
+      "role": "server",
+      "direction": "inbound",
+      "transport_endpoints": [
+        {
+          "port": 8989,
+          "protocol": "tcp",
+          "typical_only": true
+        }
+      ],
+      "default_inbound_action": "deny",
+      "default_source_scope": "trusted_lan_hosts",
+      "exposure_risk": "high",
+      "allow_inbound_when": "Only when verified host is serving authorised remote clients and the exact listening endpoint requires it.",
+      "authentication_required": true,
+      "requires_listener_verification": true,
+      "security_notes": "Restrict web UI and enable authentication.",
+      "verification": [
+        "Verify effective direction, port, protocol and applicable firewall rules",
+        "Test only relevant authorised and unauthorised paths"
+      ],
+      "configuration_status": "reference_not_observed",
+      "requires_explicit_approval_for_public_exposure": true,
+      "reason": "Local management requires no general inbound exception.",
+      "exceptions": "Authorised devices on a trusted LAN need access to Sonarr's web interface.",
+      "service_specific_verification": [
+        "Restrict to trusted hosts or networks and enable the application's authentication."
+      ],
+      "authentication_model": "service_account_or_application_auth"
+    },
+    {
+      "id": "sabnzbd",
+      "service": "SABnzbd",
+      "role": "server",
+      "direction": "inbound",
+      "transport_endpoints": [
+        {
+          "port": 8080,
+          "protocol": "tcp",
+          "typical_only": true
+        }
+      ],
+      "default_inbound_action": "deny",
+      "default_source_scope": "trusted_lan_hosts",
+      "exposure_risk": "high",
+      "allow_inbound_when": "Only when verified host is serving authorised remote clients and the exact listening endpoint requires it.",
+      "authentication_required": true,
+      "requires_listener_verification": true,
+      "security_notes": "Verify actual port and host binding.",
+      "verification": [
+        "Verify effective direction, port, protocol and applicable firewall rules",
+        "Test only relevant authorised and unauthorised paths"
+      ],
+      "configuration_status": "reference_not_observed",
+      "requires_explicit_approval_for_public_exposure": true,
+      "reason": "The service's web interface is not needed by external clients unless remote management is intended.",
+      "exceptions": "Authorised LAN devices need access to SABnzbd on its actual configured port.",
+      "service_specific_verification": [
+        "Verify its configured listening port and host binding, use authentication and restrict source addresses."
+      ],
+      "authentication_model": "service_account_or_application_auth"
+    },
+    {
+      "id": "plex",
+      "service": "Plex media server",
+      "role": "server",
+      "direction": "inbound",
+      "transport_endpoints": [
+        {
+          "port": 32400,
+          "protocol": "tcp",
+          "typical_only": true
+        }
+      ],
+      "default_inbound_action": "deny",
+      "default_source_scope": "trusted_lan_hosts",
+      "exposure_risk": "medium",
+      "allow_inbound_when": "Only when verified host is serving authorised remote clients and the exact listening endpoint requires it.",
+      "authentication_required": true,
+      "requires_listener_verification": true,
+      "security_notes": "Broader remote streaming needs explicit approval.",
+      "verification": [
+        "Verify effective direction, port, protocol and applicable firewall rules",
+        "Test only relevant authorised and unauthorised paths"
+      ],
+      "configuration_status": "reference_not_observed",
+      "requires_explicit_approval_for_public_exposure": true,
+      "reason": "Media clients need connectivity to a hosted media service.",
+      "exceptions": "Authorised network devices require access to the Plex server.",
+      "service_specific_verification": [
+        "Prefer trusted LAN or VPN access; verify whether remote streaming is necessary before enabling wider exposure."
+      ],
+      "authentication_model": "service_account_or_application_auth"
+    },
+    {
+      "id": "dev_web",
+      "service": "Local development web services",
+      "role": "server",
+      "direction": "inbound",
+      "transport_endpoints": [
+        {
+          "port": 3000,
+          "protocol": "tcp",
+          "typical_only": true
+        },
+        {
+          "port": 5000,
+          "protocol": "tcp",
+          "typical_only": true
+        },
+        {
+          "port": 8000,
+          "protocol": "tcp",
+          "typical_only": true
+        },
+        {
+          "port": 8080,
+          "protocol": "tcp",
+          "typical_only": true
+        }
+      ],
+      "default_inbound_action": "deny",
+      "default_source_scope": "loopback_first",
+      "exposure_risk": "high",
+      "allow_inbound_when": "Only when verified host is serving authorised remote clients and the exact listening endpoint requires it.",
+      "authentication_required": true,
+      "requires_listener_verification": true,
+      "security_notes": "Do not expose unauthenticated debug endpoints.",
+      "verification": [
+        "Verify effective direction, port, protocol and applicable firewall rules",
+        "Test only relevant authorised and unauthorised paths"
+      ],
+      "configuration_status": "reference_not_observed",
+      "requires_explicit_approval_for_public_exposure": true,
+      "reason": "Local web development generally works through loopback without inbound exceptions.",
+      "exceptions": "A development environment must be accessed from another authorised device.",
+      "service_specific_verification": [
+        "Do not expose debugging endpoints, development servers or unauthenticated applications beyond trusted clients."
+      ],
+      "authentication_model": "service_account_or_application_auth"
+    },
+    {
+      "id": "mdns",
+      "service": "mDNS service discovery",
+      "role": "discovery",
+      "direction": "bidirectional",
+      "transport_endpoints": [
+        {
+          "port": 5353,
+          "protocol": "udp",
+          "typical_only": true
+        }
+      ],
+      "default_inbound_action": "conditional",
+      "default_source_scope": "local_multicast",
+      "exposure_risk": "medium",
+      "allow_inbound_when": "Required local discovery functionality does not already work under existing firewall rules.",
+      "authentication_required": false,
+      "requires_listener_verification": false,
+      "security_notes": "Use scope-limited multicast; existing firewall may already accommodate.",
+      "verification": [
+        "Verify effective direction, port, protocol and applicable firewall rules",
+        "Test only relevant authorised and unauthorised paths"
+      ],
+      "configuration_status": "reference_not_observed",
+      "requires_explicit_approval_for_public_exposure": false,
+      "reason": "mDNS supports local service discovery and differs from ordinary unicast server access.",
+      "exceptions": "Required local discovery functionality does not already work under existing firewall rules.",
+      "service_specific_verification": [
+        "mDNS is link-local multicast; validate scope and interface rather than treating it as a public listener."
+      ],
+      "authentication_model": "not_applicable"
+    },
+    {
+      "id": "dhcp_client",
+      "service": "DHCP client",
+      "role": "client",
+      "direction": "bidirectional",
+      "transport_endpoints": [
+        {
+          "port": 67,
+          "protocol": "udp",
+          "typical_only": true
+        },
+        {
+          "port": 68,
+          "protocol": "udp",
+          "typical_only": true
+        }
+      ],
+      "default_inbound_action": "conditional",
+      "default_source_scope": "dhcp_local",
+      "exposure_risk": "medium",
+      "allow_inbound_when": "A verified custom firewall configuration blocks necessary DHCP communication.",
+      "authentication_required": false,
+      "requires_listener_verification": false,
+      "security_notes": "DHCP responses differ from ordinary established TCP; inspect built-in DHCP allowances.",
+      "verification": [
+        "Verify effective direction, port, protocol and applicable firewall rules",
+        "Test only relevant authorised and unauthorised paths"
+      ],
+      "configuration_status": "reference_not_observed",
+      "requires_explicit_approval_for_public_exposure": false,
+      "reason": "A DHCP client requires protocol-specific request and response traffic, which normal host firewall defaults typically accommodate.",
+      "exceptions": "A verified custom firewall configuration blocks necessary DHCP communication.",
+      "service_specific_verification": [
+        "DHCP may require incoming UDP responses before regular connection tracking is established; inspect firewall built-in DHCP accommodation."
+      ],
+      "authentication_model": "network_protocol_controls"
+    },
+    {
+      "id": "mail_client",
+      "service": "Email clients",
+      "role": "client",
+      "direction": "outbound",
+      "transport_endpoints": [
+        {
+          "port": 993,
+          "protocol": "tcp",
+          "typical_only": true
+        },
+        {
+          "port": 995,
+          "protocol": "tcp",
+          "typical_only": true
+        },
+        {
+          "port": 587,
+          "protocol": "tcp",
+          "typical_only": true
+        },
+        {
+          "port": 465,
+          "protocol": "tcp",
+          "typical_only": true
+        }
+      ],
+      "default_inbound_action": "deny",
+      "default_source_scope": "none",
+      "exposure_risk": "low",
+      "allow_inbound_when": "The workstation intentionally hosts an email server rather than merely using an email client.",
+      "authentication_required": false,
+      "requires_listener_verification": false,
+      "security_notes": "Outbound mail use never implies inbound mail listener.",
+      "verification": [
+        "Verify effective direction, port, protocol and applicable firewall rules",
+        "Test only relevant authorised and unauthorised paths"
+      ],
+      "configuration_status": "reference_not_observed",
+      "requires_explicit_approval_for_public_exposure": true,
+      "reason": "Reading and sending email normally initiates outbound connections.",
+      "exceptions": "The workstation intentionally hosts an email server rather than merely using an email client.",
+      "service_specific_verification": [
+        "Use encrypted connections and authenticated mail providers; no inbound mail-port exception is normally necessary."
+      ],
+      "authentication_model": "context_dependent"
+    }
+  ],
+  "rule_decision_schema": {
+    "minimum_evidence": [
+      "host_role",
+      "service_role",
+      "traffic_direction",
+      "configured_port",
+      "protocol",
+      "listener_address",
+      "authorised_source",
+      "network_zone",
+      "justification",
+      "operator_approval_if_high_risk"
+    ],
+    "decision_states": [
+      "deny",
+      "allow_scoped",
+      "no_rule_needed",
+      "investigate",
+      "approval_required"
+    ],
+    "unknown_behavior": "No automatic new inbound allow.",
+    "rule_record_fields": [
+      "rule_owner",
+      "business_justification",
+      "approval_reference",
+      "review_date",
+      "expiry_or_revalidation",
+      "source_zone",
+      "destination_zone"
+    ]
+  },
+  "decision_workflow": [
+    "Classify client/server role and traffic direction",
+    "Inspect listener and configured endpoint",
+    "Map source and target trust zones",
+    "Inspect existing firewall and middleware/NAT paths",
+    "Select narrowest authorisation or no-rule option",
+    "Validate syntax with target backend reference",
+    "Stage connectivity recovery before enforcement",
+    "Test allowed and blocked source-to-target flows",
+    "Record each exception owner, justification, approval and scheduled review or expiry"
+  ],
+  "prohibited_assumptions": [
+    "Private IP means trusted",
+    "VPN peer automatically authorised",
+    "Port number identifies service",
+    "Outbound HTTPS needs inbound TCP/443",
+    "Default inbound deny requires explicit deny for every port",
+    "Installed Docker requires remote API",
+    "A host firewall necessarily controls published container ports"
+  ],
+  "schema_ref": "schemas/ports_rules.schema.json",
   "engineering_principles": [
     {
       "problem": "Determine whether a network port needs opening",
@@ -87,270 +939,6 @@
       "verification": "validate syntax, ordering, traffic direction, necessity and post-change connectivity"
     }
   ],
-  "port_rules": [
-    {
-      "service": "Ordinary web browsing",
-      "ports": [
-        "80/tcp",
-        "443/tcp"
-      ],
-      "direction": "outbound",
-      "default_inbound_action": "DENY",
-      "allow_inbound_when": "The workstation intentionally hosts an HTTP or HTTPS service accessed by other devices.",
-      "reason": "Web browsing initiates outbound connections and does not require inbound HTTP or HTTPS exceptions.",
-      "safety": "Restrict hosted services to authorised sources where possible; use HTTPS and appropriate authentication."
-    },
-    {
-      "service": "SSH server",
-      "ports": [
-        "22/tcp"
-      ],
-      "direction": "inbound when hosting",
-      "default_inbound_action": "DENY",
-      "allow_inbound_when": "Authorised administrators require remote shell access.",
-      "reason": "An SSH daemon must accept connections from its authorised clients.",
-      "safety": "Prefer key-based authentication, prohibit direct root login and restrict access to management hosts or VPN networks."
-    },
-    {
-      "service": "DNS client",
-      "ports": [
-        "53/udp",
-        "53/tcp",
-        "853/tcp"
-      ],
-      "direction": "outbound",
-      "default_inbound_action": "DENY",
-      "allow_inbound_when": "The workstation intentionally serves DNS queries to other devices.",
-      "reason": "Normal DNS lookups do not require opening an inbound DNS server port.",
-      "safety": "Never expose an unintended open recursive resolver; scope DNS server access to authorised networks."
-    },
-    {
-      "service": "NTP client",
-      "ports": [
-        "123/udp"
-      ],
-      "direction": "outbound",
-      "default_inbound_action": "DENY",
-      "allow_inbound_when": "The machine is intentionally operating an NTP server.",
-      "reason": "Ordinary time synchronisation does not require a general inbound NTP exception.",
-      "safety": "Restrict NTP server access where appropriate and avoid enabling unnecessary public time services."
-    },
-    {
-      "service": "Samba SMB file sharing",
-      "ports": [
-        "445/tcp",
-        "139/tcp",
-        "137/udp",
-        "138/udp"
-      ],
-      "direction": "inbound when hosting",
-      "default_inbound_action": "DENY",
-      "allow_inbound_when": "Trusted LAN clients need to access shares hosted by the workstation.",
-      "reason": "An SMB server must accept requests from devices accessing shared files.",
-      "safety": "Prefer modern SMB over TCP 445, restrict access to trusted hosts, disable obsolete SMB versions and open legacy NetBIOS ports only when required."
-    },
-    {
-      "service": "NFS file sharing",
-      "ports": [
-        "2049/tcp",
-        "2049/udp"
-      ],
-      "direction": "inbound when hosting",
-      "default_inbound_action": "DENY",
-      "allow_inbound_when": "The workstation intentionally exports NFS shares to trusted clients.",
-      "reason": "NFS clients require access to the server's configured service endpoints.",
-      "safety": "Restrict exports and network access; verify NFS version and whether additional RPC services or ports are required."
-    },
-    {
-      "service": "Remote desktop",
-      "ports": [
-        "3389/tcp",
-        "3389/udp",
-        "5900/tcp"
-      ],
-      "direction": "inbound when hosting",
-      "default_inbound_action": "DENY",
-      "allow_inbound_when": "Other devices need remote desktop access and the configured RDP or VNC service actually uses these ports.",
-      "reason": "Remote desktop software accepts inbound graphical-session connections.",
-      "safety": "Prefer VPN or trusted-host access, strong authentication and encrypted sessions; do not expose unsecured VNC publicly."
-    },
-    {
-      "service": "WireGuard VPN server",
-      "ports": [
-        "51820/udp"
-      ],
-      "direction": "inbound when hosting",
-      "default_inbound_action": "DENY",
-      "allow_inbound_when": "The workstation hosts a WireGuard tunnel using this configured listening port.",
-      "reason": "Remote VPN peers must reach the tunnel endpoint.",
-      "safety": "Verify the actual configured port, peer keys, allowed addresses and routing policies."
-    },
-    {
-      "service": "OpenVPN server",
-      "ports": [
-        "1194/udp"
-      ],
-      "direction": "inbound when hosting",
-      "default_inbound_action": "DENY",
-      "allow_inbound_when": "The workstation runs an OpenVPN server using this port and protocol.",
-      "reason": "VPN peers require access to the configured listening endpoint.",
-      "safety": "Use authenticated encrypted tunnels, validate certificates or credentials and restrict forwarding to authorised networks."
-    },
-    {
-      "service": "PostgreSQL",
-      "ports": [
-        "5432/tcp"
-      ],
-      "direction": "inbound only for remote database clients",
-      "default_inbound_action": "DENY",
-      "allow_inbound_when": "Authorised applications on other machines need direct database connections.",
-      "reason": "Local development databases normally need no external exposure.",
-      "safety": "Prefer loopback, Unix sockets or authenticated private networks; never expose PostgreSQL indiscriminately."
-    },
-    {
-      "service": "MySQL and MariaDB",
-      "ports": [
-        "3306/tcp"
-      ],
-      "direction": "inbound only for remote database clients",
-      "default_inbound_action": "DENY",
-      "allow_inbound_when": "An authorised application requires remote database access.",
-      "reason": "A database listener only needs an inbound exception for non-local clients.",
-      "safety": "Use restricted accounts, transport encryption and source IP restrictions; prefer local sockets for local applications."
-    },
-    {
-      "service": "Redis",
-      "ports": [
-        "6379/tcp"
-      ],
-      "direction": "inbound only for authorised remote clients",
-      "default_inbound_action": "DENY",
-      "allow_inbound_when": "A verified distributed application needs private network access to Redis.",
-      "reason": "Locally hosted applications generally do not need Redis accessible from the network.",
-      "safety": "Avoid public exposure; use authentication, protected configuration and private networking."
-    },
-    {
-      "service": "Docker remote API",
-      "ports": [
-        "2375/tcp",
-        "2376/tcp"
-      ],
-      "direction": "administrative",
-      "default_inbound_action": "DENY",
-      "allow_inbound_when": "A documented remote Docker management architecture genuinely requires TCP access and provides strong authentication, encryption and network restrictions.",
-      "reason": "Normal Docker use relies on local interfaces and does not require an inbound TCP API.",
-      "safety": "Never open unauthenticated TCP 2375 as a standard workstation exception. Prefer local Unix sockets or appropriately secured remote management."
-    },
-    {
-      "service": "Ollama API",
-      "ports": [
-        "11434/tcp"
-      ],
-      "direction": "inbound only for remote inference clients",
-      "default_inbound_action": "DENY",
-      "allow_inbound_when": "An authorised device on a trusted network must access the workstation's Ollama API.",
-      "reason": "Local AI applications can generally use the loopback interface without a firewall exception.",
-      "safety": "Prefer loopback or authenticated gateway access; do not publicly expose an API that lacks appropriate access controls."
-    },
-    {
-      "service": "Sonarr",
-      "ports": [
-        "8989/tcp"
-      ],
-      "direction": "inbound only for remote web interface access",
-      "default_inbound_action": "DENY",
-      "allow_inbound_when": "Authorised devices on a trusted LAN need access to Sonarr's web interface.",
-      "reason": "Local management requires no general inbound exception.",
-      "safety": "Restrict to trusted hosts or networks and enable the application's authentication."
-    },
-    {
-      "service": "SABnzbd",
-      "ports": [
-        "8080/tcp"
-      ],
-      "direction": "inbound only for remote web interface access",
-      "default_inbound_action": "DENY",
-      "allow_inbound_when": "Authorised LAN devices need access to SABnzbd on its actual configured port.",
-      "reason": "The service's web interface is not needed by external clients unless remote management is intended.",
-      "safety": "Verify its configured listening port and host binding, use authentication and restrict source addresses."
-    },
-    {
-      "service": "Plex media server",
-      "ports": [
-        "32400/tcp"
-      ],
-      "direction": "inbound when serving remote clients",
-      "default_inbound_action": "DENY",
-      "allow_inbound_when": "Authorised network devices require access to the Plex server.",
-      "reason": "Media clients need connectivity to a hosted media service.",
-      "safety": "Prefer trusted LAN or VPN access; verify whether remote streaming is necessary before enabling wider exposure."
-    },
-    {
-      "service": "Local development web services",
-      "ports": [
-        "3000/tcp",
-        "5000/tcp",
-        "8000/tcp",
-        "8080/tcp"
-      ],
-      "direction": "inbound only for remote development clients",
-      "default_inbound_action": "DENY",
-      "allow_inbound_when": "A development environment must be accessed from another authorised device.",
-      "reason": "Local web development generally works through loopback without inbound exceptions.",
-      "safety": "Do not expose debugging endpoints, development servers or unauthenticated applications beyond trusted clients."
-    },
-    {
-      "service": "mDNS service discovery",
-      "ports": [
-        "5353/udp"
-      ],
-      "direction": "local-network discovery",
-      "default_inbound_action": "CONDITIONAL",
-      "allow_inbound_when": "Required local discovery functionality does not already work under existing firewall rules.",
-      "reason": "mDNS supports local service discovery and differs from ordinary unicast server access.",
-      "safety": "Scope discovery to appropriate local interfaces and multicast behaviour; inspect existing UFW rules before adding exceptions."
-    },
-    {
-      "service": "DHCP client",
-      "ports": [
-        "67/udp",
-        "68/udp"
-      ],
-      "direction": "local network infrastructure",
-      "default_inbound_action": "NO_EXTRA_RULE_BY_DEFAULT",
-      "allow_inbound_when": "A verified custom firewall configuration blocks necessary DHCP communication.",
-      "reason": "A DHCP client requires protocol-specific request and response traffic, which normal host firewall defaults typically accommodate.",
-      "safety": "Do not open broad inbound DHCP ports without diagnosing the actual problem."
-    },
-    {
-      "service": "Email clients",
-      "ports": [
-        "993/tcp",
-        "995/tcp",
-        "587/tcp",
-        "465/tcp"
-      ],
-      "direction": "outbound",
-      "default_inbound_action": "DENY",
-      "allow_inbound_when": "The workstation intentionally hosts an email server rather than merely using an email client.",
-      "reason": "Reading and sending email normally initiates outbound connections.",
-      "safety": "Use encrypted connections and authenticated mail providers; no inbound mail-port exception is normally necessary."
-    }
-  ],
-  "decision_workflow": [
-    "Identify the machine's role and requested workload.",
-    "Determine whether each application acts as a network client, server or both.",
-    "Inspect actual listening addresses, ports and protocols.",
-    "Determine which remote clients genuinely need access.",
-    "Prefer loopback access when communication is entirely local.",
-    "Prefer specific trusted hosts over broad network ranges.",
-    "Check whether the existing firewall already permits required traffic.",
-    "Verify firewall command syntax before recommending changes.",
-    "Avoid redundant, conflicting or overly broad exceptions.",
-    "Preserve remote administrative access before enabling restrictive firewall policies.",
-    "Verify connectivity from both authorised and unauthorised sources.",
-    "Record the reason, owner and review requirements for each approved exception."
-  ],
   "validation_requirements": {
     "must_check": [
       "traffic direction",
@@ -377,5 +965,11 @@
       "An active firewall guarantees every service is protected.",
       "Rate limiting is equivalent to restricting authorised source addresses."
     ]
+  },
+  "retrieval_guidance": {
+    "low_memory_mode": true,
+    "selection": "Load rules, the relevant environment profile and only the service entries matching the task; do not inject the full catalog into the prompt.",
+    "suggested_max_services_per_request": 4,
+    "note": "8 GB VRAM compatibility depends on model size, quantisation and context length; JSON filesize alone does not determine VRAM use."
   }
 }

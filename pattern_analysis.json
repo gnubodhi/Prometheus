@@ -1,0 +1,13 @@
+{
+  "concept": "Encrypted Signal Pattern Analysis",
+  "analogy": "An encrypted signal can be conceptualised as noise layered over an underlying signal. Its observable patterns can be analysed like music, comparing rhythm, timing, frequency and structure against similar recordings.",
+  "method": {
+    "observe": "Collect encrypted traffic metadata without decrypting its contents.",
+    "extract": "Identify patterns in packet sizes, timing, frequency, duration and traffic volume.",
+    "compare": "Treat traffic patterns as musical fingerprints and compare them against known benign and suspicious patterns.",
+    "detect": "Use statistical analysis and machine learning to identify unusual similarities, deviations and anomalies.",
+    "investigate": "Flag potentially problematic patterns for further security investigation."
+  },
+  "principle": "Encryption protects content but does not necessarily conceal all observable traffic characteristics.",
+  "limitation": "Anomalous patterns indicate potential risks, not proof of malicious activity. Encryption is not literally additive noise, and strong encryption generally prevents direct analysis of plaintext patterns."
+}
